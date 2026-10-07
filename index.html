@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Мария В. — руководитель маркетинга</title>
-<meta name="description" content="Беру продукт на старте и довожу до продаж: от исследования рынка до работающей воронки и команды. С ИИ в каждом процессе">
+<meta name="description" content="Выстраиваю маркетинг с нуля и нахожу точки роста в работающей системе: от исследования аудитории до воронок, команды и аналитики. С ИИ в каждом процессе">
 <meta property="og:title" content="Мария В. — руководитель маркетинга">
-<meta property="og:description" content="Беру продукт на старте и довожу до продаж: от исследования рынка до работающей воронки и команды. С ИИ в каждом процессе">
+<meta property="og:description" content="Выстраиваю маркетинг с нуля и нахожу точки роста в работающей системе: от исследования аудитории до воронок, команды и аналитики. С ИИ в каждом процессе">
 <meta property="og:type" content="website">
 <!-- Превью ссылки (Telegram и др.): og:image — полный адрес, Telegram не понимает относительный путь -->
 <meta property="og:image" content="https://maria1moon.github.io/images/og.png">
@@ -23,10 +23,16 @@
     src: url(fonts/inter-cyrillic.woff2) format("woff2");
     unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
   }
+  /* «₽» отдельным файлом на 1 КБ (сабсет Inter), чтобы не тянуть 85 КБ latin-ext ради одного знака */
+  @font-face {
+    font-family: "Inter"; font-style: normal; font-weight: 400 800; font-display: swap;
+    src: url(fonts/inter-rub.woff2) format("woff2");
+    unicode-range: U+20BD;
+  }
   @font-face {
     font-family: "Inter"; font-style: normal; font-weight: 400 800; font-display: swap;
     src: url(fonts/inter-latin-ext.woff2) format("woff2");
-    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20BC, U+20BE-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
   }
   @font-face {
     font-family: "Inter"; font-style: normal; font-weight: 400 800; font-display: swap;
@@ -59,6 +65,8 @@
     --line: #e3e8ee;
     --accent: #635bff;
     --accent-soft: #efeeff;
+    /* Акцент для мелкого текста на мягком фоне: на глаз тот же, но контраст AA (5.3:1 на --soft) */
+    --accent-text: #5850e8;
     --c-violet: #635bff;
     --c-blue: #3d7bff;
     --c-cyan: #22c7ff;
@@ -189,9 +197,11 @@
 
   /* --- Кейсы --- */
   .cases { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  /* Раскрытый кейс не растягивает соседний: пока открыт хоть один, карточки по своей высоте */
+  .cases:has(details[open]) { align-items: start; }
   .case {
     background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 28px; display: flex; flex-direction: column;
+    padding: 28px; display: flex; flex-direction: column; scroll-margin-top: 72px;
   }
   /* Картинка кейса: в углу домен кейса из data-domain — просто текст, не ссылка */
   .case-media {
@@ -222,7 +232,9 @@
   .case ul li::before { content: "·"; position: absolute; left: 4px; color: var(--accent); font-weight: 700; }
   .results { background: var(--soft); border-radius: 10px; padding: 14px 16px; margin-top: 4px; }
   /* Цифры результатов — моно, как показатели на дашборде (потом: досчёт от нуля) */
-  .results li b { color: var(--accent); font-family: var(--mono); font-weight: 500; font-size: .95em; }
+  .results li b { color: var(--accent-text); font-family: var(--mono); font-weight: 500; font-size: .95em; }
+  /* Число не отрываем от единицы и знака */
+  .nw, .results b, .job .period { white-space: nowrap; }
   .nda { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 8px; }
   details { margin-top: auto; padding-top: 18px; }
   details summary {
@@ -235,6 +247,15 @@
   details[open] summary::before { content: "−"; }
   details[open] summary .more { display: none; }
   details:not([open]) summary .less { display: none; }
+  details summary:hover, .collapse:hover { text-decoration: underline; text-underline-offset: 3px; }
+  details summary:focus-visible, .collapse:focus-visible, .ai-work:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px;
+  }
+  /* «Свернуть» внизу раскрытого текста (добавляет скрипт) */
+  .collapse {
+    display: block; margin-top: 14px; padding: 8px 0; border: 0; background: none; cursor: pointer;
+    font: 13px var(--mono); color: var(--accent);
+  }
   .details-body { border-top: 1px dashed var(--line); margin-top: 14px; padding-top: 14px; }
   .details-body h4:first-child { margin-top: 0; }
 
@@ -246,6 +267,8 @@
   .ai-item .num { font-family: var(--mono); font-size: 12px; color: var(--accent); }
   .ai-item h3 { font-size: 18px; margin: 10px 0 8px; }
   .ai-item p { font-size: 15px; color: var(--muted); }
+  /* Цепочка «вход → выход» моно-строкой под описанием */
+  .ai-item .flow { font-family: var(--mono); font-size: 12px; line-height: 1.6; color: var(--accent-text); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
 
   /* --- Стек --- */
   /* Стек как «спецификация»: категория слева, теги справа, тонкие линии между строками */
@@ -260,6 +283,7 @@
   /* Колонка категории на 22px уже — компенсирует внутренний отступ рамки, теги встают в одну линию */
   .tool-group.ai { grid-template-columns: 198px 1fr; padding: 20px 22px; border-radius: var(--radius); margin-bottom: 8px; }
   .tool-group.ai h3 { color: var(--ink); }
+  .tool-group h3 .sub { display: block; font-weight: 400; font-size: 12px; margin-top: 2px; }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; }
   .tag {
     font-family: var(--mono); font-size: 13px;
@@ -340,6 +364,11 @@
     color: var(--accent);
     width: fit-content;
   }
+  /* Подписи на градиентных пятнах — тёмно-синие: акцент на пятне не проходит контраст AA */
+  .hero .label, .contact-card .label { color: var(--ink); }
+  /* Тихий призыв написать после опыта: моно-строка, не кнопка */
+  .cta-line { margin-top: 32px; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+  .cta-line a { color: var(--accent-text); }
 
   /* Прогресс-бар: тонкая градиентная линия по нижнему краю шапки, растёт по мере прокрутки (скрипт внизу) */
   .progress {
@@ -354,16 +383,22 @@
   }
   /* Статус в шапке (потом: пульсация точки) */
   .status {
+    position: relative; isolation: isolate;
     display: inline-flex; align-items: center; gap: 6px; margin-left: 14px;
     font-family: var(--mono); font-size: 12px; color: var(--muted);
   }
   .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #16a34a; box-shadow: 0 0 0 3px rgba(22, 163, 74, .15); }
+  /* Кольцо пульса — отдельный слой, анимируется только transform/opacity (без перерисовки страницы) */
+  .status::after {
+    content: ""; position: absolute; left: 0; top: 50%; width: 7px; height: 7px; margin-top: -3.5px;
+    border-radius: 50%; background: rgba(22, 163, 74, .45); opacity: 0; pointer-events: none; z-index: -1;
+  }
   .nav-left { display: flex; align-items: center; flex-shrink: 0; }
 
   /* --- Анимации (data-animate). При «уменьшить движение» — всё статично --- */
   @media (prefers-reduced-motion: no-preference) {
     [data-animate="blink"] { animation: blink 1.1s steps(1) infinite; }
-    [data-animate="pulse"]::before { animation: pulse 2.4s ease-out infinite; }
+    [data-animate="pulse"]::after { animation: pulse 2.4s ease-out infinite; }
     /* Строки опыта скрываем, только когда скрипт точно работает (класс anim на <html>) */
     /* Скрытие мгновенное, плавным делаем только появление — иначе строки мелькают при загрузке */
     .anim [data-animate="log"] .job { opacity: 0; transform: translateY(8px); }
@@ -394,11 +429,7 @@
   @keyframes poly-lines { from { opacity: 0; } }
   @keyframes poly-dot { 0% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; transform: scale(2.2); } 100% { opacity: 1; transform: scale(1); } }
   @keyframes blink { 50% { opacity: 0; } }
-  @keyframes pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(22, 163, 74, .45); }
-    70%  { box-shadow: 0 0 0 8px rgba(22, 163, 74, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
-  }
+  @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 70%, 100% { transform: scale(3.3); opacity: 0; } }
 
   /* --- Адаптив --- */
   @media (max-width: 900px) {
@@ -422,20 +453,23 @@
               mask-image: linear-gradient(90deg, #000 85%, transparent);
     }
     .nav ul::-webkit-scrollbar { display: none; }
-    /* Кейсы и «ИИ в работе» на телефоне — карусели: листаются пальцем, краешек следующей карточки виден */
-    .cases, .ai-work {
-      display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
+    /* Кейсы на телефоне — вертикальный список с раскрытиями */
+    .cases { grid-template-columns: 1fr; gap: 16px; }
+    /* «ИИ в работе» на телефоне — карусель: листается пальцем, краешек следующей карточки виден */
+    .ai-work {
+      display: flex; align-items: flex-start; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
       margin-inline: -20px; padding: 4px 20px 12px; scroll-padding-inline: 20px; scrollbar-width: none;
     }
-    .cases::-webkit-scrollbar, .ai-work::-webkit-scrollbar { display: none; }
-    .cases { align-items: flex-start; }
-    .cases > .case, .ai-work > .ai-item { flex: 0 0 86%; scroll-snap-align: start; }
+    .ai-work::-webkit-scrollbar { display: none; }
+    .ai-work > .ai-item { flex: 0 0 86%; scroll-snap-align: start; }
     .tool-group, .tool-group.ai { grid-template-columns: 1fr; gap: 10px; }
     .case { padding: 22px; }
     .about-grid { grid-template-columns: 1fr; }
     .status { font-size: 0; gap: 0; margin-left: 10px; }
+    /* Опыт: одна колонка, период над заголовком (сбрасываем вторую колонку у всех детей) */
     .job { grid-template-columns: 1fr; }
-    .job .period { grid-row: auto; padding-top: 0; }
+    .job > :not(.period) { grid-column: 1; }
+    .job .period { grid-row: auto; padding-top: 0; margin-bottom: 2px; }
     .contact-card { padding: 44px 20px; border-radius: 18px; }
   }
   @media (max-width: 480px) {
@@ -445,6 +479,27 @@
     .thesis h2 { font-size: 15px; }
     .thesis p { font-size: 13px; }
     .btn { width: 100%; justify-content: center; }
+  }
+
+  /* --- Печать и «Сохранить как PDF»: весь контент виден, «Подробнее» раскрыты (скрипт), без шапки и декора --- */
+  @media print {
+    .anim [data-animate="reveal"], .anim [data-animate="log"] .job { opacity: 1 !important; transform: none !important; transition: none !important; }
+    header.nav, .progress, .cursor, .poly, .hero::before, .contact-card::before, details summary, .collapse { display: none !important; }
+    .hero { padding: 24px 0; }
+    section { padding: 28px 0; }
+    .hero-main { grid-template-columns: 1.5fr 1fr; }
+    .portrait { order: 0; max-width: 180px; justify-self: end; box-shadow: none; }
+    .cases { grid-template-columns: 1fr; }
+    .ai-work { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; margin-inline: 0; padding: 0; }
+    .ai-work > .ai-item { flex: none; }
+    .case-media { max-width: 360px; }
+    .thesis, .about-card, .ai-item, .job, .results, .tool-group, .contact-card, .case-media, .case-head { break-inside: avoid; }
+    h2, .ai-intro, .case h4 { break-after: avoid; }
+    .details-body { border-top: 0; margin-top: 0; padding-top: 0; animation: none !important; }
+    .btn { background: none; color: var(--accent); padding: 0; box-shadow: none; }
+    .btn::after { content: " — t.me/maria1moon"; font-family: var(--mono); font-weight: 400; }
+    .btn .ico-btn { display: none; }
+    .results, .tag, .tool-group.ai, .label, .num, .portrait { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 </style>
 </head>
@@ -476,11 +531,11 @@
     <div class="wrap">
       <div class="hero-main">
         <div>
-          <span class="label">// в маркетинге с 2017 года</span>
+          <span class="label">// в маркетинге с 2017 года · <span class="nw">FinTech, Web3, SaaS</span></span>
           <p class="hello">Привет!</p>
           <h1>Я Мария, <em>руководитель маркетинга</em><span class="cursor" aria-hidden="true" data-animate="blink"></span></h1>
-          <p class="lead">Беру продукт на старте и довожу до продаж: от исследования рынка до работающей воронки и команды. С ИИ в каждом процессе</p>
-          <a class="btn" href="https://t.me/maria1moon" target="_blank" rel="noopener">Написать в Telegram<svg class="ico-btn" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3L3 10.5l6 2.5 2.5 6L21 3zM9 13l12-10"/></svg></a>
+          <p class="lead">Выстраиваю маркетинг с нуля и нахожу точки роста в работающей системе: от исследования аудитории до воронок, команды и аналитики. С ИИ в каждом процессе</p>
+          <a class="btn" href="https://t.me/maria1moon?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9C%D0%B0%D1%80%D0%B8%D1%8F%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%20%D1%80%D0%BE%D0%BB%D0%B8%20%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8F%20%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%B8%D0%BD%D0%B3%D0%B0%20%D0%B2%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20%E2%80%A6" target="_blank" rel="noopener">Написать в Telegram<svg class="ico-btn" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3L3 10.5l6 2.5 2.5 6L21 3zM9 13l12-10"/></svg></a>
         </div>
         <div class="portrait">
           <img src="images/portrait.webp" width="760" height="760" alt="Low-poly портрет">
@@ -491,7 +546,7 @@
         <div class="thesis">
           <div class="ico-row"><span class="num">01</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
           <h2>Маркетинг 360</h2>
-          <p>Построю стратегию, аналитику, команду, подрядчиков и комьюнити там, где ничего этого не было</p>
+          <p>Выстраиваю стратегию и аналитику, собираю команду, подрядчиков и комьюнити там, где ничего этого не было</p>
         </div>
         <div class="thesis">
           <div class="ico-row"><span class="num">02</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3 2 5 5 5 9l-2 3H9l-2-3c0-4 2-7 5-9z"/><circle cx="12" cy="10" r="1.5"/><path d="M9 15l-3 3M15 15l3 3M12 17v4"/></svg></div>
@@ -501,7 +556,7 @@
         <div class="thesis">
           <div class="ico-row"><span class="num">03</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4"/></svg></div>
           <h2>ИИ в процессах</h2>
-          <p>Отдаю рутину ИИ: исследования, прототипы, таблицы, статьи, процессы. Работаю в Claude Code, Make, n8n</p>
+          <p>Отдаю рутину ИИ: исследования, прототипы, таблицы, статьи, процессы. Работаю в Claude&nbsp;Code, Make, n8n</p>
         </div>
         <div class="thesis">
           <div class="ico-row"><span class="num">04</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><ellipse cx="12" cy="12" rx="4" ry="9"/></svg></div>
@@ -526,11 +581,15 @@
           </div>
           <div class="about-card">
             <span class="label">// формат работы</span>
-            <p>Выбираю работу в штате: так я погружаюсь в бизнес целиком и отвечаю за результат. Для интересных проектов провожу консультации</p>
+            <p>Ищу штатную работу руководителем или тимлидом маркетинга: так я погружаюсь в бизнес целиком и отвечаю за результат. Дополнительно рассматриваю подработку аудитором маркетинга. Часовой пояс UTC+3</p>
           </div>
           <div class="about-card">
             <span class="label">// бюджеты</span>
-            <p>Управляла маркетинговыми бюджетами от 500&nbsp;тыс. до 2&nbsp;млн&nbsp;₽ в месяц</p>
+            <p>Управляла маркетинговыми бюджетами от&nbsp;500&nbsp;тыс. до&nbsp;2&nbsp;млн&nbsp;₽ в месяц</p>
+          </div>
+          <div class="about-card">
+            <span class="label">// команда</span>
+            <p>Собирала и вела команды до&nbsp;5&nbsp;человек в штате и&nbsp;5–7&nbsp;подрядчиков: редакция и SMM, реклама, PR, видео</p>
           </div>
         </div>
       </div>
@@ -544,37 +603,37 @@
       <div class="cases">
 
         <!-- K8X -->
-        <article class="case grad-border" data-animate="reveal">
+        <article id="k8x" class="case grad-border" data-animate="reveal">
           <figure class="case-media" data-domain="k8x.io">
             <img src="images/k8x.webp" loading="lazy" alt="Иллюстрация к кейсу K8X: майнинг-пул">
           </figure>
           <div class="case-head">
             <h3>K8X</h3>
-            <div class="meta">Международный майнинг-пул, B2B/B2C</div>
+            <div class="meta">Международный майнинг-пул, B2B/B2C · <span class="nw">Руководитель маркетинга</span> · <span class="nw">03–09.2026</span></div>
           </div>
           <h4>Задача</h4>
           <p>Запустить маркетинг с нуля и построить систему, которая приводит пользователей, усиливает бренд и помогает B2B-продажам</p>
           <h4>Результат</h4>
           <ul class="results">
-            <li>Регистрации <b data-animate="count">+20–40%</b> каждый месяц</li>
-            <li><b data-animate="count">Топ-15</b> мировых майнинг-пулов</li>
+            <li>Регистрации <b data-animate="count">+20–40%</b> каждый месяц, март–сентябрь&nbsp;2026</li>
+            <li><b>Топ-15</b> мировых майнинг-пулов по&nbsp;данным MiningPoolStats</li>
             <li>Сообщество <b data-animate="count">2000+</b>, активный чат <b data-animate="count">750+</b></li>
           </ul>
           <details>
-            <summary><span class="more">Подробнее</span><span class="less">Свернуть</span></summary>
+            <summary><span class="more">Что сделала и детали</span><span class="less">Свернуть</span></summary>
             <div class="details-body">
               <p>На старте не было ничего: ни стратегии, ни контент-маркетинга, ни сквозной аналитики, ни комьюнити, ни процессов работы с подрядчиками</p>
               <h4>Что сделала</h4>
               <ul>
                 <li>Разработала стратегию, позиционирование, CJM и аналитику</li>
-                <li>Собрала с нуля команду и подрядчиков</li>
+                <li>Собрала с нуля команду и подрядчиков: редакция и SMM, реклама, PR и SERM, видеопродакшн</li>
                 <li>Запустила Telegram-канал и сообщество</li>
-                <li>Вывела компанию в медиа: 30+ экспертных публикаций в месяц (VC, РБК)</li>
+                <li>Вывела компанию в медиа: 30+&nbsp;экспертных публикаций в месяц (VC,&nbsp;РБК)</li>
                 <li>Автоматизировала внутренние процессы с ИИ</li>
               </ul>
               <h4>Ещё сделала</h4>
               <ul>
-                <li>PR руководителей в федеральных и отраслевых СМИ (Известия, TechInsider, Генеральный директор, BeInCrypto)</li>
+                <li>PR руководителей в федеральных и отраслевых СМИ («Известия», TechInsider, «Генеральный директор», BeInCrypto)</li>
                 <li>Презентации для B2B-продаж и архитектуру нового сайта</li>
                 <li>Партнёрские коллаборации и работу с блогерами</li>
                 <li>Исследование и упаковку нового продукта</li>
@@ -582,73 +641,78 @@
               <h4>Ещё результаты</h4>
               <ul>
                 <li>Новый продукт готов к запуску</li>
-                <li>Таблицы, статьи и ресёрч новостей ведутся автоматически</li>
+                <li>Часть рутины автоматизирована с ИИ: таблицы, статьи, ресёрч новостей</li>
               </ul>
             </div>
           </details>
         </article>
 
         <!-- GDS Mining -->
-        <article class="case grad-border" data-animate="reveal">
+        <article id="gds-mining" class="case grad-border" data-animate="reveal">
           <figure class="case-media" data-domain="gds-mining.com">
             <img src="images/gds-mining.webp" loading="lazy" alt="Иллюстрация к кейсу GDS Mining: майнинг-инвестиции">
           </figure>
           <div class="case-head">
             <h3>GDS Mining</h3>
-            <div class="meta">Инвестиционный продукт в майнинге, B2B</div>
+            <div class="meta">Инвестиционный продукт в майнинге, B2B · <span class="nw">Руководитель маркетинга</span> · 2024–2026</div>
           </div>
           <h4>Задача</h4>
           <p>Привести больше квалифицированных B2B-лидов и снизить их стоимость</p>
           <h4>Результат</h4>
           <ul class="results">
-            <li>MQL <b data-animate="count">×6</b></li>
-            <li>SQL до <b data-animate="count">25%</b></li>
-            <li>CPL <b data-animate="count">−30%</b></li>
-            <li>Стабильно высокий ROMI</li>
+            <li>Квалифицированных лидов (MQL) <b data-animate="count">×6</b> за&nbsp;6&nbsp;мес.</li>
+            <li>Доля лидов, готовых к сделке (SQL), до&nbsp;<b data-animate="count">25%</b> от&nbsp;MQL</li>
+            <li>Стоимость лида (CPL) <b data-animate="count">−30%</b> за&nbsp;6&nbsp;мес.</li>
           </ul>
-          <p class="nda">NDA, цифры относительные</p>
+          <p class="nda">Абсолютные значения под NDA, показываю рост к уровню на старте работ</p>
           <details>
-            <summary><span class="more">Подробнее</span><span class="less">Свернуть</span></summary>
+            <summary><span class="more">Что сделала и детали</span><span class="less">Свернуть</span></summary>
             <div class="details-body">
-              <p>На старте не было продуктовой линейки, маркетинговых материалов и единой логики воронки</p>
+              <h4>Ключевое решение</h4>
+              <ul>
+                <li>Что мешало: не было продуктовой линейки, маркетинговых материалов и единой логики воронки</li>
+                <li>Что обнаружила: исследование аудитории показало, что клиентам нужны разные чеки, форматы сделки и валюты оплаты</li>
+                <li>Что решила: собрала линейку — майнинг под ключ, B2B-решения под разные чеки, оборудование, хостинг и пакет «оборудование + хостинг»</li>
+                <li>Как поняла, что сработало: за&nbsp;6&nbsp;мес. MQL&nbsp;×6 и CPL&nbsp;−30%, цикл сделки сократился, средний чек и LTV выросли</li>
+              </ul>
               <h4>Что сделала</h4>
               <ul>
-                <li>Собрала новую продуктовую линейку на основе исследования аудитории</li>
                 <li>Обновила сайт, маркетинг-киты и офферы</li>
                 <li>Запустила Telegram-бот, вебинары и лидогенерацию через Авито</li>
                 <li>Выстроила единую систему контроля подрядчиков</li>
               </ul>
-              <h4>Продуктовая линейка</h4>
-              <p>Инвестиции в майнинг под ключ, B2B-решения под разные чеки, оборудование, хостинг и пакет «оборудование + хостинг». Так мы расширили аудиторию, сократили цикл сделки, подняли средний чек и LTV</p>
               <h4>Подрядчики</h4>
-              <p>Прозрачная отчётность, регулярная аналитика через РНП, состав обновляем по эффективности</p>
+              <p>Прозрачная отчётность, регулярная аналитика через РНП, состав обновляла по эффективности</p>
               <h4>Вебинары</h4>
-              <p>В среднем <b>40</b> участников</p>
+              <p>В среднем <b>40</b>&nbsp;участников</p>
+              <h4>Ещё результаты</h4>
+              <ul>
+                <li>Стабильно высокий ROMI</li>
+              </ul>
             </div>
           </details>
         </article>
 
         <!-- Web3Eco -->
-        <article class="case grad-border" data-animate="reveal">
+        <article id="web3eco" class="case grad-border" data-animate="reveal">
           <figure class="case-media" data-domain="web3eco.io">
             <img src="images/web3eco.webp" loading="lazy" alt="Иллюстрация к кейсу Web3Eco: Web3 и агротех">
           </figure>
           <div class="case-head">
             <h3>Web3Eco</h3>
-            <div class="meta">Инвестиционный продукт, Web3/Agrotech</div>
+            <div class="meta">Инвестиционный продукт, Web3/Agrotech · <span class="nw">Руководитель маркетинга</span> · 2024–2026</div>
           </div>
           <h4>Задача</h4>
           <p>Построить маркетинг для продажи инвестиционного продукта и укрепить доверие инвесторов</p>
           <h4>Результат</h4>
           <ul class="results">
-            <li>Инвестиционные раунды закрыты <b data-animate="count">SOLD OUT</b></li>
-            <li>Привлекли более <b data-animate="count">$2 млн</b> инвестиций</li>
+            <li>Инвестиционные раунды закрыты <b>SOLD OUT</b></li>
+            <li>Привлекли более <b>$2&nbsp;млн</b> инвестиций</li>
             <li>Высокая доля повторных инвестиций</li>
-            <li>Стабильно высокий ROMI</li>
           </ul>
-          <p class="nda">NDA, цифры относительные</p>
+          <p class="nda">Остальные показатели под NDA</p>
           <details>
-            <summary><span class="more">Подробнее</span><span class="less">Свернуть</span></summary>
+            <summary><span class="more">Что сделала и детали</span><span class="less">Свернуть</span></summary>
             <div class="details-body">
               <h4>Что сделала</h4>
               <ul>
@@ -662,35 +726,37 @@
               <h4>Упаковка и медиа</h4>
               <ul>
                 <li>Редизайн сайта, новые презентации и маркетинг-киты</li>
-                <li>Каналы основателя в Instagram и YouTube выросли более чем в 3 раза</li>
+                <li>Каналы основателя в Instagram и YouTube выросли более чем в&nbsp;3&nbsp;раза</li>
                 <li>Интервью с лидерами мнений, регулярный видеоконтент</li>
               </ul>
               <h4>Ещё результаты</h4>
               <ul>
                 <li>Реферальная программа стала стабильным источником клиентов</li>
-                <li>Вебинары собирают в среднем <b>80</b> участников</li>
+                <li>Вебинары собирали в среднем <b>80</b>&nbsp;участников</li>
+                <li>Стабильно высокий ROMI</li>
               </ul>
             </div>
           </details>
         </article>
 
         <!-- Juna -->
-        <article class="case grad-border" data-animate="reveal">
+        <article id="juna" class="case grad-border" data-animate="reveal">
           <figure class="case-media" data-domain="juna.space">
             <img src="images/juna.webp" loading="lazy" alt="Иллюстрация к кейсу Juna: безопасные сделки">
           </figure>
           <div class="case-head">
             <h3>Juna</h3>
-            <div class="meta">SaaS-платформа безопасных сделок, B2B</div>
+            <div class="meta">SaaS-платформа безопасных сделок, B2B · <span class="nw">Маркетинг-консультант</span> · 2023–2024</div>
           </div>
           <h4>Задача</h4>
           <p>Исследовать рынок, собрать продуктовую концепцию и подготовить к запуску платформу сделок с ИИ, смарт-контрактами и встроенным эскроу</p>
           <h4>Результат</h4>
           <ul class="results">
-            <li>Действующий B2B-продукт для международных платежей. Развивается через прямые продажи и логистических партнеров. Продукт полностью упакован: есть вся документация и GTM-стратегия</li>
+            <li>Упаковала продукт к запуску: исследования, CJM, Whitepaper, сайт, документация и GTM-стратегия</li>
+            <li>Сейчас Juna — действующий B2B-продукт для международных платежей, растёт через прямые продажи и логистических партнёров</li>
           </ul>
           <details>
-            <summary><span class="more">Подробнее</span><span class="less">Свернуть</span></summary>
+            <summary><span class="more">Что сделала и детали</span><span class="less">Свернуть</span></summary>
             <div class="details-body">
               <h4>Что сделала</h4>
               <ul>
@@ -704,7 +770,7 @@
               <h4>Ещё сделала</h4>
               <ul>
                 <li>Модель доверительного взаимодействия с пользователями</li>
-                <li>Материалы для Medium и X (Twitter)</li>
+                <li>Материалы для Medium и&nbsp;X&nbsp;(Twitter)</li>
               </ul>
             </div>
           </details>
@@ -719,31 +785,36 @@
     <div class="wrap">
       <h2>ИИ в работе</h2>
       <p class="ai-intro">ИИ для меня не чат для вопросов, а часть рабочих процессов</p>
-      <div class="ai-work">
+      <div class="ai-work" role="region" aria-label="Примеры работы с ИИ">
         <div class="ai-item grad-border" data-animate="reveal">
           <div class="ico-row"><span class="num">01</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 12h3c3 0 3-6 7-6M7 12h3c3 0 3 6 7 6"/></svg></div>
           <h3>Сложные сценарии в Make</h3>
           <p>Строю многошаговые автоматизации. Например, каждый день бот присылает мне в Telegram свежий AI-ресёрч и идеи для работы</p>
+          <p class="flow">// утром: ресёрч новостей ИИ → документ с архивом → Make → пуш в Telegram · раз в неделю агент сортирует по важности</p>
         </div>
         <div class="ai-item grad-border" data-animate="reveal">
           <div class="ico-row"><span class="num">02</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6l1.5 1.5L7.5 5M3.5 12l1.5 1.5L7.5 11M3.5 18l1.5 1.5L7.5 17M11 6h9M11 12h9M11 18h9"/></svg></div>
-          <h3>Таск-трекеры на связке</h3>
-          <p>Подключаю планировщики задач ко всем рабочим инструментам: задачи, данные и уведомления живут в одной системе</p>
+          <h3>Таск-трекеры в связке</h3>
+          <p>Подключаю планировщики задач к основным рабочим инструментам: задачи, данные и уведомления живут в одной системе</p>
+          <p class="flow">// строка в таблице статей → задача дизайнеру на иллюстрации и схемы</p>
         </div>
         <div class="ai-item grad-border" data-animate="reveal">
           <div class="ico-row"><span class="num">03</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg></div>
           <h3>Скиллы под маркетинг</h3>
-          <p>Создала набор скиллов для базовых артефактов: CJM, анализ конкурентов и других. Черновик пишет ИИ, а я трачу время только на выводы</p>
+          <p>Создала набор скиллов для CJM, анализа конкурентов и других маркетинговых задач</p>
+          <p class="flow">// базовая задача → свой скилл для агентов</p>
         </div>
         <div class="ai-item grad-border" data-animate="reveal">
           <div class="ico-row"><span class="num">04</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="4" height="4" rx="1"/><rect x="10" y="7" width="4" height="4" rx="1"/><rect x="17" y="7" width="4" height="4" rx="1"/><path d="M3 16h18"/></svg></div>
           <h3>Конвейер типовых задач</h3>
           <p>Повторяющиеся задачи ставлю на поток. Например, SEO: ИИ проходит все шаги от темы до готового драфта статьи, я проверяю результат</p>
+          <p class="flow">// семантика и ресёрч → 5 ИИ-агентов → драфт в Google Docs или блог</p>
         </div>
         <div class="ai-item grad-border" data-animate="reveal">
           <div class="ico-row"><span class="num">05</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></div>
           <h3>Этот сайт</h3>
           <p>Сделала его вместе с Claude: собрала факты из резюме, прописала для ИИ алгоритм и правила (шаги разработки и дизайна, позиционирование, тон, приватность, стиль). ИИ сверстал страницу, текст мы отредактировали вместе</p>
+          <p class="flow">// портфолио → тексты → прототип → дизайн → вёрстка и анимация → прод → серия аудитов</p>
         </div>
       </div>
     </div>
@@ -778,7 +849,7 @@
           </div>
         </div>
         <div class="tool-group">
-          <h3>Реклама</h3>
+          <h3>Реклама <span class="sub">управление и контроль</span></h3>
           <div class="tags">
             <span class="tag">Google Ads</span>
             <span class="tag">Яндекс Директ</span>
@@ -825,41 +896,42 @@
       <h2>Опыт</h2>
       <div class="timeline" data-animate="log">
         <div class="job now">
-          <span class="period">2026 – н.в.</span>
+          <span class="period">2026&nbsp;–&nbsp;н.в.</span>
           <h3>Консалтинг</h3>
-          <p>Фокус на AI-driven маркетинге</p>
+          <p>Аудит маркетинга для небольших B2B-компаний и ИИ-автоматизация процессов</p>
         </div>
         <div class="job">
-          <span class="period">2026</span>
+          <span class="period">03–09.2026</span>
           <h3>K8X майнинг-пул</h3>
           <div class="role">Руководитель маркетинга</div>
-          <p>Регистрации +20–40% в месяц, топ-15 мировых пулов</p>
+          <p>Построила маркетинг с нуля и передала команде. Регистрации <span class="nw">+20–40%</span> в месяц, топ-15 мировых пулов</p>
         </div>
         <div class="job">
           <span class="period">2024–2026</span>
           <h3>GDS Mining и Web3Eco</h3>
           <div class="role">Руководитель маркетинга</div>
-          <p>Лиды +500%, рост среднего чека</p>
+          <p>GDS Mining: лиды <span class="nw">+500%</span> и MQL&nbsp;×6 за&nbsp;6&nbsp;мес., рост среднего чека. Web3Eco: раунды SOLD OUT, более <span class="nw">$2&nbsp;млн</span> инвестиций</p>
         </div>
         <div class="job">
           <span class="period">2023–2024</span>
           <h3>FinTech &amp; Crypto</h3>
           <div class="role">Маркетинг-консультант</div>
-          <p>Проводила аудит продуктов и сайтов, оптимизировала воронки, консультировала по UX/UI. CR вырос с 1–2% до ~5%. Проекты: Juna, Matbea, PlayFarcana</p>
+          <p>Проводила аудит продуктов и сайтов, оптимизировала воронки, консультировала по UX/UI. CR вырос с&nbsp;<span class="nw">1–2%</span> до&nbsp;~5%. Проекты: Juna, Matbea, PlayFarcana</p>
         </div>
         <div class="job">
           <span class="period">2021–2023</span>
           <h3>Everscale</h3>
           <div class="role">Senior Marketing Manager</div>
-          <p>Руководила двумя командами, вела международный маркетинг (Индонезия, Южная Корея), запускала сайты, отвечала за PR. Конверсия лендингов 3–5%</p>
+          <p>Руководила двумя командами, вела международный маркетинг (Индонезия, Южная Корея), запускала сайты, отвечала за PR. Конверсия лендингов <span class="nw">3–5%</span></p>
         </div>
         <div class="job">
           <span class="period">2017–2021</span>
           <h3>Ingate и агентства</h3>
           <div class="role">Маркетинг/Аналитика</div>
-          <p>Анализировала сайты и аудиторию, формулировала УТП, работала с UX/UI, рекламой, SEO, SMM и e-commerce. Запускала недельные акции с выручкой до 5 млн ₽</p>
+          <p>Анализировала сайты и аудиторию, формулировала УТП, работала с UX/UI, рекламой, SEO, SMM и <span class="nw">e-commerce</span>. Запускала недельные акции с выручкой до&nbsp;5&nbsp;млн&nbsp;₽</p>
         </div>
       </div>
+      <p class="cta-line">// контакты руководителей для рекомендаций — по запросу → <a href="https://t.me/maria1moon?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9C%D0%B0%D1%80%D0%B8%D1%8F%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%20%D1%80%D0%BE%D0%BB%D0%B8%20%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8F%20%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%B8%D0%BD%D0%B3%D0%B0%20%D0%B2%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20%E2%80%A6" target="_blank" rel="noopener">Написать</a></p>
     </div>
   </section>
 
@@ -871,7 +943,7 @@
       <span class="label">// контакты</span>
       <h2>Давайте познакомимся</h2>
       <p>Расскажите о вашей компании и задачах, а я поделюсь опытом, интересными кейсами и контактами руководителей, которые меня рекомендуют</p>
-      <a class="btn" href="https://t.me/maria1moon" target="_blank" rel="noopener">Telegram @maria1moon<svg class="ico-btn" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3L3 10.5l6 2.5 2.5 6L21 3zM9 13l12-10"/></svg></a>
+      <a class="btn" href="https://t.me/maria1moon?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9C%D0%B0%D1%80%D0%B8%D1%8F%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%20%D1%80%D0%BE%D0%BB%D0%B8%20%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8F%20%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%B8%D0%BD%D0%B3%D0%B0%20%D0%B2%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20%E2%80%A6" target="_blank" rel="noopener">Telegram @maria1moon<svg class="ico-btn" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3L3 10.5l6 2.5 2.5 6L21 3zM9 13l12-10"/></svg></a>
      </div>
     </div>
   </section>
@@ -913,24 +985,75 @@
       el.classList.add('shown');
     }, 0.15);
 
-    // Опыт как вывод команды: строки появляются по одной
-    onVisible(document.querySelectorAll('[data-animate="log"]'), log => {
-      log.querySelectorAll('.job').forEach((job, i) => setTimeout(() => job.classList.add('shown'), i * 120));
-    });
+    // Опыт как вывод команды: каждая строка появляется, когда входит в экран (лесенка внутри пачки).
+    // Наблюдаем строки, а не весь блок: блок выше экрана никогда не набрал бы нужную долю
+    onVisible(document.querySelectorAll('[data-animate="log"] .job'), (job, j) => {
+      setTimeout(() => job.classList.add('shown'), j * 120);
+    }, 0.1);
 
-    // Цифры досчитывают от нуля; текст вокруг чисел («+», «%», «×», «млн») не меняется
+    // Цифры досчитывают от нуля; текст вокруг чисел («+», «%», «×») не меняется.
+    // Числа меньше 10 не считаем (×0, ×1… выглядит странно); ширину фиксируем, чтобы текст справа не ёрзал
     onVisible(document.querySelectorAll('[data-animate="count"]'), el => {
-      const text = el.textContent;
-      if (!/\d/.test(text)) return;
+      const text = el.textContent, nums = text.match(/\d+/g);
+      if (!nums || Math.max(...nums.map(Number)) < 10) return;
+      el.style.display = 'inline-block';
+      el.style.minWidth = el.getBoundingClientRect().width + 'px';
       const start = performance.now(), dur = 900;
       const step = now => {
         const t = Math.min(1, (now - start) / dur), k = 1 - Math.pow(1 - t, 3);
         el.textContent = t < 1 ? text.replace(/\d+/g, n => Math.round(n * k)) : text;
-        if (t < 1) requestAnimationFrame(step);
+        if (t < 1) requestAnimationFrame(step); else el.removeAttribute('style');
       };
       requestAnimationFrame(step);
     });
   }
+
+  // Кейсы: «Свернуть» внизу раскрытого текста; ссылка вида #web3eco открывает нужный кейс
+  (() => {
+    document.querySelectorAll('.case details').forEach(d => {
+      const btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'collapse'; btn.textContent = '− Свернуть';
+      btn.addEventListener('click', () => {
+        d.open = false;
+        d.querySelector('summary').focus({ preventScroll: true });
+        d.closest('.case').scrollIntoView({ block: 'nearest' });
+      });
+      d.querySelector('.details-body').append(btn);
+    });
+    const openFromHash = () => {
+      const id = decodeURIComponent(location.hash.slice(1));
+      const card = id && document.getElementById(id);
+      if (!card || !card.classList.contains('case')) return;
+      card.querySelector('details').open = true;
+      card.scrollIntoView({ block: 'start' });
+    };
+    addEventListener('hashchange', openFromHash);
+    openFromHash();
+  })();
+
+  // «ИИ в работе» на телефоне: ленту можно листать с клавиатуры, карточка с фокусом встаёт в кадр
+  (() => {
+    const track = document.querySelector('.ai-work');
+    const sync = () => track.scrollWidth > track.clientWidth
+      ? track.setAttribute('tabindex', '0') : track.removeAttribute('tabindex');
+    addEventListener('resize', sync);
+    sync();
+    track.addEventListener('focusin', e => {
+      const card = e.target.closest('.ai-item');
+      if (card && track.scrollWidth > track.clientWidth) card.scrollIntoView({ inline: 'start', block: 'nearest' });
+    });
+  })();
+
+  // Печать и PDF: раскрываем «Подробнее» и показываем скрытые анимацией блоки, после печати возвращаем как было
+  (() => {
+    let opened = [];
+    addEventListener('beforeprint', () => {
+      opened = [...document.querySelectorAll('details:not([open])')];
+      opened.forEach(d => d.open = true);
+      document.querySelectorAll('[data-animate="reveal"], [data-animate="log"] .job').forEach(el => el.classList.add('shown'));
+    });
+    addEventListener('afterprint', () => { opened.forEach(d => d.open = false); opened = []; });
+  })();
 </script>
 </body>
 </html>
