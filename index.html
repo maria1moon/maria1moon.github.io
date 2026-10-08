@@ -20,24 +20,29 @@
 <style>
   /* Шрифты лежат локально в fonts/ (не Google Fonts): IP посетителей не уходит третьим лицам (GDPR).
      Лицензия OFL — fonts/LICENSE-*.txt */
+  /* Запасные шрифты с метриками Inter/JetBrains Mono: при подмене (swap) строки не меняют ширину (I-6) */
+  @font-face { font-family: "Inter Fallback"; src: local("Arial"), local("ArialMT");
+    ascent-override: 90.49%; descent-override: 22.56%; line-gap-override: 0%; size-adjust: 107.06%; }
+  @font-face { font-family: "JetBrains Mono Fallback"; src: local("Menlo"), local("Courier New");
+    ascent-override: 102%; descent-override: 30%; line-gap-override: 0%; size-adjust: 100%; }
   @font-face {
-    font-family: "Inter"; font-style: normal; font-weight: 400 800; font-display: swap;
+    font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap;
     src: url(fonts/inter-cyrillic.woff2) format("woff2");
     unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
   }
   /* «₽» отдельным файлом на 1 КБ (сабсет Inter), чтобы не тянуть 85 КБ latin-ext ради одного знака */
   @font-face {
-    font-family: "Inter"; font-style: normal; font-weight: 400 800; font-display: swap;
+    font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap;
     src: url(fonts/inter-rub.woff2) format("woff2");
     unicode-range: U+20BD;
   }
   @font-face {
-    font-family: "Inter"; font-style: normal; font-weight: 400 800; font-display: swap;
+    font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap;
     src: url(fonts/inter-latin-ext.woff2) format("woff2");
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20BC, U+20BE-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
   }
   @font-face {
-    font-family: "Inter"; font-style: normal; font-weight: 400 800; font-display: swap;
+    font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap;
     src: url(fonts/inter-latin.woff2) format("woff2");
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
@@ -75,8 +80,8 @@
     --c-periwinkle: #b4bcff;
     --grad: linear-gradient(120deg, var(--c-violet), var(--c-blue) 55%, var(--c-cyan));
     --radius: 14px;
-    --mono: "JetBrains Mono", ui-monospace, monospace;
-    --sans: "Inter", system-ui, -apple-system, sans-serif;
+    --mono: "JetBrains Mono", "JetBrains Mono Fallback", ui-monospace, monospace;
+    --sans: "Inter", "Inter Fallback", system-ui, -apple-system, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   /* Только светлая тема: защита от принудительного затемнения в браузерах */
@@ -239,7 +244,7 @@
   .case ul li { padding-left: 16px; position: relative; margin-bottom: 4px; }
   .case ul li::before { content: "·"; content: "·" / ""; position: absolute; left: 4px; color: var(--accent); font-weight: 700; }
   .results { background: var(--soft); border-radius: 10px; padding: 14px 16px; margin-top: 4px; }
-  /* Цифры результатов — моно, как показатели на дашборде (потом: досчёт от нуля) */
+  /* Цифры результатов — моно, как показатели на дашборде; досчёт — data-animate="count" */
   .results li b { color: var(--accent-text); font-family: var(--mono); font-weight: 500; font-size: .95em; }
   /* Число не отрываем от единицы и знака */
   .nw, .results b, .job .period { white-space: nowrap; }
@@ -274,6 +279,7 @@
   .ai-item p { font-size: 15px; color: var(--muted); }
   /* Цепочка «вход → выход» моно-строкой под описанием */
   .ai-item .flow { font-family: var(--mono); font-size: 12px; line-height: 1.6; color: var(--accent-text); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+  .ai-item .flow-sum { font-family: var(--mono); font-size: 12px; line-height: 1.6; color: var(--ink); margin-top: 6px; }
 
   /* --- Стек --- */
   /* Стек как «спецификация»: категория слева, теги справа, тонкие линии между строками */
@@ -384,12 +390,12 @@
     background: var(--grad); transform-origin: left; transform: scaleX(var(--p, 0));
   }
 
-  /* Курсор терминала после заголовка (потом: мигание) */
+  /* Курсор терминала после заголовка; мигание — data-animate="blink" */
   .cursor {
     display: inline-block; width: .09em; height: .82em; margin-left: .08em; vertical-align: -.06em;
     background: var(--accent);
   }
-  /* Статус в шапке (потом: пульсация точки) */
+  /* Статус в шапке; пульс точки — data-animate="pulse" */
   .status {
     position: relative; isolation: isolate;
     display: inline-flex; align-items: center; gap: 6px; margin-left: 14px;
@@ -512,6 +518,8 @@
     .thesis p { font-size: 13px; }
     .btn { width: 100%; justify-content: center; }
   }
+  /* Узкие телефоны: «международные» в тезисе 04 помещается в колонку целиком */
+  @media (max-width: 380px) { .thesis h2 { font-size: 14px; } }
 
   /* --- Печать и «Сохранить как PDF»: весь контент виден, «Подробнее» раскрыты (скрипт), без шапки и декора --- */
   @media print {
@@ -566,19 +574,19 @@
         <div>
           <span class="label">// в маркетинге с 2017 года · <span class="nw">FinTech, Web3, SaaS</span></span>
           <p class="hello">Привет!</p>
-          <h1>Я Мария, <em>руководитель маркетинга</em><span class="cursor" aria-hidden="true" data-animate="blink"></span></h1>
+          <h1>Я&nbsp;Мария, <em>руководитель маркетинга</em><span class="cursor" aria-hidden="true" data-animate="blink"></span></h1>
           <p class="lead">Выстраиваю маркетинг с нуля и нахожу точки роста в работающей системе: от исследования аудитории до воронок, команды и аналитики. С ИИ в каждом процессе</p>
           <a class="btn" href="https://t.me/maria1moon?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9C%D0%B0%D1%80%D0%B8%D1%8F%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%20%D1%80%D0%BE%D0%BB%D0%B8%20%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8F%20%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%B8%D0%BD%D0%B3%D0%B0%20%D0%B2%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20%E2%80%A6" target="_blank" rel="noopener">Написать в Telegram<span class="sr-only"> (откроется в новой вкладке)</span><svg class="ico-btn" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3L3 10.5l6 2.5 2.5 6L21 3zM9 13l12-10"/></svg></a>
         </div>
         <div class="portrait">
-          <img src="images/portrait.webp" width="760" height="760" fetchpriority="high" decoding="async" alt="Low-poly портрет">
+          <img src="images/portrait.webp" srcset="images/portrait-400.webp 400w, images/portrait.webp 760w" sizes="(max-width: 760px) 200px, 340px" width="760" height="760" fetchpriority="high" decoding="async" alt="Портрет Марии, иллюстрация в стиле low-poly">
         </div>
       </div>
 
       <div class="theses">
         <div class="thesis">
           <div class="ico-row"><span class="num">01</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
-          <h2>Маркетинг 360</h2>
+          <h2>Маркетинг 360°</h2>
           <p>Выстраиваю стратегию и аналитику, собираю команду, подрядчиков и комьюнити там, где ничего этого не было</p>
         </div>
         <div class="thesis">
@@ -593,7 +601,7 @@
         </div>
         <div class="thesis">
           <div class="ico-row"><span class="num">04</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><ellipse cx="12" cy="12" rx="4" ry="9"/></svg></div>
-          <h2>B2B и B2C, Россия и международные рынки</h2>
+          <h2>B2B и&nbsp;B2C, Россия и международные рынки</h2>
           <p>Работаю в FinTech, Web3, SaaS и майнинге, выводила продукты на рынки Азии</p>
         </div>
       </div>
@@ -604,9 +612,9 @@
   <section id="about">
     <div class="wrap">
       <span class="label">// обо мне</span>
-      <h2>С нуля, аудит или масштаб: беру маркетинг на любом этапе</h2>
+      <h2>С нуля, аудит или&nbsp;масштаб: беру маркетинг на&nbsp;любом этапе</h2>
       <div class="about-grid">
-        <p class="about-lead">Работаю с российскими и международными проектами. Если маркетинга нет, выстраиваю систему с нуля. Если он есть, провожу аудит и нахожу точки роста</p>
+        <p class="about-lead">Работаю с российскими и международными проектами. Если маркетинга нет, выстраиваю систему. Если он есть, провожу аудит и нахожу точки роста</p>
         <div class="about-side">
           <div class="about-card">
             <span class="label">// языки</span>
@@ -645,7 +653,7 @@
             <div class="meta">Международный майнинг-пул, B2B/B2C · <span class="nw">Руководитель маркетинга</span> · <span class="nw">03–09.2026</span></div>
           </div>
           <h4>Задача</h4>
-          <p>Запустить маркетинг с нуля и построить систему, которая приводит пользователей, усиливает бренд и помогает B2B-продажам</p>
+          <p>Запустить маркетинг с нуля для международного майнинг-пула: поддержка B2B-продаж, приток пользователей, доверие к бренду и&nbsp;основателям</p>
           <h4>Результат</h4>
           <ul class="results" role="list">
             <li>Регистрации <b data-animate="count">+20–40%</b> каждый месяц, март–сентябрь&nbsp;2026</li>
@@ -659,9 +667,9 @@
               <h4>Что сделала</h4>
               <ul role="list">
                 <li>Разработала стратегию, позиционирование, <abbr title="карта пути клиента">CJM</abbr> и аналитику</li>
-                <li>Собрала с нуля команду и подрядчиков: редакция и SMM, реклама, PR и <abbr title="управление репутацией в поиске">SERM</abbr>, видеопродакшн</li>
+                <li>Собрала команду и подрядчиков: редакция и SMM, реклама, PR и <abbr title="управление репутацией в поиске">SERM</abbr>, видеопродакшн</li>
                 <li>Запустила Telegram-канал и сообщество</li>
-                <li>Вывела компанию в медиа: 30+&nbsp;экспертных публикаций в месяц (VC,&nbsp;РБК)</li>
+                <li>Вывела компанию в медиа: 30+&nbsp;экспертных публикаций в месяц (vc.ru,&nbsp;РБК)</li>
                 <li>Автоматизировала внутренние процессы с ИИ</li>
               </ul>
               <h4>Ещё сделала</h4>
@@ -687,10 +695,10 @@
           </figure>
           <div class="case-head">
             <h3>GDS Mining</h3>
-            <div class="meta">Инвестиционный продукт в майнинге, B2B · <span class="nw">Руководитель маркетинга</span> · 2024–2026</div>
+            <div class="meta">Оборудование, хостинг и инвестпродукт в&nbsp;майнинге, B2B · <span class="nw">Руководитель маркетинга</span> · 2024–2026</div>
           </div>
           <h4>Задача</h4>
-          <p>Привести больше квалифицированных B2B-лидов и снизить их стоимость</p>
+          <p>Выстроить B2B-воронку там, где не было продуктовой линейки, материалов и единой логики продаж</p>
           <h4>Результат</h4>
           <ul class="results" role="list">
             <li>Квалифицированных лидов (MQL) <b data-animate="count">×6</b> за&nbsp;6&nbsp;мес.</li>
@@ -705,7 +713,7 @@
               <ul role="list">
                 <li>Что мешало: не было продуктовой линейки, маркетинговых материалов и единой логики воронки</li>
                 <li>Что обнаружила: исследование аудитории показало, что клиентам нужны разные чеки, форматы сделки и валюты оплаты</li>
-                <li>Что решила: собрала линейку — майнинг под ключ, B2B-решения под разные чеки, оборудование, хостинг и пакет «оборудование + хостинг»</li>
+                <li>Что решила: собрала линейку — майнинг под ключ, B2B-решения для разных бюджетов, оборудование, хостинг и пакет «оборудование + хостинг»</li>
                 <li>Как поняла, что сработало: за&nbsp;6&nbsp;мес. MQL&nbsp;×6 и CPL&nbsp;−30%, цикл сделки сократился, средний чек и <abbr title="доход с клиента за всё время работы с ним">LTV</abbr> выросли</li>
               </ul>
               <h4>Что сделала</h4>
@@ -733,10 +741,10 @@
           </figure>
           <div class="case-head">
             <h3>Web3Eco</h3>
-            <div class="meta">Инвестиционный продукт, Web3/Agrotech · <span class="nw">Руководитель маркетинга</span> · 2024–2026</div>
+            <div class="meta">Инвестиционный продукт, Web3 и&nbsp;агротех · <span class="nw">Руководитель маркетинга</span> · 2024–2026</div>
           </div>
           <h4>Задача</h4>
-          <p>Построить маркетинг для продажи инвестиционного продукта и укрепить доверие инвесторов</p>
+          <p>Ускорить продажи инвестиционного продукта фондам, клубам, бизнесу и частным инвесторам и укрепить их доверие</p>
           <h4>Результат</h4>
           <ul class="results" role="list">
             <li>Инвестиционные раунды закрыты <b lang="en">SOLD OUT</b></li>
@@ -751,7 +759,7 @@
               <ul role="list">
                 <li>Переработала продуктовую модель и снизила порог входа</li>
                 <li>Собрала клуб инвесторов</li>
-                <li>Запустила мини-лендинг, Telegram-бот, вебинары, YouTube, Директ, Meta Ads</li>
+                <li>Запустила мини-лендинг, Telegram-бот, вебинары, YouTube, Яндекс Директ, Meta Ads</li>
                 <li>Внедрила реферальную программу и <abbr title="коммуникации для удержания клиентов">retention-коммуникации</abbr></li>
               </ul>
               <h4>Юридическая часть</h4>
@@ -782,7 +790,7 @@
             <div class="meta">SaaS-платформа безопасных сделок, B2B · <span class="nw">Маркетинг-консультант</span> · 2023–2024</div>
           </div>
           <h4>Задача</h4>
-          <p>Исследовать рынок, собрать продуктовую концепцию и подготовить к запуску платформу сделок с ИИ, смарт-контрактами и встроенным эскроу</p>
+          <p>Исследовать рынок и подготовить к запуску B2B SaaS-платформу для безопасных международных сделок бизнеса: ИИ, смарт-контракты, встроенный эскроу</p>
           <h4>Результат</h4>
           <ul class="results" role="list">
             <li>Упаковала продукт к запуску: исследования, <abbr title="карта пути клиента">CJM</abbr>, <abbr title="документ с описанием продукта и технологии">Whitepaper</abbr>, сайт, документация и <abbr title="стратегия вывода на рынок">GTM</abbr>-стратегия</li>
@@ -802,7 +810,7 @@
               <p>Доверие пользователей и международные сделки, в том числе в условиях санкционных ограничений</p>
               <h4>Ещё сделала</h4>
               <ul role="list">
-                <li>Модель доверительного взаимодействия с пользователями</li>
+                <li>Модель безопасной сделки: блокчейн, автоисполнение контрактов, защита денег</li>
                 <li>Материалы для Medium и&nbsp;X&nbsp;(Twitter)</li>
               </ul>
             </div>
@@ -822,32 +830,37 @@
         <div class="ai-item card" data-animate="reveal">
           <div class="ico-row"><span class="num">01</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 12h3c3 0 3-6 7-6M7 12h3c3 0 3 6 7 6"/></svg></div>
           <h3>Сложные сценарии в Make</h3>
-          <p>Строю многошаговые автоматизации. Например, каждый день бот присылает мне в Telegram свежий AI-ресёрч и идеи для работы</p>
-          <p class="flow">// утром: ресёрч новостей ИИ → документ с архивом → Make → пуш в Telegram · раз в неделю агент сортирует по важности</p>
+          <p>Строю многошаговые автоматизации</p>
+          <p class="flow">// каждое утро: ИИ собирает новости → Make сохраняет их в архив → бот присылает сводку в Telegram<br>// раз в неделю: агент сортирует архив по важности</p>
+          <p class="flow-sum">// итог: утром — короткая сводка новостей ИИ, в конце недели — что из этого важно для работы</p>
         </div>
         <div class="ai-item card" data-animate="reveal">
           <div class="ico-row"><span class="num">02</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6l1.5 1.5L7.5 5M3.5 12l1.5 1.5L7.5 11M3.5 18l1.5 1.5L7.5 17M11 6h9M11 12h9M11 18h9"/></svg></div>
           <h3>Таск-трекеры в связке</h3>
           <p>Подключаю планировщики задач к основным рабочим инструментам: задачи, данные и уведомления живут в одной системе</p>
-          <p class="flow">// строка в таблице статей → задача дизайнеру на иллюстрации и схемы</p>
+          <p class="flow">// новая статья в Google Таблице → карточка в Trello → дизайнер получает задачу на иллюстрации и схемы</p>
+          <p class="flow-sum">// итог: задачи появляются сами и не теряются между таблицей и трекером</p>
         </div>
         <div class="ai-item card" data-animate="reveal">
           <div class="ico-row"><span class="num">03</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg></div>
           <h3>Скиллы под маркетинг</h3>
           <p>Создала набор скиллов для <abbr title="карта пути клиента">CJM</abbr>, анализа конкурентов и других маркетинговых задач</p>
-          <p class="flow">// базовая задача → свой скилл для агентов</p>
+          <p class="flow">// повторяющаяся задача (CJM, анализ конкурентов) → пошаговая инструкция для ИИ-агента → готовый скилл</p>
+          <p class="flow-sum">// итог: агент каждый раз делает задачу одинаково, по моему стандарту</p>
         </div>
         <div class="ai-item card" data-animate="reveal">
           <div class="ico-row"><span class="num">04</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="9" width="5" height="6" rx="1"/><rect x="9.5" y="9" width="5" height="6" rx="1"/><rect x="16.5" y="9" width="5" height="6" rx="1"/><path d="M7.5 12h2M14.5 12h2"/></svg></div>
           <h3>Конвейер типовых задач</h3>
-          <p>Повторяющиеся задачи ставлю на поток. Например, SEO: ИИ проходит все шаги от темы до готового <abbr title="черновика">драфта</abbr> статьи, я проверяю результат</p>
-          <p class="flow">// семантика и ресёрч → 5 ИИ-агентов → драфт в Google Docs или блог</p>
+          <p>Повторяющиеся задачи ставлю на поток. Например, SEO: ИИ проходит все шаги от темы до публикации статьи</p>
+          <p class="flow">// тема и семантика → ресёрч → 5 ИИ-агентов пишут статью → черновик в Google Docs и публикация в блоге</p>
+          <p class="flow-sum">// итог: статья от темы до блога без ручной работы</p>
         </div>
         <div class="ai-item card" data-animate="reveal">
           <div class="ico-row"><span class="num">05</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></div>
           <h3>Этот сайт</h3>
           <p>Сделала его вместе с Claude: собрала факты из резюме, прописала для ИИ алгоритм и правила (шаги разработки и дизайна, позиционирование, тон, приватность, стиль). ИИ сверстал страницу, текст мы отредактировали вместе</p>
-          <p class="flow">// портфолио → тексты → прототип → дизайн → вёрстка и анимация → прод → серия аудитов</p>
+          <p class="flow">// факты из резюме → правила для ИИ → тексты → прототип → дизайн → вёрстка → публикация → серия аудитов</p>
+          <p class="flow-sum">// итог: сайт собран с ИИ по моим правилам, каждое решение записано и проверено</p>
         </div>
       </div>
     </div>
@@ -888,7 +901,7 @@
           <h3>Аналитика</h3>
           <div class="tags">
             <span class="tag">GA4</span>
-            <span class="tag">Яндекс.Метрика</span>
+            <span class="tag">Яндекс Метрика</span>
             <span class="tag">сквозная аналитика</span>
           </div>
         </div>
@@ -905,7 +918,7 @@
           </div>
         </div>
         <div class="tool-group">
-          <h3>CRM и автоматизация</h3>
+          <h3>CRM и рассылки</h3>
           <div class="tags">
             <span class="tag">amoCRM</span>
             <span class="tag">Битрикс24</span>
@@ -927,7 +940,7 @@
           <h3>Финтех</h3>
           <div class="tags">
             <span class="tag">платёжные шлюзы</span>
-            <span class="tag">Escrow-сервисы</span>
+            <span class="tag">эскроу-сервисы</span>
           </div>
         </div>
       </div>
@@ -946,7 +959,7 @@
         </div>
         <div class="job">
           <span class="period">03–09.2026</span>
-          <h3>K8X майнинг-пул</h3>
+          <h3>K8X, майнинг-пул</h3>
           <div class="role">Руководитель маркетинга</div>
           <p>Построила маркетинг с нуля и передала команде. Регистрации <span class="nw">+20–40%</span> в месяц, топ-15 мировых пулов</p>
         </div>
@@ -958,9 +971,9 @@
         </div>
         <div class="job">
           <span class="period">2023–2024</span>
-          <h3 lang="en">FinTech &amp; Crypto</h3>
+          <h3>Консалтинг: FinTech и Crypto-проекты</h3>
           <div class="role">Маркетинг-консультант</div>
-          <p>Проводила аудит продуктов и сайтов, оптимизировала воронки, консультировала по UX/UI. <abbr title="конверсия">CR</abbr> вырос с&nbsp;<span class="nw">1–2%</span> до&nbsp;~5%. Проекты: Juna, Matbea, PlayFarcana</p>
+          <p>Проводила аудит продуктов и сайтов, оптимизировала воронки, консультировала по UX/UI. <abbr title="конверсия">CR</abbr> вырос с&nbsp;<span class="nw">1–2%</span> до&nbsp;~5%, снизилась стоимость лида и целевого действия (CPL, <abbr title="стоимость целевого действия">CPA</abbr>). Проекты: Juna, Matbea, PlayFarcana</p>
         </div>
         <div class="job">
           <span class="period">2021–2023</span>
@@ -971,7 +984,7 @@
         <div class="job">
           <span class="period">2017–2021</span>
           <h3>Ingate и агентства</h3>
-          <div class="role">Маркетинг/Аналитика</div>
+          <div class="role">Маркетинг и аналитика</div>
           <p>Анализировала сайты и аудиторию, формулировала <abbr title="уникальное торговое предложение">УТП</abbr>, работала с UX/UI, рекламой, SEO, SMM и <span class="nw">e-commerce</span>. Запускала недельные акции с выручкой до&nbsp;5&nbsp;млн&nbsp;₽</p>
         </div>
       </div>
@@ -986,7 +999,7 @@
       <svg class="poly poly-contact" viewBox="0 0 700 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#poly-g"/></svg>
       <span class="label">// контакты</span>
       <h2>Давайте познакомимся</h2>
-      <p>Расскажите о вашей компании и задачах, а я поделюсь опытом, интересными кейсами и контактами руководителей, которые меня рекомендуют</p>
+      <p>Расскажите о вашей компании и задачах, а я поделюсь опытом, подробными кейсами и контактами руководителей, которые меня рекомендуют</p>
       <a class="btn" href="https://t.me/maria1moon?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9C%D0%B0%D1%80%D0%B8%D1%8F%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%20%D1%80%D0%BE%D0%BB%D0%B8%20%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8F%20%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%B8%D0%BD%D0%B3%D0%B0%20%D0%B2%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8%20%E2%80%A6" target="_blank" rel="noopener">Telegram @maria1moon<span class="sr-only"> (откроется в новой вкладке)</span><svg class="ico-btn" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3L3 10.5l6 2.5 2.5 6L21 3zM9 13l12-10"/></svg></a>
      </div>
     </div>
