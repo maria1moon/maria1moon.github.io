@@ -93,12 +93,10 @@
     --c-periwinkle: #b4bcff;
     --grad: linear-gradient(120deg, var(--c-violet), var(--c-blue) 55%, var(--c-cyan));
     --radius: 14px;
-    /* Шкала кеглей (5 ступеней): подписи → текст → h2 → цитата «Обо мне» → дисплейный «Контакты» */
+    /* Шкала кеглей (3 ступени): подписи → текст → все h2; h1 — свой кегль */
     --fs-label: 13px;
     --fs-body: 16px;
     --fs-h2: clamp(26px, 4vw, 36px);
-    --fs-h: clamp(32px, 6vw, 72px);
-    --fs-display: clamp(40px, 9vw, 100px);
     /* Воздух секций в 3 ступени: плотно (Стек, Опыт) / обычно (Кейсы, ИИ) / воздушно (Обо мне, Контакты) */
     --sp-tight: 64px;
     --sp-base: 120px;
@@ -262,7 +260,7 @@
   /* --- Обо мне --- */
   /* Одна колонка: вводный абзац сверху, карточки 2×2 (E-4: без пустоты под абзацем) */
   /* Цитата на всю колонку (L6): главная мысль сайта крупнее остальных h2 */
-  #about h2 { font-size: var(--fs-h); line-height: 1.08; letter-spacing: -.03em; margin-bottom: 48px; text-wrap: balance; }
+  #about h2 { text-wrap: balance; }
   .about-grid { display: grid; gap: 28px; }
   .about-lead { font-size: clamp(19px, 2.2vw, 22px); line-height: 1.5; max-width: 720px; }
   .about-side { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -366,7 +364,6 @@
 
   /* --- ИИ в работе --- */
   .ai-work { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .ai-intro { font-size: 18px; color: var(--muted); max-width: 720px; margin: -16px 0 28px; }
   .ai-item:last-child:nth-child(3n+2) { grid-column: span 2; }
   .ai-item { border-radius: var(--radius); padding: 24px; }
   .ai-item .num { font-family: var(--mono); font-size: 12px; }
@@ -454,7 +451,7 @@
   }
   .contact .label { margin-inline: auto; }
   /* Дисплейный момент (L1): заголовок по центру крупнее всего на странице */
-  .contact h2 { font-size: var(--fs-display); line-height: 1; letter-spacing: -.04em; margin-bottom: 28px; text-wrap: balance; }
+  .contact h2 { margin-bottom: 20px; text-wrap: balance; }
   .contact p { color: var(--muted); margin: 0 auto 28px; font-size: 18px; max-width: 640px; }
   footer { padding: 28px 0; text-align: center; font-family: var(--mono); font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); }
 
@@ -481,7 +478,9 @@
     width: fit-content;
   }
   /* Подписи на градиентных пятнах — тёмно-синие: акцент на пятне не проходит контраст AA */
-  .hero .label, .contact-card .label { color: var(--ink); }
+  /* Метка первого экрана — акцент как у секций; на светлой части градиента проходит AA в оттенке --accent-text */
+  .hero .label { color: var(--accent-text); }
+  .contact-card .label { color: var(--ink); }
   /* Тихий призыв написать после опыта: моно-строка, не кнопка */
   .cta-line { margin-top: 32px; font-family: var(--mono); font-size: 13px; color: var(--muted); }
   .cta-line a { color: var(--accent-text); }
@@ -641,7 +640,7 @@
     .ai-work > .ai-item { flex: none; }
     .case-media { max-width: 360px; }
     .thesis, .about-card, .ai-item, .job, .results, .tool-group, .contact-card, .case-media, .case-head { break-inside: avoid; }
-    h2, .ai-intro, .case h4 { break-after: avoid; }
+    h2, .case h4 { break-after: avoid; }
     .details-body { border-top: 0; margin-top: 0; padding-top: 0; animation: none !important; }
     .btn { background: none; color: var(--accent); padding: 0; box-shadow: none; }
     .btn::after { content: " — t.me/maria1moon"; font-family: var(--mono); font-weight: 400; }
@@ -747,7 +746,8 @@
   <!-- 3. Кейсы -->
   <section id="cases">
     <div class="wrap">
-      <h2>Кейсы</h2>
+      <span class="label">// кейсы</span>
+      <h2><span class="lt">Проекты:</span> от&nbsp;задачи до&nbsp;результата</h2>
       <div class="cases" role="region" aria-label="Кейсы">
 
         <!-- K8X -->
@@ -940,8 +940,8 @@
   <section id="ai">
     <svg class="poly poly-ai" viewBox="0 0 700 600" preserveAspectRatio="xMaxYMin slice" aria-hidden="true"><use href="#poly-g"/></svg>
     <div class="wrap">
-      <h2>ИИ <span class="lt">в работе</span></h2>
-      <p class="ai-intro">ИИ для меня не чат для вопросов, а часть рабочих процессов</p>
+      <span class="label">// ai native</span>
+      <h2><span class="lt">ИИ:</span> часть рабочих процессов</h2>
       <div class="ai-work" role="region" aria-label="Примеры работы с ИИ">
         <div class="ai-item card" data-animate="reveal">
           <div class="ico-row"><span class="num">01</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 12h3c3 0 3-6 7-6M7 12h3c3 0 3 6 7 6"/></svg></div>
@@ -986,7 +986,8 @@
   <!-- 5. Стек -->
   <section id="tools">
     <div class="wrap">
-      <h2>Стек</h2>
+      <span class="label">// стек</span>
+      <h2><span class="lt">Инструменты</span> и&nbsp;методы</h2>
       <div class="tools">
         <div class="tool-group ai card">
           <h3>ИИ и автоматизация</h3>
@@ -1067,7 +1068,8 @@
   <!-- 6. Опыт -->
   <section id="experience">
     <div class="wrap">
-      <h2>Опыт</h2>
+      <span class="label">// опыт</span>
+      <h2><span class="lt">Более <span class="nw">9&nbsp;лет</span></span> в&nbsp;маркетинге</h2>
       <div class="timeline" data-animate="log">
         <div class="job now">
           <span class="period">2026&nbsp;–&nbsp;<abbr title="настоящее время">н.в.</abbr></span>
