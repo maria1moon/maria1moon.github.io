@@ -98,9 +98,9 @@
     --fs-body: 16px;
     --fs-h2: clamp(26px, 4vw, 36px);
     /* Воздух секций в 3 ступени: плотно (Стек, Опыт) / обычно (Кейсы, ИИ) / воздушно (Обо мне, Контакты) */
-    --sp-tight: 64px;
-    --sp-base: 120px;
-    --sp-air: 200px;
+    --sp-tight: 56px;
+    --sp-base: 88px;
+    --sp-air: 112px;
     --mono: "JetBrains Mono", "JetBrains Mono Fallback", ui-monospace, monospace;
     --sans: "Inter", "Inter Fallback", system-ui, -apple-system, sans-serif;
     --display: "Manrope", "Manrope Fallback", system-ui, sans-serif;
@@ -293,17 +293,37 @@
     pointer-events: none;
   }
   .case-body { display: flex; flex-direction: column; flex: 1; }
-  /* Десктоп — строки L5 «асимметрия с пустотой» (референс mercury-3): картинка на половину, справа название сверху,
-     «Результат» прижат вниз под линией, стороны чередуются. Печать и ≤900px — карточка столбиком */
+  /* Кейсы на экране — горизонтальная карусель со scroll-snap: карточка почти во всю колонку, краешек следующей виден.
+     Листается свайпом, тачпадом, стрелками под лентой и с клавиатуры. Печать — карточки столбиком */
+  @media screen {
+    .cases {
+      display: flex; align-items: flex-start; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory;
+      overscroll-behavior-x: contain; padding: 4px 0 8px; scrollbar-width: none;
+    }
+    .cases::-webkit-scrollbar { display: none; }
+    .cases > .case { flex: 0 0 calc(100% - 72px); scroll-snap-align: start; }
+  }
+  @media screen and (min-width: 721px) and (max-width: 900px) { .cases > .case { flex-basis: 78%; } }
+  /* Под лентой: номер кейса (моно) и стрелки */
+  .cases-nav { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
+  .cases-nav[hidden] { display: none; }
+  .cases-count { font-family: var(--mono); font-size: var(--fs-label); color: var(--muted); margin-right: auto; }
+  .cases-count b { color: var(--accent-text); font-weight: 500; }
+  .cases-arrow {
+    width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line); border-radius: 50%; background: var(--surface); color: var(--accent); cursor: pointer;
+    transition: border-color .2s, opacity .2s;
+  }
+  .cases-arrow svg { width: 18px; height: 18px; }
+  .cases-arrow:disabled { opacity: .35; cursor: default; }
+  /* Десктоп — карточка L5 «асимметрия с пустотой» (референс mercury-3): картинка на половину, справа название сверху,
+     «Результат» прижат вниз под линией. ≤900px и печать — карточка столбиком */
   @media screen and (min-width: 901px) {
-    .cases { grid-template-columns: 1fr; gap: 28px; }
-    .case { display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; padding: 24px; }
-    /* Картинка на всю высоту строки (обе строки грида: текст и ссылка «Подробнее») */
+    .case { display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; padding: 24px; }
+    /* Картинка на всю высоту карточки (обе строки грида: текст и ссылка «Подробнее») */
     .case-media { margin: 0; grid-column: 1; grid-row: 1 / span 2; aspect-ratio: auto; min-height: 340px; }
     .case-body { grid-column: 2; grid-row: 1; padding: 8px 16px 0 0; }
     .case > details { grid-column: 2; grid-row: 2; padding: 0 16px 4px 0; }
-    .case:nth-child(even) .case-media { grid-column: 2; }
-    .case:nth-child(even) .case-body, .case:nth-child(even) > details { grid-column: 1; padding-left: 16px; padding-right: 0; }
     .case-head h3 { font-size: 26px; }
     .case-body > h4:nth-of-type(2) { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line); }
     .case-body > p { max-width: 460px; }
@@ -312,9 +332,8 @@
     .case:has(details[open]) .case-media { grid-row: 1; min-height: 0; aspect-ratio: auto; }
     .case > details[open] { grid-column: 1 / -1; padding: 0; }
     /* Ссылка «Свернуть» остаётся там, где была «Подробнее»: над колонкой текста */
-    .case:nth-child(odd) > details[open] summary { margin-left: calc(50% + 24px); }
-    .case:nth-child(even) > details[open] summary { margin-left: 16px; }
-    .case > details[open] .details-body { columns: 3 240px; column-gap: 40px; margin-top: 18px; padding-top: 22px; border-top: 1px solid var(--line); }
+    .case > details[open] summary { margin-left: calc(50% + 20px); }
+    .case > details[open] .details-body { columns: 3 220px; column-gap: 36px; margin-top: 18px; padding-top: 22px; border-top: 1px solid var(--line); }
     .case > details[open] .details-body > * { break-inside: avoid; }
     .case > details[open] .details-body h4 { break-after: avoid; }
     .case > details[open] .details-body ul, .case > details[open] .details-body p { margin-bottom: 14px; }
@@ -466,7 +485,7 @@
     a:hover { text-decoration: underline; }
     .nav ul a:hover { color: var(--ink); text-decoration: none; }
     .btn:hover { text-decoration: none; box-shadow: 0 10px 28px rgba(99, 91, 255, .3); }
-    .card:hover { border-color: var(--accent); }
+    .card:hover, .cases-arrow:not(:disabled):hover { border-color: var(--accent); }
     details summary:hover, .collapse:hover { text-decoration: underline; text-underline-offset: 3px; }
     details summary:hover .more, details summary:hover .less { color: var(--accent); text-decoration-color: var(--accent); }
   }
@@ -562,7 +581,7 @@
     .hero::before { width: 120%; height: 70%; right: -40%; }
   }
   @media (max-width: 720px) {
-    :root { --sp-tight: 32px; --sp-base: 60px; --sp-air: 100px; }
+    :root { --sp-tight: 32px; --sp-base: 48px; --sp-air: 64px; }
     .hero { padding: 64px 0 56px; }
     /* Меню на телефоне: строка с горизонтальной прокруткой, затухание-подсказка по краям.
        Зона затухания равна отступу справа: если меню помещается, последний пункт не бледнеет.
@@ -589,13 +608,10 @@
     }
     .ai-work::-webkit-scrollbar { display: none; }
     .ai-work > .ai-item { flex: 0 0 86%; scroll-snap-align: start; }
-    /* Кейсы на телефоне — такая же карусель; раскрытый кейс удлиняет только свою карточку */
-    .cases {
-      display: flex; align-items: flex-start; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
-      margin-inline: -20px; padding: 4px 20px 12px; scroll-padding-inline: 20px; scrollbar-width: none;
-    }
-    .cases::-webkit-scrollbar { display: none; }
-    .cases > .case { flex: 0 0 86%; scroll-snap-align: start; }
+    /* Кейсы на телефоне — лента во всю ширину экрана; раскрытый кейс удлиняет только свою карточку */
+    .cases { gap: 14px; margin-inline: -20px; padding: 4px 20px 12px; scroll-padding-inline: 20px; }
+    .cases > .case { flex-basis: 86%; }
+    .cases-nav { margin-top: 8px; }
     .tool-group, .tool-group.ai { grid-template-columns: 1fr; gap: 10px; }
     .case { padding: 22px; }
     .about-side { grid-template-columns: 1fr; }
@@ -630,7 +646,7 @@
   /* --- Печать и «Сохранить как PDF»: весь контент виден, «Подробнее» раскрыты (скрипт), без шапки и декора --- */
   @media print {
     .anim [data-animate="reveal"], .anim [data-animate="log"] .job { opacity: 1 !important; transform: none !important; transition: none !important; }
-    body::before, section::after, header.nav, .progress, .cursor, .poly, .hero::before, .contact-card::before, details summary, .collapse { display: none !important; }
+    body::before, section::after, header.nav, .progress, .cursor, .poly, .hero::before, .contact-card::before, details summary, .collapse, .cases-nav { display: none !important; }
     .hero { padding: 24px 0; }
     section { padding: 28px 0; }
     .hero-main { grid-template-columns: 1.5fr 1fr; }
@@ -748,10 +764,10 @@
     <div class="wrap">
       <span class="label">// кейсы</span>
       <h2><span class="lt">Проекты:</span> от&nbsp;задачи до&nbsp;результата</h2>
-      <div class="cases" role="region" aria-label="Кейсы">
+      <div class="cases" role="region" aria-label="Кейсы" data-animate="reveal">
 
         <!-- K8X -->
-        <article id="k8x" class="case card" data-animate="reveal">
+        <article id="k8x" class="case card">
           <figure class="case-media" data-domain="k8x.io">
             <img src="images/k8x.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Иллюстрация к кейсу K8X: майнинг-пул">
           </figure>
@@ -798,7 +814,7 @@
         </article>
 
         <!-- GDS Mining -->
-        <article id="gds-mining" class="case card" data-animate="reveal">
+        <article id="gds-mining" class="case card">
           <figure class="case-media" data-domain="gds-mining.com">
             <img src="images/gds-mining.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Иллюстрация к кейсу GDS Mining: майнинг-инвестиции">
           </figure>
@@ -846,7 +862,7 @@
         </article>
 
         <!-- Web3Eco -->
-        <article id="web3eco" class="case card" data-animate="reveal">
+        <article id="web3eco" class="case card">
           <figure class="case-media" data-domain="web3eco.io">
             <img src="images/web3eco.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Иллюстрация к кейсу Web3Eco: Web3 и агротех">
           </figure>
@@ -894,7 +910,7 @@
         </article>
 
         <!-- Juna -->
-        <article id="juna" class="case card" data-animate="reveal">
+        <article id="juna" class="case card">
           <figure class="case-media" data-domain="juna.space">
             <img src="images/juna.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Иллюстрация к кейсу Juna: безопасные сделки">
           </figure>
@@ -932,6 +948,12 @@
           </details>
         </article>
 
+      </div>
+      <!-- Без скрипта стрелки не работают — скрыты; лента листается свайпом и прокруткой -->
+      <div class="cases-nav" hidden>
+        <span class="cases-count" aria-live="polite"><b>01</b> / 04</span>
+        <button type="button" class="cases-arrow" aria-label="Предыдущий кейс"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <button type="button" class="cases-arrow" aria-label="Следующий кейс"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </div>
     </div>
   </section>
@@ -1231,7 +1253,7 @@
       const card = id && document.getElementById(id);
       if (!card || !card.classList.contains('case')) return;
       card.querySelector('details').open = true;
-      card.scrollIntoView({ block: 'start' });
+      card.scrollIntoView({ block: 'start', inline: 'start' });
     };
     addEventListener('hashchange', openFromHash);
     openFromHash();
@@ -1253,7 +1275,33 @@
     sync();
   })();
 
-  // Карусели на телефоне («Кейсы», «ИИ в работе»): ленту можно листать с клавиатуры, карточка с фокусом встаёт в кадр
+  // Карусель кейсов: номер текущего кейса и стрелки «назад / вперёд»
+  (() => {
+    const track = document.querySelector('.cases'), nav = document.querySelector('.cases-nav');
+    const cards = [...track.querySelectorAll('.case')], num = nav.querySelector('b');
+    const [prev, next] = nav.querySelectorAll('button');
+    const smooth = matchMedia('(prefers-reduced-motion: no-preference)').matches ? 'smooth' : 'auto';
+    let idx = 0, raf = 0;
+    const sync = () => {
+      raf = 0;
+      const start = track.getBoundingClientRect().left + (parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0);
+      const end = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+      idx = end ? cards.length - 1 : cards.reduce((best, c, i) =>
+        Math.abs(c.getBoundingClientRect().left - start) < Math.abs(cards[best].getBoundingClientRect().left - start) ? i : best, 0);
+      num.textContent = String(idx + 1).padStart(2, '0');
+      prev.disabled = track.scrollLeft < 2;
+      next.disabled = end;
+    };
+    const go = i => track.scrollTo({ left: cards[i].offsetLeft - cards[0].offsetLeft, behavior: smooth });
+    prev.addEventListener('click', () => go(Math.max(0, idx - 1)));
+    next.addEventListener('click', () => go(Math.min(cards.length - 1, idx + 1)));
+    track.addEventListener('scroll', () => { raf ||= requestAnimationFrame(sync); }, { passive: true });
+    addEventListener('resize', sync);
+    nav.hidden = false;
+    sync();
+  })();
+
+  // Карусели («Кейсы», «ИИ в работе» на телефоне): ленту можно листать с клавиатуры, карточка с фокусом встаёт в кадр
   document.querySelectorAll('.ai-work, .cases').forEach(track => {
     const sync = () => track.scrollWidth > track.clientWidth
       ? track.setAttribute('tabindex', '0') : track.removeAttribute('tabindex');
