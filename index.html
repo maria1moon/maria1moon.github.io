@@ -156,7 +156,7 @@
     section:not(.hero) { position: relative; }
     section:not(.hero)::after {
       content: ""; position: absolute; top: -3px; left: 50%; transform: translateX(-50%); z-index: 2; pointer-events: none;
-      width: calc(min(1080px, 100%) + 5px); height: 5px;
+      width: min(1085px, 100%); height: 5px;
       background: linear-gradient(var(--c-periwinkle), var(--c-periwinkle)) left / 5px 5px no-repeat,
                   linear-gradient(var(--c-periwinkle), var(--c-periwinkle)) right / 5px 5px no-repeat;
     }
@@ -278,6 +278,17 @@
   .about-card .label { margin-bottom: 0; font-size: 12px; }
   .about-card .ico-row { margin-bottom: 6px; }
 
+  /* --- Форматы работы --- */
+  .offers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .offer { position: relative; display: flex; flex-direction: column; border-radius: var(--radius); padding: 24px; }
+  .offer .num { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+  .offer h3 { font-size: 18px; margin: 10px 0 8px; }
+  .offer .when { font-size: 15px; color: var(--muted); }
+  .offer ul { margin: 12px 0 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.55; }
+  .offer li { position: relative; padding-left: 14px; margin-bottom: 6px; }
+  .offer li::before { content: "·"; position: absolute; left: 2px; color: var(--accent); font-weight: 700; }
+  .offer .terms { margin-top: auto; padding-top: 14px; font-family: var(--mono); font-size: 12px; color: var(--accent-text); }
+
   /* --- Кейсы --- */
   .cases { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; align-items: start; }
   .case {
@@ -314,6 +325,7 @@
   /* Под лентой: номер кейса (моно) и стрелки */
   .cases-nav { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
   .cases-nav[hidden] { display: none; }
+  @media (min-width: 721px) { .ai-nav { display: none; } }
   .cases-count { font-family: var(--mono); font-size: var(--fs-label); color: var(--muted); margin-right: auto; }
   .cases-count b { color: var(--accent-text); font-weight: 500; }
   .cases-arrow {
@@ -416,6 +428,9 @@
     padding: 18px 0; border-bottom: 1px solid var(--line);
   }
   .tool-group:last-child { border-bottom: none; }
+  .tools-more { display: none; margin-top: 4px; padding: 11px 0; border: 0; background: none; cursor: pointer;
+    font: 600 14px var(--display); color: var(--ink);
+    text-decoration: underline; text-decoration-color: rgba(99, 91, 255, .45); text-decoration-thickness: 1px; text-underline-offset: 5px; }
   .tool-group h3 { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--muted); }
   /* ИИ-строка — главная: в градиентной рамке */
   /* Колонка категории на 20px уже — компенсирует внутренний отступ рамки, теги встают в одну линию */
@@ -483,6 +498,7 @@
   /* Дисплейный момент (L1): заголовок по центру крупнее всего на странице */
   .contact h2 { margin-bottom: 20px; text-wrap: balance; }
   .contact p { color: var(--muted); margin: 0 auto 28px; font-size: 18px; max-width: 640px; }
+  footer .fn { display: block; margin-top: 8px; font-size: 11px; opacity: .8; }
   footer { padding: 28px 0; text-align: center; font-family: var(--mono); font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); }
 
   /* Карточка: тонкая серая рамка, акцентная при наведении.
@@ -619,11 +635,20 @@
     }
     .ai-work::-webkit-scrollbar { display: none; }
     .ai-work > .ai-item { flex: 0 0 86%; scroll-snap-align: start; }
+    .offers {
+      display: flex; align-items: stretch; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
+      margin-inline: -20px; padding: 4px 20px 12px; scroll-padding-inline: 20px; scrollbar-width: none;
+    }
+    .offers::-webkit-scrollbar { display: none; }
+    .offers > .offer { flex: 0 0 86%; scroll-snap-align: start; }
     /* Кейсы на телефоне — лента во всю ширину экрана; раскрытый кейс удлиняет только свою карточку */
     .cases { gap: 14px; margin-inline: -20px; padding: 4px 20px 12px; scroll-padding-inline: 20px; }
     .cases > .case { flex-basis: 86%; }
     .cases-nav { margin-top: 8px; }
     .tool-group, .tool-group.ai { grid-template-columns: 1fr; gap: 10px; }
+    /* Стек на телефоне: видны «ИИ» и «Методы», остальное — по ссылке «Все инструменты» (без JS видно всё) */
+    .tools.folded .tool-group:nth-child(n+3) { display: none; }
+    .tools-more { display: inline-block; }
     .case { padding: 22px; }
     .case-media { aspect-ratio: 1; }
     .about-side { grid-template-columns: 1fr; }
@@ -658,7 +683,7 @@
   /* --- Печать и «Сохранить как PDF»: весь контент виден, «Подробнее» раскрыты (скрипт), без шапки и декора --- */
   @media print {
     .anim [data-animate="reveal"], .anim [data-animate="log"] .job { opacity: 1 !important; transform: none !important; transition: none !important; }
-    body::before, section::after, header.nav, .progress, .cursor, .poly, .hero::before, .contact-card::before, details summary, .collapse, .cases-nav { display: none !important; }
+    body::before, section::after, header.nav, .progress, .cursor, .poly, .hero::before, .contact-card::before, details summary, .collapse, .cases-nav, .tools-more { display: none !important; }
     .hero { padding: 24px 0; }
     section { padding: 28px 0; }
     .hero-main { grid-template-columns: 1.5fr 1fr; }
@@ -667,7 +692,7 @@
     .ai-work { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; margin-inline: 0; padding: 0; }
     .ai-work > .ai-item { flex: none; }
     .case-media { max-width: 360px; }
-    .thesis, .about-card, .ai-item, .job, .results, .tool-group, .contact-card, .case-media, .case-head { break-inside: avoid; }
+    .thesis, .about-card, .offer, .ai-item, .job, .results, .tool-group, .contact-card, .case-media, .case-head { break-inside: avoid; }
     h2, .case h4 { break-after: avoid; }
     .details-body { border-top: 0; margin-top: 0; padding-top: 0; animation: none !important; }
     .btn { background: none; color: var(--accent); padding: 0; box-shadow: none; }
@@ -683,7 +708,7 @@
   <div class="wrap">
     <div class="nav-left">
       <a href="#top" class="logo">@maria1moon</a>
-      <span class="status" data-animate="pulse" lang="en">open to work</span>
+      <span class="status" data-animate="pulse">беру проекты</span>
     </div>
     <nav aria-label="Разделы страницы"><ul role="list">
       <li><a href="#about">Обо мне</a></li>
@@ -742,13 +767,59 @@
     </div>
   </section>
 
+  <!-- 1а. Форматы работы -->
+  <section id="offers">
+    <div class="wrap">
+      <span class="label">// форматы</span>
+      <h2><span class="lt">Чем</span> могу помочь</h2>
+      <div class="offers" role="region" aria-label="Форматы работы">
+        <div class="offer card">
+          <span class="num">01</span>
+          <h3>Аудит маркетинга</h3>
+          <p class="when">Маркетинг есть, но рост замедлился или неясно, что работает</p>
+          <ul role="list">
+            <li>Разбор воронки, сайта, каналов и аналитики</li>
+            <li>Инсайты и точки роста, которые можно внедрить</li>
+            <li>Для небольших B2B- и B2C-компаний</li>
+          </ul>
+          <p class="terms">// проект или разовая задача · формат обсуждаем</p>
+          <a class="ai-cta" href="https://t.me/maria1moon?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9C%D0%B0%D1%80%D0%B8%D1%8F%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%3A%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%B0%D1%83%D0%B4%D0%B8%D1%82%20%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%B8%D0%BD%D0%B3%D0%B0%20%E2%80%A6" target="_blank" rel="noopener">Обсудить<span class="sr-only"> (откроется в новой вкладке)</span></a>
+        </div>
+        <div class="offer card">
+          <span class="num">02</span>
+          <h3>Маркетинг с нуля</h3>
+          <p class="when">Маркетинга нет: ни стратегии, ни команды, ни аналитики</p>
+          <ul role="list">
+            <li>Стратегия, позиционирование, <abbr title="карта пути клиента">CJM</abbr> и аналитика</li>
+            <li>Команда и подрядчики, контроль и отчётность</li>
+            <li>Каналы, контент и воронка до первых результатов</li>
+          </ul>
+          <p class="terms">// проект или разовая задача · формат обсуждаем</p>
+          <a class="ai-cta" href="https://t.me/maria1moon?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9C%D0%B0%D1%80%D0%B8%D1%8F%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%3A%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%B8%D0%BD%D0%B3%20%D1%81%20%D0%BD%D1%83%D0%BB%D1%8F%20%E2%80%A6" target="_blank" rel="noopener">Обсудить<span class="sr-only"> (откроется в новой вкладке)</span></a>
+        </div>
+        <div class="offer card">
+          <span class="num">03</span>
+          <h3>ИИ-автоматизация маркетинга</h3>
+          <p class="when">Рутина забирает время команды, задачи теряются между сервисами</p>
+          <ul role="list">
+            <li>Сценарии в Make и n8n, связка таск-трекеров</li>
+            <li>Скиллы и инструкции для ИИ-агентов под ваши задачи</li>
+            <li>Конвейер типовых задач: от темы до готового материала</li>
+          </ul>
+          <p class="terms">// проект или разовая задача · формат обсуждаем</p>
+          <a class="ai-cta" href="https://t.me/maria1moon?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9C%D0%B0%D1%80%D0%B8%D1%8F%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%3A%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%98%D0%98-%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%B8%D0%BD%D0%B3%D0%B0%20%E2%80%A6" target="_blank" rel="noopener">Обсудить<span class="sr-only"> (откроется в новой вкладке)</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 2. Обо мне -->
   <section id="about">
     <div class="wrap">
       <span class="label">// обо мне</span>
       <h2><span class="lt">С нуля, аудит или&nbsp;масштаб:</span> беру маркетинг на&nbsp;любом этапе</h2>
       <div class="about-grid">
-        <p class="about-lead">Работаю с российскими и международными проектами. Если маркетинга нет, выстраиваю систему. Если он есть, провожу аудит и нахожу точки роста</p>
+        <p class="about-lead">Если маркетинга нет, выстраиваю систему. Если он есть, провожу аудит и нахожу точки роста</p>
         <div class="about-side">
           <div class="about-card">
             <div class="ico-row"><span class="label">// формат работы</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></div>
@@ -775,7 +846,7 @@
   <section id="cases">
     <div class="wrap">
       <span class="label">// кейсы</span>
-      <h2><span class="lt">Проекты:</span> от&nbsp;задачи до&nbsp;результата</h2>
+      <h2><span class="lt">Кейсы:</span> от&nbsp;задачи до&nbsp;результата</h2>
       <div class="cases" role="region" aria-label="Кейсы" data-animate="reveal">
 
         <!-- K8X -->
@@ -800,25 +871,17 @@
           <details>
             <summary><span class="more">Что сделала и детали</span><span class="less">Свернуть</span><span class="sr-only">: кейс K8X</span></summary>
             <div class="details-body">
-              <p>На старте не было ничего: ни стратегии, ни контент-маркетинга, ни сквозной аналитики, ни комьюнити, ни процессов работы с подрядчиками</p>
               <h4>Что сделала</h4>
               <ul role="list">
                 <li>Разработала стратегию, позиционирование, <abbr title="карта пути клиента">CJM</abbr> и аналитику</li>
                 <li>Собрала команду и подрядчиков: редакция и SMM, реклама, PR и <abbr title="управление репутацией в поиске">SERM</abbr>, видеопродакшн</li>
                 <li>Запустила Telegram-канал и сообщество</li>
-                <li>Вывела компанию в медиа: 30+&nbsp;экспертных публикаций в месяц (vc.ru,&nbsp;РБК)</li>
-                <li>Автоматизировала внутренние процессы с ИИ</li>
-              </ul>
-              <h4>Дополнительно</h4>
-              <ul role="list">
-                <li>PR руководителей в федеральных и отраслевых СМИ («Известия», TechInsider, «Генеральный директор», BeInCrypto)</li>
-                <li>Презентации для B2B-продаж и архитектуру нового сайта</li>
-                <li>Партнёрские коллаборации и работу с блогерами</li>
-                <li>Исследование и упаковку нового продукта</li>
+                <li>Вывела компанию в медиа: 30+&nbsp;экспертных публикаций в месяц (vc.ru,&nbsp;РБК), PR руководителей в «Известиях», TechInsider, «Генеральном директоре», BeInCrypto</li>
+                <li>Подготовила презентации для B2B-продаж, архитектуру нового сайта, коллаборации с партнёрами и блогерами</li>
               </ul>
               <h4>Эффект</h4>
               <ul role="list">
-                <li>Новый продукт готов к запуску</li>
+                <li>Новый продукт исследован, упакован и готов к запуску</li>
                 <li>Часть рутины автоматизирована с ИИ: таблицы, статьи, ресёрч новостей</li>
               </ul>
             </div>
@@ -850,21 +913,17 @@
             <div class="details-body">
               <h4>Ключевое решение</h4>
               <ul role="list">
-                <li>Что мешало: не было продуктовой линейки, маркетинговых материалов и единой логики воронки</li>
-                <li>Что обнаружила: исследование аудитории показало, что клиентам нужны разные чеки, форматы сделки и валюты оплаты</li>
-                <li>Что решила: собрала линейку — майнинг под ключ, B2B-решения для разных бюджетов, оборудование, хостинг и пакет «оборудование + хостинг»</li>
-                <li>Как поняла, что сработало: за&nbsp;6&nbsp;мес. MQL&nbsp;×6 и CPL&nbsp;−30%, цикл сделки сократился, средний чек и <abbr title="доход с клиента за всё время работы с ним">LTV</abbr> выросли</li>
+                <li>Что мешало: не было продуктовой линейки и единой логики воронки</li>
+                <li>Что обнаружила: клиентам нужны разные чеки, форматы сделки и валюты оплаты</li>
+                <li>Что решила: собрала линейку — майнинг под ключ, оборудование, хостинг и пакет «оборудование + хостинг» для разных бюджетов</li>
+                <li>Как поняла, что сработало: цикл сделки сократился, средний чек и <abbr title="доход с клиента за всё время работы">LTV</abbr> выросли</li>
               </ul>
               <h4>Что сделала</h4>
               <ul role="list">
                 <li>Обновила сайт, маркетинг-киты и офферы</li>
-                <li>Запустила Telegram-бот, вебинары и лидогенерацию через Авито</li>
-                <li>Выстроила единую систему контроля подрядчиков</li>
+                <li>Запустила Telegram-бот, вебинары (в среднем <b>40</b>&nbsp;участников) и лидогенерацию через Авито</li>
+                <li>Выстроила контроль подрядчиков: прозрачная отчётность, аналитика через <abbr title="«рука на пульсе»: ежедневный отчёт по ключевым показателям">РНП</abbr>, состав — по эффективности</li>
               </ul>
-              <h4>Подрядчики</h4>
-              <p>Прозрачная отчётность, регулярная аналитика через <abbr title="«рука на пульсе»: ежедневный отчёт по ключевым показателям">РНП</abbr>, состав обновляла по эффективности</p>
-              <h4>Вебинары</h4>
-              <p>В среднем <b>40</b>&nbsp;участников</p>
               <h4>Эффект</h4>
               <ul role="list">
                 <li>Стабильно высокий <abbr title="окупаемость маркетинговых вложений">ROMI</abbr></li>
@@ -899,22 +958,16 @@
               <h4>Что сделала</h4>
               <ul role="list">
                 <li>Переработала продуктовую модель и снизила порог входа</li>
-                <li>Собрала клуб инвесторов</li>
-                <li>Запустила мини-лендинг, Telegram-бот, вебинары, YouTube, Яндекс Директ, Meta Ads</li>
+                <li>Собрала клуб инвесторов, добавила договоры РФ и Узбекистана, и инвесторам стало проще войти</li>
+                <li>Запустила мини-лендинг, Telegram-бот, вебинары, YouTube, Яндекс Директ, Meta Ads*</li>
                 <li>Внедрила реферальную программу и <abbr title="коммуникации для удержания клиентов">retention-коммуникации</abbr></li>
-              </ul>
-              <h4>Юридическая часть</h4>
-              <p>Добавили договоры РФ и Узбекистана, и инвесторам стало проще войти</p>
-              <h4>Упаковка и медиа</h4>
-              <ul role="list">
-                <li>Редизайн сайта, новые презентации и маркетинг-киты</li>
-                <li>Каналы основателя в Instagram и YouTube выросли более чем в&nbsp;3&nbsp;раза</li>
-                <li>Интервью с лидерами мнений, регулярный видеоконтент</li>
+                <li>Обновила сайт, презентации и маркетинг-киты, запустила интервью с лидерами мнений и видеоконтент</li>
               </ul>
               <h4>Эффект</h4>
               <ul role="list">
                 <li>Реферальная программа стала стабильным источником клиентов</li>
                 <li>Вебинары собирали в среднем <b>80</b>&nbsp;участников</li>
+                <li>Каналы основателя в Instagram* и YouTube выросли более чем в&nbsp;3&nbsp;раза</li>
                 <li>Стабильно высокий <abbr title="окупаемость маркетинговых вложений">ROMI</abbr></li>
               </ul>
             </div>
@@ -942,19 +995,13 @@
           <details>
             <summary><span class="more">Что сделала и детали</span><span class="less">Свернуть</span><span class="sr-only">: кейс Juna</span></summary>
             <div class="details-body">
-              <h4>Что сделала</h4>
-              <ul role="list">
-                <li>Провела исследования аудитории и <abbr title="интервью с клиентами">CustDev</abbr></li>
-                <li>Построила CJM</li>
-                <li>Написала Whitepaper</li>
-                <li>Сделала сайт и продуктовую упаковку</li>
-              </ul>
               <h4>Фокус</h4>
               <p>Доверие пользователей и международные сделки, в том числе в условиях санкционных ограничений</p>
-              <h4>Дополнительно</h4>
+              <h4>Что ещё сделала</h4>
               <ul role="list">
-                <li>Модель безопасной сделки: блокчейн, автоисполнение контрактов, защита денег</li>
-                <li>Материалы для Medium и&nbsp;X&nbsp;(Twitter)</li>
+                <li>Провела исследования аудитории и <abbr title="интервью с клиентами">CustDev</abbr></li>
+                <li>Описала модель безопасной сделки: блокчейн, автоисполнение контрактов, защита денег</li>
+                <li>Подготовила материалы для Medium и&nbsp;X&nbsp;(Twitter)</li>
               </ul>
             </div>
           </details>
@@ -975,7 +1022,7 @@
     <svg class="poly poly-ai" viewBox="0 0 700 600" preserveAspectRatio="xMaxYMin slice" aria-hidden="true"><use href="#poly-g"/></svg>
     <div class="wrap">
       <span class="label">// ai native</span>
-      <h2><span class="lt">ИИ:</span> часть рабочих процессов</h2>
+      <h2><span class="lt">С ИИ</span> в&nbsp;каждом процессе</h2>
       <div class="ai-work" role="region" aria-label="Примеры работы с ИИ">
         <div class="ai-item card" data-animate="reveal">
           <div class="ico-row"><span class="num">01</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 12h3c3 0 3-6 7-6M7 12h3c3 0 3 6 7 6"/></svg></div>
@@ -1013,6 +1060,12 @@
           <p class="flow-sum"><span class="sum-label">// итог</span>сайт собран с ИИ по моим правилам, каждое решение записано и проверено</p>
           <a class="ai-cta" href="https://t.me/maria1moon?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9C%D0%B0%D1%80%D0%B8%D1%8F%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B9%20%D0%B6%D0%B5%20%D1%81%D0%B0%D0%B9%D1%82%20%E2%80%A6" target="_blank" rel="noopener">Тоже хочу такой<span class="sr-only"> (откроется в новой вкладке)</span></a>
         </div>
+      </div>
+      <!-- Только телефон: номер примера и стрелки; без скрипта скрыты -->
+      <div class="cases-nav ai-nav" hidden>
+        <span class="cases-count" aria-live="polite"><b>01</b> / 05</span>
+        <button type="button" class="cases-arrow" aria-label="Предыдущий пример"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <button type="button" class="cases-arrow" aria-label="Следующий пример"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </div>
     </div>
   </section>
@@ -1064,7 +1117,7 @@
             <span class="tag">Яндекс Директ</span>
             <span class="tag">VK Ads</span>
             <span class="tag">Telegram Ads</span>
-            <span class="tag">Meta Ads</span>
+            <span class="tag">Meta Ads*</span>
             <span class="tag">Reddit</span>
             <span class="tag">X (Twitter)</span>
           </div>
@@ -1120,7 +1173,7 @@
           <span class="period">2024–2026</span>
           <h3>GDS Mining и Web3Eco</h3>
           <div class="role">Руководитель маркетинга</div>
-          <p>GDS Mining: лиды <span class="nw">+500%</span> и MQL&nbsp;×6 за&nbsp;6&nbsp;мес., рост среднего чека. Web3Eco: раунды <span lang="en">SOLD OUT</span>, более <span class="nw">$2&nbsp;млн</span> инвестиций</p>
+          <p>GDS Mining: MQL&nbsp;×6 за&nbsp;6&nbsp;мес., рост среднего чека. Web3Eco: раунды <span lang="en">SOLD OUT</span>, более <span class="nw">$2&nbsp;млн</span> инвестиций</p>
         </div>
         <div class="job">
           <span class="period">2023–2024</span>
@@ -1152,7 +1205,7 @@
       <svg class="poly poly-contact" viewBox="0 0 700 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#poly-g"/></svg>
       <span class="label">// контакты</span>
       <h2><span class="lt">Давайте</span> познакомимся</h2>
-      <p>Расскажите о вашей компании и задачах, а я поделюсь опытом, подробными кейсами и контактами руководителей, которые меня рекомендуют</p>
+      <p>Расскажите о вашей компании и задачах в Telegram. Предложу формат работы, поделюсь подробными кейсами и контактами руководителей, которые меня рекомендуют</p>
       <a class="btn" href="https://t.me/maria1moon?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9C%D0%B0%D1%80%D0%B8%D1%8F%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20%D0%BF%D0%BE%20%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0%20%E2%80%A6" target="_blank" rel="noopener">Telegram @maria1moon<span class="sr-only"> (откроется в новой вкладке)</span><svg class="ico-btn" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3L3 10.5l6 2.5 2.5 6L21 3zM9 13l12-10"/></svg></a>
      </div>
     </div>
@@ -1160,7 +1213,7 @@
 
 </main>
 
-<footer>@maria1moon · 2026</footer>
+<footer>@maria1moon · 2026<small class="fn">* Meta Platforms (Instagram, Meta Ads) признана экстремистской организацией, её деятельность запрещена в&nbsp;РФ</small></footer>
 
 <script>
   // Прогресс-бар: доля прочитанной страницы -> CSS-переменная --p (0..1)
@@ -1287,10 +1340,10 @@
     sync();
   })();
 
-  // Карусель кейсов: номер текущего кейса и стрелки «назад / вперёд»
-  (() => {
-    const track = document.querySelector('.cases'), nav = document.querySelector('.cases-nav');
-    const cards = [...track.querySelectorAll('.case')], num = nav.querySelector('b');
+  // Карусели кейсов и «ИИ в работе» (на телефоне): номер текущей карточки и стрелки «назад / вперёд»
+  [['.cases', '.cases-nav', '.case'], ['.ai-work', '.ai-nav', '.ai-item']].forEach(([t, n, c]) => {
+    const track = document.querySelector(t), nav = document.querySelector(n);
+    const cards = [...track.querySelectorAll(c)], num = nav.querySelector('b');
     const [prev, next] = nav.querySelectorAll('button');
     const smooth = matchMedia('(prefers-reduced-motion: no-preference)').matches ? 'smooth' : 'auto';
     let idx = 0, raf = 0;
@@ -1311,19 +1364,30 @@
     addEventListener('resize', sync);
     nav.hidden = false;
     sync();
-  })();
+  });
 
-  // Карусели («Кейсы», «ИИ в работе» на телефоне): ленту можно листать с клавиатуры, карточка с фокусом встаёт в кадр
-  document.querySelectorAll('.ai-work, .cases').forEach(track => {
+  // Карусели («Кейсы», «ИИ в работе» и «Форматы» на телефоне): ленту можно листать с клавиатуры, карточка с фокусом встаёт в кадр
+  document.querySelectorAll('.ai-work, .cases, .offers').forEach(track => {
     const sync = () => track.scrollWidth > track.clientWidth
       ? track.setAttribute('tabindex', '0') : track.removeAttribute('tabindex');
     addEventListener('resize', sync);
     sync();
     track.addEventListener('focusin', e => {
       const card = e.target.closest('.ai-item, .case');
-      if (card && track.scrollWidth > track.clientWidth) card.scrollIntoView({ inline: 'start', block: 'nearest' });
+      // Только фокус с клавиатуры: при клике мышью сдвиг ленты уводил «Подробнее» из-под курсора и клик терялся
+      if (card && e.target.matches(':focus-visible') && track.scrollWidth > track.clientWidth) card.scrollIntoView({ inline: 'start', block: 'nearest' });
     });
   });
+
+  // Стек на телефоне: свёрнут до «ИИ» и «Методы», ссылка раскрывает остальное
+  (() => {
+    const tools = document.querySelector('.tools');
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'tools-more'; btn.textContent = 'Все инструменты';
+    btn.addEventListener('click', () => { tools.classList.remove('folded'); btn.remove(); });
+    tools.classList.add('folded');
+    tools.after(btn);
+  })();
 
   // Печать и PDF: раскрываем «Подробнее» и показываем скрытые анимацией блоки, после печати возвращаем как было
   (() => {
@@ -1332,6 +1396,7 @@
       opened = [...document.querySelectorAll('details:not([open])')];
       opened.forEach(d => d.open = true);
       document.querySelectorAll('[data-animate="reveal"], [data-animate="log"] .job').forEach(el => el.classList.add('shown'));
+      document.querySelector('.tools').classList.remove('folded');
     });
     addEventListener('afterprint', () => { opened.forEach(d => d.open = false); opened = []; });
   })();
