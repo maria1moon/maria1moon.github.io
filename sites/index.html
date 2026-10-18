@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Портфолио сайтов · Мария В.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Сайты, которые я собрала с ИИ: концепты и обезличенные проекты в виде презентаций">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23635BFF'/%3E%3Cstop offset='.55' stop-color='%233D7BFF'/%3E%3Cstop offset='1' stop-color='%2322C7FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M16 2l12 7v14l-12 7-12-7V9z' fill='url(%23g)'/%3E%3C/svg%3E">
+<style>
+  /* Шрифты визитки — локально в ../fonts/ (OFL) */
+  @font-face { font-family: "Inter Fallback"; src: local("Arial"), local("ArialMT");
+    ascent-override: 90.49%; descent-override: 22.56%; line-gap-override: 0%; size-adjust: 107.06%; }
+  @font-face { font-family: "Manrope Fallback"; src: local("Arial"), local("ArialMT");
+    ascent-override: 106.6%; descent-override: 30%; line-gap-override: 0%; size-adjust: 103%; }
+  @font-face { font-family: "Inter"; font-weight: 400 700; font-display: swap; src: url(../fonts/inter-cyrillic.woff2) format("woff2");
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+  @font-face { font-family: "Inter"; font-weight: 400 700; font-display: swap; src: url(../fonts/inter-latin.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: "Manrope"; font-weight: 300 800; font-display: swap; src: url(../fonts/manrope-cyrillic.woff2) format("woff2");
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+  @font-face { font-family: "Manrope"; font-weight: 300 800; font-display: swap; src: url(../fonts/manrope-latin.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: "JetBrains Mono"; font-weight: 400 500; font-display: swap; src: url(../fonts/jetbrains-mono-cyrillic.woff2) format("woff2");
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+  @font-face { font-family: "JetBrains Mono"; font-weight: 400 500; font-display: swap; src: url(../fonts/jetbrains-mono-latin.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+  /* Сетка обложек в стиле визитки: белый, Inter, один акцент; обложка — сайт в ноутбуке на спокойном фоне.
+     Светлая тема намеренно: тёмная — отдельный этап (CLAUDE.md) */
+  :root {
+    color-scheme: light;
+    --bg: #ffffff; --soft: #f6f9fc; --ink: #0a2540; --muted: #425466; --line: #e3e8ee;
+    --accent: #635bff; --accent-text: #5850e8;
+    --sans: "Inter", "Inter Fallback", system-ui, sans-serif;
+    --display: "Manrope", "Manrope Fallback", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    --fs-label: 13px; --fs-body: 16px; --fs-h2: clamp(26px, 3.2vw, 36px);
+    --wrap: 1080px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 var(--fs-body)/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: calc(var(--wrap) + 32px); margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .label { font: 500 var(--fs-label)/1.4 var(--mono); color: var(--accent-text); letter-spacing: .02em; margin: 0; }
+  .lt { font-weight: 300; }
+
+  /* Шапка */
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: rgba(255,255,255,.88); }
+  header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: rgba(255,255,255,.88);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; }
+  .back { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: none; font: 500 14px var(--mono); color: var(--muted); }
+  .back:hover { color: var(--accent); }
+  .nav-tg { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border-radius: 999px;
+    background: var(--accent); color: #fff; text-decoration: none; font: 600 14px var(--display); white-space: nowrap; }
+  .nav-tg:hover { background: #5047f0; }
+  .nav-tg svg { width: 16px; height: 16px; }
+
+  /* Заголовок страницы */
+  .intro { padding-block: clamp(56px, 8vw, 96px) clamp(32px, 4vw, 48px); display: grid; gap: 12px; }
+  h1 { font: 700 clamp(36px, 6vw, 64px)/1.05 var(--display); letter-spacing: -.03em; margin: 0; text-wrap: balance; }
+  .intro p:last-child { color: var(--muted); max-width: 560px; margin: 0; }
+
+  /* Сетка обложек */
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 3vw, 32px); padding-bottom: clamp(64px, 9vw, 112px); }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+  .card { display: grid; gap: 16px; text-decoration: none; }
+  .cover { background: var(--soft); border: 1px solid var(--line); border-radius: 16px; padding: clamp(24px, 4vw, 44px) clamp(24px, 5vw, 56px) clamp(20px, 3vw, 32px);
+    transition: border-color .2s; }
+  .card:hover .cover { border-color: var(--accent); }
+  .laptop .scr { background: #1b1d1f; border-radius: 10px 10px 0 0; padding: 2.4% 2.4% 0; }
+  .laptop .scr img { border-radius: 2px 2px 0 0; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; width: 100%; }
+  .laptop .base { height: clamp(8px, 1.2vw, 12px); margin: 0 -6%; background: linear-gradient(#d9dde1, #aeb4ba); border-radius: 0 0 10px 10px; position: relative; }
+  .laptop .base::after { content: ""; position: absolute; left: 50%; top: 0; width: 14%; height: 40%; transform: translateX(-50%); background: #9aa1a8; border-radius: 0 0 6px 6px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .laptop { transition: transform .3s ease; }
+    .card:hover .laptop { transform: translateY(-4px); }
+  }
+  .meta { display: grid; gap: 4px; }
+  .meta .label { color: var(--muted); }
+  .meta h3 { font: 700 22px/1.25 var(--display); letter-spacing: -.02em; margin: 0; }
+  .card:hover h3 { color: var(--accent); }
+  .meta p { margin: 0; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 22px; font: 400 13px var(--mono); color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="back" href="../index.html">← @maria1moon</a>
+    <a class="nav-tg" data-tg href="https://t.me/maria1moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 3.5 2.8 10.7c-.9.4-.9 1.6.1 1.9l4.6 1.4 1.8 5.6c.3.8 1.3 1 1.9.4l2.6-2.5 4.8 3.5c.7.5 1.7.1 1.9-.7L23 4.9c.2-1-.7-1.8-1.5-1.4Z"/><path d="m7.5 14 11-7.5-8 9"/></svg>Обсудить сайт</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <p class="label">// портфолио сайтов</p>
+    <h1><span class="lt">Сайты,</span> которые я&nbsp;собрала</h1>
+    <p>Концепты и обезличенные проекты. Каждый разобран как презентация: решения, стиль и мобильная версия</p>
+  </div>
+
+  <div class="grid">
+    <a class="card" href="kitai.html">
+      <div class="cover"><div class="laptop">
+        <div class="scr"><img src="kitai/v-hero-poster.webp" width="1280" height="800" alt="Первый экран лендинга «Бамбук»: горы линией и иероглиф 中"></div>
+        <div class="base"></div>
+      </div></div>
+      <div class="meta">
+        <p class="label">Школа китайского языка · лендинг</p>
+        <h3>Бамбук</h3>
+        <p>Современный дизайн с отсылками к пейзажному свитку</p>
+      </div>
+    </a>
+    <a class="card" href="asmirnov.html">
+      <div class="cover"><div class="laptop">
+        <div class="scr"><img src="asmirnov/v-hero-poster.webp" width="1280" height="800" alt="Первый экран визитки «Смирнов»: имя капсом и нейросеть на тёмном фоне"></div>
+        <div class="base"></div>
+      </div></div>
+      <div class="meta">
+        <p class="label">ИИ-инженер · сайт-визитка</p>
+        <h3>Смирнов</h3>
+        <p>Тёмный tech-стиль и RAG-демо по резюме</p>
+      </div>
+    </a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap"><span>@maria1moon</span><span>Проекты — концепты: названия, контакты и цены вымышленные</span></div>
+</footer>
+
+<script>
+(function () {
+  // Черновик сообщения в Telegram (CLAUDE.md: каждая ссылка — с ?text=)
+  var draft = 'Здравствуйте, Мария! Пишу со страницы портфолио сайтов. Хочу сайт для своего проекта: ';
+  document.querySelectorAll('[data-tg]').forEach(function (a) { a.href = 'https://t.me/maria1moon?text=' + encodeURIComponent(draft); });
+})();
+</script>
+</body>
+</html>
