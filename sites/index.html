@@ -64,7 +64,33 @@
   /* Заголовок страницы */
   .intro { padding-block: clamp(56px, 8vw, 96px) clamp(32px, 4vw, 48px); display: grid; gap: 12px; }
   h1 { font: 700 clamp(36px, 6vw, 64px)/1.05 var(--display); letter-spacing: -.03em; margin: 0; text-wrap: balance; }
-  .intro p:last-child { color: var(--muted); max-width: 560px; margin: 0; }
+  .lead { font: 400 clamp(17px, 1.6vw, 20px)/1.5 var(--sans); color: var(--muted); max-width: 640px; margin: 4px 0 0; text-wrap: pretty; }
+
+  /* План работ: нумерованные шаги в 2 колонки, сноска — в свободной ячейке */
+  .plan { border: 1px solid var(--line); border-radius: 16px; background: var(--soft); padding: clamp(20px, 3vw, 32px);
+    margin-bottom: clamp(48px, 6vw, 72px); }
+  .plan-title { font: 600 18px/1.3 var(--display); letter-spacing: -.01em; margin: 0 0 16px; }
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: step; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-flow: column; grid-template-rows: repeat(4, auto); column-gap: clamp(24px, 4vw, 48px); }
+  .steps li { counter-increment: step; display: grid; grid-template-columns: 32px 1fr; gap: 8px; padding: 12px 0; border-top: 1px solid var(--line); }
+  .steps li::before { content: counter(step, decimal-leading-zero); font: 500 var(--fs-label)/1.85 var(--mono); color: var(--accent-text); }
+  .plan-note { font: 400 var(--fs-label)/1.5 var(--mono); color: var(--muted); margin: 12px 0 0; }
+  @media (min-width: 721px) {
+    /* сноска встаёт в 8-ю ячейку, под шагом 07 */
+    .plan { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 4vw, 48px); }
+    .plan-title, .steps { grid-column: 1 / -1; }
+    .plan-note { grid-column: 2; margin-top: -40px; padding: 12px 0 0 40px; border-top: 1px solid var(--line); align-self: start; }
+  }
+  .steps-more { display: none; margin-top: 4px; padding: 11px 0; border: 0; background: none; cursor: pointer;
+    font: 600 14px var(--display); color: var(--ink);
+    text-decoration: underline; text-decoration-color: rgba(99, 91, 255, .45); text-decoration-thickness: 1px; text-underline-offset: 5px; }
+  @media (max-width: 720px) {
+    .steps { grid-template-columns: 1fr; grid-auto-flow: row; grid-template-rows: none; }
+    /* На телефоне видны 2 шага, остальное — по ссылке «Все этапы» (без JS и в печати видно всё) */
+    .steps.folded li:nth-child(n+3) { display: none; }
+    .steps-more { display: inline-block; }
+  }
+  @media print { .steps.folded li { display: grid !important; } .steps-more { display: none !important; } }
 
   /* Сетка обложек */
   .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 3vw, 32px); padding-bottom: clamp(64px, 9vw, 112px); }
@@ -102,9 +128,23 @@
 <main class="wrap">
   <div class="intro">
     <p class="label">// портфолио сайтов</p>
-    <h1><span class="lt">Сайты,</span> которые я&nbsp;собрала</h1>
-    <p>Концепты и обезличенные проекты. Каждый разобран как презентация: решения, стиль и мобильная версия</p>
+    <h1><span class="lt">Концепты сайтов,</span> которые я&nbsp;собрала для&nbsp;вас</h1>
+    <h2 class="lead">Разработаю сайт по&nbsp;вашему ТЗ, выбранному референсу или на&nbsp;базе моих готовых библиотек под&nbsp;разные ниши</h2>
   </div>
+
+  <section class="plan" aria-labelledby="plan-title">
+    <p class="plan-title" id="plan-title">Что входит в&nbsp;план работ:</p>
+    <ol class="steps">
+      <li>Анализ предложений конкурентов и&nbsp;целевой аудитории</li>
+      <li>Проработка структуры страницы и&nbsp;точек захвата лидов</li>
+      <li>Написание продающего текста и&nbsp;создание макета</li>
+      <li>Подбор стилистики и&nbsp;референсов</li>
+      <li>Дизайн</li>
+      <li>Вёрстка сайта</li>
+      <li>Приёмка и&nbsp;передача готового проекта</li>
+    </ol>
+    <p class="plan-note">*Правки: 3&nbsp;итерации (макет, дизайн, вёрстка)</p>
+  </section>
 
   <div class="grid">
     <a class="card" href="kitai.html">
@@ -129,15 +169,26 @@
         <p>Тёмный tech-стиль и RAG-демо по резюме</p>
       </div>
     </a>
-    <a class="card" href="yurist.html">
+    <a class="card" href="aurea.html">
       <div class="cover"><div class="laptop">
-        <div class="scr"><img src="yurist/d-hero.webp" width="1600" height="1000" loading="lazy" alt="Первый экран лендинга «Ключ Лигал»: заголовок о юристах для криптобизнеса и ключ из блоков блокчейна"></div>
+        <div class="scr"><img src="aurea/d-hero.webp" width="1600" height="1000" loading="lazy" alt="Первый экран концепта «AUREA Estate»: резиденция на закате и тонкий заголовок «Загородные резиденции премиум-класса»"></div>
         <div class="base"></div>
       </div></div>
       <div class="meta">
-        <p class="label">Юристы для криптобизнеса · лендинг</p>
-        <h3>Ключ Лигал</h3>
-        <p>Строгий синий и анимированный «Цифровой след»</p>
+        <p class="label">Загородные резиденции под ключ · лендинг</p>
+        <h3>AUREA Estate</h3>
+        <p>Тонкая антиква и латунь, каталог с фильтрами, квиз-расчёт и карта локаций</p>
+      </div>
+    </a>
+    <a class="card" href="lavrova.html">
+      <div class="cover"><div class="laptop">
+        <div class="scr"><img src="lavrova/d-hero.webp" width="1600" height="941" loading="lazy" alt="Первый экран концепта «Стоматология доктора Лавровой»: врач в шалфейном костюме и заголовок «Спокойное лечение зубов на Беговой»"></div>
+        <div class="base"></div>
+      </div></div>
+      <div class="meta">
+        <p class="label">Частный стоматолог-терапевт · лендинг</p>
+        <h3>Стоматология доктора Лавровой</h3>
+        <p>Туман и шалфей, лупа над зубом, до и после под размытием, план лечения с ценой</p>
       </div>
     </a>
     <a class="card" href="epd-lab.html">
@@ -151,15 +202,15 @@
         <p>Отсчёт до срока, радар налоговых рисков и схема подключения партнёров</p>
       </div>
     </a>
-    <a class="card" href="aurea.html">
+    <a class="card" href="yurist.html">
       <div class="cover"><div class="laptop">
-        <div class="scr"><img src="aurea/d-hero.webp" width="1600" height="1000" loading="lazy" alt="Первый экран концепта «AUREA Estate»: резиденция на закате и тонкий заголовок «Загородные резиденции премиум-класса»"></div>
+        <div class="scr"><img src="yurist/d-hero.webp" width="1600" height="1000" loading="lazy" alt="Первый экран лендинга «Ключ Лигал»: заголовок о юристах для криптобизнеса и ключ из блоков блокчейна"></div>
         <div class="base"></div>
       </div></div>
       <div class="meta">
-        <p class="label">Загородные резиденции под ключ · лендинг</p>
-        <h3>AUREA Estate</h3>
-        <p>Тонкая антиква и латунь, каталог с фильтрами, квиз-расчёт и карта локаций</p>
+        <p class="label">Юристы для криптобизнеса · лендинг</p>
+        <h3>Ключ Лигал</h3>
+        <p>Строгий синий и анимированный «Цифровой след»</p>
       </div>
     </a>
   </div>
@@ -173,6 +224,12 @@
 (function () {
   // Черновик сообщения в Telegram (CLAUDE.md: каждая ссылка — с ?text=)
   var draft = 'Здравствуйте, Мария! Пишу со страницы портфолио сайтов. Хочу сайт для своего проекта: ';
+  // План работ на телефоне: свёрнут до 2 шагов, ссылка раскрывает остальное
+  var steps = document.querySelector('.steps'), more = document.createElement('button');
+  more.type = 'button'; more.className = 'steps-more'; more.textContent = 'Все этапы';
+  more.addEventListener('click', function () { steps.classList.remove('folded'); more.remove(); });
+  steps.classList.add('folded');
+  steps.after(more);
   document.querySelectorAll('[data-tg]').forEach(function (a) { a.href = 'https://t.me/maria1moon?text=' + encodeURIComponent(draft); });
 })();
 </script>
