@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Сайт-визитка ИИ-инженера «Смирнов»: тёмный tech-стиль, живая нейросеть на первом экране и RAG-демо по резюме">
+<meta name="description" content="Сайт-визитка ИИ-инженера «Смирнов»: тёмный tech-стиль, живая нейросеть на первом экране и RAG-демо по резюме. Концепт, слайды — живые экраны">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23635BFF'/%3E%3Cstop offset='.55' stop-color='%233D7BFF'/%3E%3Cstop offset='1' stop-color='%2322C7FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M16 2l12 7v14l-12 7-12-7V9z' fill='url(%23g)'/%3E%3C/svg%3E">
 <style>
   /* Шрифты визитки — локально в ../fonts/ (OFL), шрифт проекта Onest — в asmirnov/ */
@@ -54,7 +54,7 @@
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body { margin: 0; background: var(--bg); color: var(--ink); font: 400 var(--fs-body)/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
-  img, video { display: block; max-width: 100%; height: auto; }
+  img { display: block; max-width: 100%; height: auto; }
   a { color: inherit; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
   .wrap { max-width: calc(var(--wrap) + 32px); margin: 0 auto;
@@ -86,15 +86,9 @@
   .s-h { font: 600 clamp(28px, 3.6vw, 46px)/1.04 var(--s-sans); letter-spacing: -.03em; text-transform: uppercase; margin: 12px 0 14px; text-wrap: balance;
     background: var(--s-metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .s-t { color: var(--s-muted); max-width: 460px; margin: 0; }
-  .row { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
-  .row.rev { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); }
-  .row.rev .txt { order: 2; }
   .head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px clamp(24px, 4vw, 64px); align-items: end; margin-bottom: clamp(28px, 4vw, 48px); }
   .head .s-h { margin-bottom: 0; }
-  @media (max-width: 860px) { .row, .row.rev, .head { grid-template-columns: 1fr; } .row.rev .txt { order: 0; } }
-  .shot { width: 100%; border: 1px solid var(--s-line); border-radius: 10px; position: relative; z-index: 1;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 24px 60px -24px rgba(49,87,213,.35); }
-
+  @media (max-width: 860px) { .head { grid-template-columns: 1fr; } }
   /* Обложка полотна */
   .cover { padding-bottom: 0; }
   .cover .title { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: clamp(28px, 4vw, 48px); }
@@ -103,40 +97,12 @@
   .mono-badge { flex: none; width: clamp(56px, 7vw, 88px); aspect-ratio: 1; display: grid; place-items: center; border-radius: 14px;
     background: var(--s-cobalt); color: #fff; font: 600 clamp(20px, 2.6vw, 32px)/1 var(--s-sans); letter-spacing: -.02em;
     box-shadow: 0 0 0 1px rgba(138,164,255,.35), 0 12px 40px -8px rgba(49,87,213,.7); }
-  .cover .laptop { margin: 0 auto; }
   .cover-cap { padding-block: clamp(40px, 5vw, 72px) clamp(56px, 8vw, 120px); }
   .p.cover-cap { border-top: 0; }
-
-  /* Ноутбук */
-  .laptop { width: min(100%, 960px); position: relative; z-index: 1; }
-  .laptop .scr { background: #05070a; border-radius: 14px 14px 0 0; padding: 2.2% 2.2% 0; box-shadow: 0 0 0 1px var(--s-line); }
-  .laptop .scr > * { border-radius: 2px 2px 0 0; overflow: hidden; }
-  .laptop .base { height: clamp(10px, 1.6vw, 16px); margin: 0 -6%; background: linear-gradient(#4a5563, #262d38); border-radius: 0 0 12px 12px; position: relative; }
-  .laptop .base::after { content: ""; position: absolute; left: 50%; top: 0; width: 14%; height: 40%; transform: translateX(-50%); background: #1a212b; border-radius: 0 0 8px 8px; }
   /* Подложка — фамилия, как в подвале сайта */
   .ghost { position: absolute; font: 700 clamp(120px, 22vw, 320px)/1 var(--s-sans); letter-spacing: -.05em; color: var(--s-ghost); z-index: 0; user-select: none;
     right: -4%; top: -2%; white-space: nowrap; }
   .ghost.low { right: auto; left: -3%; top: auto; bottom: -8%; }
-
-  /* Телефон */
-  .phone { width: clamp(180px, 24vw, 280px); flex: none; border-radius: 36px; background: #05070a; padding: 10px; position: relative; z-index: 1;
-    box-shadow: 0 0 0 1px var(--s-line), 0 24px 60px -24px rgba(49,87,213,.45); }
-  .phone::before { content: ""; position: absolute; top: 18px; left: 50%; width: 28%; height: 18px; transform: translateX(-50%); background: #05070a; border-radius: 12px; z-index: 2; }
-  .phone img { border-radius: 27px; width: 100%; aspect-ratio: 390 / 844; object-fit: cover; object-position: top; }
-  .phones { display: flex; justify-content: center; gap: clamp(16px, 3vw, 40px); }
-  .phones .phone { width: clamp(150px, 22vw, 260px); }
-  .phones .phone:nth-child(2) { transform: translateY(clamp(16px, 3vw, 40px)); }
-  @media (max-width: 720px) {
-    .phones { overflow-x: auto; justify-content: flex-start; padding-bottom: 48px; scroll-snap-type: x mandatory; }
-    .phones .phone { width: 64%; scroll-snap-align: center; }
-  }
-
-  /* Видео */
-  .vid { position: relative; }
-  .vid video { width: 100%; }
-  .play { position: absolute; right: 12px; bottom: 12px; z-index: 2; min-height: 36px; padding: 0 12px; border: 1px solid var(--s-line); border-radius: 8px;
-    background: rgba(11,15,20,.78); color: var(--s-text); font: 500 12px var(--mono); cursor: pointer; }
-  .play:hover { background: rgba(11,15,20,.95); }
 
   /* Стайл-гайд */
   .guide { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); }
@@ -160,11 +126,6 @@
   .type .a3 { font: 300 30px/1 var(--s-sans); color: var(--s-muted); }
   @media (max-width: 760px) { .guide { grid-template-columns: 1fr; } .type .a1 { font-size: 34px; } }
 
-  /* Сплит: картинка + телефон */
-  .split { display: flex; align-items: center; justify-content: center; gap: clamp(20px, 5vw, 64px); }
-  .split > .col { flex: 1 1 0; min-width: 0; display: grid; gap: 16px; }
-  @media (max-width: 720px) { .split { flex-direction: column; } .split .phone { width: min(70%, 240px); } }
-
   /* Финал полотна — в стиле проекта */
   .s-end { display: grid; gap: 20px; justify-items: start; }
   .s-end .s-h { font-size: clamp(36px, 6vw, 84px); margin: 0; max-width: 900px; }
@@ -176,6 +137,233 @@
   .s-end .mono { font: 400 13px var(--mono); color: var(--s-muted); }
   footer { border-top: 1px solid var(--line); }
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 22px; font: 400 13px var(--mono); color: var(--muted); }
+  /* Экран сайта: браузер в стиле проекта. Внутри всё в единицах --u = 1px макета 1280 */
+  .screen { border-radius: 12px; overflow: hidden; background: var(--s-bg); position: relative; z-index: 1;
+    box-shadow: 0 0 0 1px var(--s-line), inset 0 1px 0 rgba(255,255,255,.06), 0 40px 90px -40px rgba(49,87,213,.55); }
+  .bar { display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 14px; background: #0d1218; border-bottom: 1px solid var(--s-line); }
+  .bar i { width: 9px; height: 9px; border-radius: 50%; background: #2a3442; }
+  .bar b { margin-left: 12px; font: 400 11px var(--mono); color: #6b7889; }
+  .site { container-type: inline-size; position: relative; }
+  .site > .f { --u: calc(100cqw / 1280); position: relative; font: 400 calc(var(--u) * 16)/1.55 var(--s-sans); color: var(--s-text); background: var(--s-bg); }
+  .metal { background: var(--s-metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .w-k { margin: 0; font: 500 calc(var(--u)*12)/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--s-acc); }
+  .w-h { margin: calc(var(--u)*14) 0 0; font: 600 calc(var(--u)*48)/1.04 var(--s-sans); letter-spacing: -.03em; }
+  .w-btn { display: inline-flex; align-items: center; gap: calc(var(--u)*10); min-height: calc(var(--u)*50); padding: 0 calc(var(--u)*22); border-radius: calc(var(--u)*10);
+    font: 600 calc(var(--u)*15) var(--s-sans); color: #fff; background: var(--s-cobalt); border: 0; cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 calc(var(--u)*10) calc(var(--u)*32) calc(var(--u)*-8) rgba(49,87,213,.85); transition: background .3s; }
+  .w-btn:hover { background: #3d63e6; }
+  .w-btn.ghostb { background: transparent; color: var(--s-text); box-shadow: inset 0 0 0 1px var(--s-line); }
+  .w-btn.ghostb:hover { box-shadow: inset 0 0 0 1px var(--s-acc); }
+  .w-btn svg { width: calc(var(--u)*18); height: calc(var(--u)*18); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .demo-note { min-height: 1.5em; margin: calc(var(--u)*12) 0 0; font: 400 calc(var(--u)*12) var(--mono); color: var(--s-acc); }
+
+  /* 01 Первый экран */
+  .w-nav { position: relative; z-index: 3; display: flex; align-items: center; justify-content: space-between; padding: calc(var(--u)*22) calc(var(--u)*56); border-bottom: 1px solid var(--s-line); }
+  .w-logo { display: inline-flex; align-items: center; gap: calc(var(--u)*10); font: 600 calc(var(--u)*15) var(--s-sans); }
+  .w-logo i { display: grid; place-items: center; width: calc(var(--u)*32); height: calc(var(--u)*32); border-radius: calc(var(--u)*8); background: var(--s-cobalt); font: 600 calc(var(--u)*13)/1 var(--s-sans); font-style: normal; color: #fff; }
+  .w-menu { display: flex; gap: calc(var(--u)*28); font: 400 calc(var(--u)*14) var(--s-sans); color: var(--s-muted); }
+  .w-menu-btn { font: 500 calc(var(--u)*13) var(--mono); color: var(--s-acc); }
+  .hero { position: relative; overflow: hidden; min-height: calc(var(--u)*660); padding: calc(var(--u)*76) calc(var(--u)*56) calc(var(--u)*64); }
+  .hero canvas { position: absolute; top: 0; right: 0; width: 56%; height: 100%; z-index: 0; }
+  .hero::after { content: ""; position: absolute; inset: 0 auto 0 0; width: 62%; z-index: 0; pointer-events: none;
+    background: linear-gradient(90deg, var(--s-bg) 55%, rgba(17,22,29,0)); }
+  .hero > *:not(canvas) { position: relative; z-index: 1; }
+  .status { display: inline-flex; align-items: center; gap: calc(var(--u)*10); margin: 0; font: 500 calc(var(--u)*12) var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--s-muted); }
+  .status b { width: calc(var(--u)*8); height: calc(var(--u)*8); border-radius: 50%; background: #3ddc97; box-shadow: 0 0 0 calc(var(--u)*4) rgba(61,220,151,.15); }
+  .hero h4 { margin: calc(var(--u)*24) 0 0; font: 600 calc(var(--u)*112)/.9 var(--s-sans); letter-spacing: -.05em; text-transform: uppercase; }
+  .hero h4 span { display: block; }
+  .lead { max-width: calc(var(--u)*600); min-height: 3.2em; margin: calc(var(--u)*30) 0 0; font: 300 calc(var(--u)*24)/1.35 var(--s-sans); color: var(--s-text); }
+  .caret { display: inline-block; width: .5em; height: 1.05em; margin-left: .1em; vertical-align: -.15em; background: var(--s-acc); }
+  .theses { list-style: none; margin: calc(var(--u)*28) 0 0; padding: 0; display: grid; gap: calc(var(--u)*10); max-width: calc(var(--u)*600); color: var(--s-muted); font-size: calc(var(--u)*15); }
+  .theses li { padding-left: calc(var(--u)*22); position: relative; }
+  .theses li::before { content: "→"; position: absolute; left: 0; color: var(--s-acc); font-family: var(--mono); }
+  .theses strong { color: var(--s-text); font-weight: 500; }
+  .btns { display: flex; flex-wrap: wrap; gap: calc(var(--u)*12); margin-top: calc(var(--u)*36); }
+  .plate { position: absolute !important; right: calc(var(--u)*56); bottom: calc(var(--u)*64); padding: calc(var(--u)*14) calc(var(--u)*18); border-radius: calc(var(--u)*10);
+    background: rgba(26,33,43,.82); box-shadow: 0 0 0 1px var(--s-line), inset 0 1px 0 rgba(255,255,255,.07); font: 400 calc(var(--u)*13)/1.5 var(--mono); color: var(--s-muted);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+  .plate span { display: block; color: var(--s-acc); margin-bottom: calc(var(--u)*4); }
+
+  /* 03 Цифры практики */
+  .res { display: grid; grid-template-columns: calc(var(--u)*380) 1fr; gap: calc(var(--u)*40); padding: calc(var(--u)*80) calc(var(--u)*56) calc(var(--u)*80) 0; overflow: hidden; }
+  .res-orb { position: relative; }
+  .res-orb svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .m-big b, .m b { display: block; font-family: var(--mono); font-weight: 500; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .m-big { margin-top: calc(var(--u)*36); padding-bottom: calc(var(--u)*28); border-bottom: 1px solid var(--s-line); }
+  .m-big b { font: 600 calc(var(--u)*112)/1 var(--s-sans); letter-spacing: -.04em; }
+  .m-big p { margin: calc(var(--u)*10) 0 calc(var(--u)*6); font-size: calc(var(--u)*20); }
+  .m-big small, .m small { display: block; color: var(--s-muted); font-size: calc(var(--u)*13); line-height: 1.5; }
+  .ms { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(var(--u)*32); margin-top: calc(var(--u)*28); }
+  .m b { font-size: calc(var(--u)*40); line-height: 1.1; color: var(--s-text); }
+  .m p { margin: calc(var(--u)*8) 0 calc(var(--u)*6); font-size: calc(var(--u)*15); }
+  .o-spin { transform-origin: 40px 400px; }
+
+  /* 04 Спросите резюме */
+  .ask { display: grid; grid-template-columns: 5fr 7fr; gap: calc(var(--u)*48); padding: calc(var(--u)*72) calc(var(--u)*56); }
+  .ask-intro > p:not(.w-k):not(.w-h) { margin: calc(var(--u)*16) 0 0; color: var(--s-muted); font-size: calc(var(--u)*16); max-width: calc(var(--u)*400); }
+  .qs { display: grid; gap: calc(var(--u)*8); margin-top: calc(var(--u)*32); }
+  .qs-title { margin: 0 0 calc(var(--u)*4); font: 500 calc(var(--u)*11) var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--s-muted); }
+  .q { display: flex; gap: calc(var(--u)*12); align-items: baseline; text-align: left; padding: calc(var(--u)*14) calc(var(--u)*16); border-radius: calc(var(--u)*10);
+    background: var(--s-card); border: 1px solid var(--s-line); color: var(--s-text); font: 400 calc(var(--u)*15) var(--s-sans); cursor: pointer; transition: border-color .25s, background .25s; }
+  .q::before { content: attr(data-n); font: 500 calc(var(--u)*11) var(--mono); color: var(--s-muted); }
+  .q:hover { border-color: #3a4a63; }
+  .q[aria-pressed="true"] { border-color: var(--s-acc); background: #1c2536; }
+  .q[aria-pressed="true"]::before { color: var(--s-acc); }
+  .term { border-radius: calc(var(--u)*12); background: var(--s-deep); box-shadow: 0 0 0 1px var(--s-line), inset 0 1px 0 rgba(255,255,255,.06), 0 0 calc(var(--u)*60) calc(var(--u)*-20) rgba(49,87,213,.6); overflow: hidden; }
+  .term-bar { display: flex; align-items: center; gap: calc(var(--u)*6); padding: calc(var(--u)*12) calc(var(--u)*16); border-bottom: 1px solid var(--s-line); }
+  .term-bar i { width: calc(var(--u)*9); height: calc(var(--u)*9); border-radius: 50%; background: #2a3442; }
+  .term-bar span { margin-left: calc(var(--u)*10); font: 400 calc(var(--u)*12) var(--mono); color: var(--s-muted); }
+  .term-body { min-height: calc(var(--u)*400); padding: calc(var(--u)*22) calc(var(--u)*24); font: 400 calc(var(--u)*14)/1.6 var(--mono); }
+  .t-q { color: var(--s-text); }
+  .t-q::before { content: "> "; color: var(--s-acc); }
+  .t-step, .t-meta { color: var(--s-muted); margin-top: calc(var(--u)*12); }
+  .t-src { list-style: none; padding: 0; margin: calc(var(--u)*8) 0 0; display: grid; gap: calc(var(--u)*6); }
+  .t-src li { display: grid; grid-template-columns: 1fr auto; gap: calc(var(--u)*4) calc(var(--u)*12); font-size: calc(var(--u)*13); color: var(--s-muted); }
+  .t-src b { font-weight: 500; color: var(--s-acc); }
+  .t-src em { grid-column: 1 / -1; height: 2px; background: var(--s-line); position: relative; }
+  .t-src em::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--s, 0%); background: var(--s-acc); }
+  .t-ans { margin-top: calc(var(--u)*14); padding-top: calc(var(--u)*14); border-top: 1px dashed var(--s-line); font: 400 calc(var(--u)*16)/1.6 var(--s-sans); color: var(--s-text); }
+  .term-note { margin: calc(var(--u)*12) 0 0; font: 400 calc(var(--u)*12) var(--mono); color: var(--s-muted); }
+
+  /* 05 Опыт как git log */
+  .xp { padding: calc(var(--u)*72) calc(var(--u)*56) calc(var(--u)*80); }
+  .jobs { position: relative; margin-top: calc(var(--u)*44); display: grid; gap: calc(var(--u)*40); }
+  .branch { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
+  .branch path { fill: none; stroke: var(--s-acc); stroke-width: 1.5; opacity: .7; }
+  .job { position: relative; z-index: 1; margin-left: calc(var(--u)*(28 + var(--i)*56)); max-width: calc(var(--u)*820); display: grid; grid-template-columns: calc(var(--u)*300) 1fr; gap: calc(var(--u)*32); }
+  .job::before { content: ""; position: absolute; left: calc(var(--u)*-28); top: calc(var(--u)*6); width: calc(var(--u)*14); height: calc(var(--u)*14); border-radius: 50%;
+    background: var(--s-bg); box-shadow: inset 0 0 0 calc(var(--u)*2) var(--s-acc); }
+  .job.now::before { background: var(--s-acc); box-shadow: 0 0 0 calc(var(--u)*5) rgba(138,164,255,.18); }
+  .yr { position: absolute; right: calc(var(--u)*-150); top: calc(var(--u)*-18); font: 600 calc(var(--u)*92)/1 var(--s-sans); letter-spacing: -.05em; color: var(--s-ghost); z-index: -1; user-select: none; }
+  .job-per { margin: 0; font: 400 calc(var(--u)*12) var(--mono); color: var(--s-muted); }
+  .job h5 { margin: calc(var(--u)*6) 0 0; font: 600 calc(var(--u)*20)/1.25 var(--s-sans); letter-spacing: -.02em; }
+  .head-tag { display: inline-block; margin-left: calc(var(--u)*8); padding: calc(var(--u)*2) calc(var(--u)*8); border-radius: calc(var(--u)*6); vertical-align: middle;
+    background: var(--s-cobalt); color: #fff; font: 500 calc(var(--u)*11) var(--mono); letter-spacing: .02em; }
+  .job-co { margin: calc(var(--u)*6) 0 0; font-size: calc(var(--u)*14); color: var(--s-muted); }
+  .wins { list-style: none; margin: 0; padding: 0; display: grid; gap: calc(var(--u)*8); font-size: calc(var(--u)*15); color: var(--s-muted); }
+  .wins li { padding-left: calc(var(--u)*18); position: relative; }
+  .wins li::before { content: "+"; position: absolute; left: 0; font-family: var(--mono); color: #3ddc97; }
+  .wins mark { background: none; color: var(--s-text); font-weight: 500; }
+  .job details { margin-top: calc(var(--u)*10); }
+  .job summary { cursor: pointer; list-style: none; font: 400 calc(var(--u)*12) var(--mono); color: var(--s-acc); }
+  .job summary::-webkit-details-marker { display: none; }
+  .job summary::before { content: "+ "; }
+  .job details[open] summary::before { content: "− "; }
+  .job details .wins { margin-top: calc(var(--u)*10); }
+
+  /* 06 Стек */
+  .stack { padding: calc(var(--u)*72) calc(var(--u)*56) calc(var(--u)*80); }
+  .giant { list-style: none; margin: calc(var(--u)*36) 0 0; padding: 0; border-top: 1px solid var(--s-line); }
+  .giant > li { display: grid; grid-template-columns: calc(var(--u)*48) calc(var(--u)*380) 1fr; gap: calc(var(--u)*24); align-items: center; padding: calc(var(--u)*16) 0;
+    border-bottom: 1px solid var(--s-line); cursor: default; }
+  .giant .n { font: 400 calc(var(--u)*12) var(--mono); color: var(--s-muted); }
+  .giant h5 { margin: 0; font: 500 calc(var(--u)*52)/1 var(--mono); letter-spacing: -.04em; text-transform: uppercase; color: #3a4658; transition: color .35s; }
+  .giant .meta p { margin: 0 0 calc(var(--u)*8); font-size: calc(var(--u)*13); color: var(--s-muted); }
+  .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: calc(var(--u)*6); }
+  .chips li { padding: calc(var(--u)*4) calc(var(--u)*10); border-radius: calc(var(--u)*6); border: 1px solid var(--s-line); font: 400 calc(var(--u)*12) var(--mono); color: var(--s-muted); transition: color .35s, border-color .35s, background .35s; }
+  .giant > li.hl h5 { background: var(--s-metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .giant > li.hl .chips .key { color: var(--s-text); border-color: var(--s-cobalt); background: rgba(49,87,213,.18); }
+
+  /* 07 Обо мне */
+  .about { padding: calc(var(--u)*72) calc(var(--u)*56) calc(var(--u)*72); display: grid; grid-template-columns: 7fr 4fr; gap: calc(var(--u)*56); align-items: end; }
+  .about .w-h { font-size: calc(var(--u)*64); line-height: 1; }
+  .about .dim { color: #4a586b; -webkit-text-fill-color: #4a586b; }
+  .about .cap { margin-top: calc(var(--u)*36); display: grid; gap: calc(var(--u)*10); color: var(--s-muted); font-size: calc(var(--u)*16); max-width: calc(var(--u)*560); }
+  .about .cap p { margin: 0; }
+  .sign { display: flex; gap: calc(var(--u)*14); align-items: center; margin-top: calc(var(--u)*32); padding-top: calc(var(--u)*24); border-top: 1px solid var(--s-line); }
+  .sign i { display: grid; place-items: center; width: calc(var(--u)*44); height: calc(var(--u)*44); border-radius: calc(var(--u)*10); background: var(--s-cobalt); font: 600 calc(var(--u)*16)/1 var(--s-sans); font-style: normal; color: #fff; }
+  .sign b { display: block; font-weight: 600; font-size: calc(var(--u)*15); }
+  .sign small { display: block; font: 400 calc(var(--u)*12) var(--mono); color: var(--s-muted); }
+  .portrait { position: relative; border-radius: calc(var(--u)*14); overflow: hidden; box-shadow: 0 0 0 1px var(--s-line); }
+  .portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  .portrait::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(17,22,29,0) 60%, rgba(17,22,29,.6)); }
+
+  /* 08 Контакты */
+  .contact { position: relative; overflow: hidden; padding: calc(var(--u)*96) calc(var(--u)*56) calc(var(--u)*140); text-align: center; background: var(--s-deep); }
+  .contact .w-k { display: block; }
+  .manifest { margin: calc(var(--u)*22) auto 0; font: 600 calc(var(--u)*96)/.95 var(--s-sans); letter-spacing: -.05em; max-width: calc(var(--u)*1000); }
+  .manifest .dim { color: #4a586b; }
+  .manifest u { text-decoration: none; background: var(--s-metal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .contact .sub { margin: calc(var(--u)*22) 0 0; color: var(--s-muted); font-size: calc(var(--u)*17); }
+  .contact .btns { justify-content: center; }
+  .links { list-style: none; display: flex; justify-content: center; gap: calc(var(--u)*28); margin: calc(var(--u)*32) 0 0; padding: 0; font: 400 calc(var(--u)*13) var(--mono); color: var(--s-muted); }
+  .links span { color: var(--s-acc); margin-right: calc(var(--u)*8); }
+  .contact .w-ghost { position: absolute; left: 50%; bottom: calc(var(--u)*-40); transform: translateX(-50%); font: 700 calc(var(--u)*220)/1 var(--s-sans); letter-spacing: -.05em; color: var(--s-ghost); white-space: nowrap; user-select: none; }
+  .contact > *:not(.w-ghost) { position: relative; z-index: 1; }
+
+  /* Телефоны: --u = 1px макета 390 */
+  .phones { display: flex; justify-content: center; gap: clamp(16px, 3vw, 40px); }
+  .phone { width: clamp(150px, 22vw, 260px); flex: none; border-radius: 36px; background: #05070a; padding: 10px; position: relative;
+    box-shadow: 0 0 0 1px var(--s-line), 0 24px 60px -24px rgba(49,87,213,.45); }
+  .phone::before { content: ""; position: absolute; top: 18px; left: 50%; width: 28%; height: 18px; transform: translateX(-50%); background: #05070a; border-radius: 12px; z-index: 4; }
+  .phone .site { border-radius: 27px; overflow: hidden; aspect-ratio: 390 / 844; }
+  .phone .site > .f { --u: calc(100cqw / 390); height: 100%; overflow: hidden; }
+  .phones .phone:nth-child(2) { transform: translateY(clamp(16px, 3vw, 40px)); }
+  @media (max-width: 720px) {
+    .phones { overflow-x: auto; justify-content: flex-start; padding-bottom: 48px; scroll-snap-type: x mandatory; }
+    .phones .phone { width: 64%; scroll-snap-align: center; }
+  }
+  .m-top { display: flex; justify-content: space-between; align-items: center; padding: calc(var(--u)*54) calc(var(--u)*22) calc(var(--u)*14); border-bottom: 1px solid var(--s-line); position: relative; z-index: 2; }
+  .m-burger { width: calc(var(--u)*22); height: calc(var(--u)*9); border-top: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; }
+  .m-hero { position: relative; height: 100%; }
+  .m-hero canvas { position: absolute; inset: 0; width: 100%; height: 56%; }
+  .m-hero .b { position: absolute; left: calc(var(--u)*22); right: calc(var(--u)*22); bottom: calc(var(--u)*36); z-index: 1; }
+  .m-hero h4 { margin: calc(var(--u)*14) 0 0; font: 600 calc(var(--u)*52)/.9 var(--s-sans); letter-spacing: -.05em; text-transform: uppercase; }
+  .m-hero .lead { font-size: calc(var(--u)*17); margin-top: calc(var(--u)*18); min-height: 0; }
+  .m-hero .w-btn { width: 100%; justify-content: center; margin-top: calc(var(--u)*22); }
+  .m-pad { padding: calc(var(--u)*28) calc(var(--u)*22) 0; }
+  .m-pad .w-h { font-size: calc(var(--u)*32); }
+  .m-pad .m-big b { font-size: calc(var(--u)*64); }
+  .m-pad .m-big p { font-size: calc(var(--u)*16); }
+  .m-pad .ms { grid-template-columns: 1fr; gap: calc(var(--u)*18); }
+  .m-pad .m { padding-bottom: calc(var(--u)*14); border-bottom: 1px solid var(--s-line); }
+  .m-pad .m b { font-size: calc(var(--u)*32); }
+  .m-pad .jobs { margin-top: calc(var(--u)*24); gap: calc(var(--u)*26); }
+  .m-pad .job { grid-template-columns: 1fr; gap: calc(var(--u)*10); margin-left: calc(var(--u)*(26 + var(--i)*14)); }
+  .m-pad .job::before { left: calc(var(--u)*-26); }
+  .m-pad .job h5 { font-size: calc(var(--u)*18); }
+  .m-pad .wins { font-size: calc(var(--u)*14); }
+  .m-pad .yr { display: none; }
+  .m-pad .branch-s { position: absolute; left: calc(var(--u)*29); top: calc(var(--u)*12); bottom: 0; width: 1.5px; background: linear-gradient(var(--s-acc), rgba(138,164,255,0)); opacity: .7; }
+
+  /* Телефон: интерактивные экраны получают свою раскладку и крупнее масштаб (--u = 1px макета 480), иначе кнопки не нажать */
+  @media (max-width: 720px) {
+    .site > .f.ask, .site > .f.xp, .site > .f.stack { --u: calc(100cqw / 480); }
+    .ask { grid-template-columns: 1fr; padding: calc(var(--u)*40) calc(var(--u)*24); gap: calc(var(--u)*28); }
+    .ask .w-h, .xp .w-h, .stack .w-h { font-size: calc(var(--u)*34); }
+    .term-body { min-height: calc(var(--u)*360); }
+    .xp, .stack { padding: calc(var(--u)*40) calc(var(--u)*24); }
+    .xp .job { grid-template-columns: 1fr; gap: calc(var(--u)*10); margin-left: calc(var(--u)*(28 + var(--i)*14)); }
+    .xp .yr { display: none; }
+    .giant > li { grid-template-columns: calc(var(--u)*32) 1fr; }
+    .giant > li .meta { grid-column: 1 / -1; }
+    .giant h5 { font-size: calc(var(--u)*40); }
+  }
+
+  /* Анимации: только при no-preference и классе anim на <html> (без JS всё видно) */
+  @media (prefers-reduced-motion: no-preference) {
+    .anim [data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity .8s, transform .8s; transition-delay: var(--d, 0s); }
+    .anim [data-reveal].in-view { opacity: 1; transform: none; }
+    .anim .caret { animation: blink 1s steps(1) infinite; }
+    .anim .status b { animation: pulse 2.4s ease-in-out infinite; }
+    .anim .o-spin { animation: spin 120s linear infinite; }
+    .anim .o-sweep { transform-origin: 40px 400px; animation: spin 9s linear infinite; }
+    .anim .o-route { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.2s ease .3s; }
+    .anim .in-view .o-route { stroke-dashoffset: 0; }
+    .anim .o-ping { transform-origin: 376px 271px; animation: ping 2.6s ease-out infinite; }
+    .t-src em::after { transition: width .6s ease; }
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  @keyframes pulse { 50% { box-shadow: 0 0 0 calc(var(--u)*7) rgba(61,220,151,0); } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes ping { from { transform: scale(1); opacity: .9; } to { transform: scale(3.2); opacity: 0; } }
+  html:not(.js) .js-only { display: none; }
+
+  @media print {
+    header, .js-only { display: none !important; }
+    .p { break-inside: avoid; }
+    [data-reveal] { opacity: 1 !important; transform: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -188,33 +376,50 @@
 
 <main>
   <div class="canvas">
+    <!-- Обложка + 01 первый экран -->
     <section class="p cover">
       <span class="ghost" aria-hidden="true">SMIRNOV</span>
       <div class="in">
-        <p class="s-num">Сайт-визитка ИИ-инженера · одностраничник · 2026</p>
+        <p class="s-num">Сайт-визитка ИИ-инженера · одностраничник · концепт · 2026</p>
         <div class="title"><h1>Смирнов</h1><span class="mono-badge" aria-hidden="true">AS</span></div>
-        <div class="laptop">
-          <div class="scr"><div class="vid">
-            <video data-auto muted loop playsinline preload="metadata" poster="asmirnov/v-hero-poster.webp" width="960" height="600" aria-label="Первый экран: подзаголовок печатается по словам, нейросеть на фоне откликается на курсор">
-              <source src="asmirnov/v-hero.webm" type="video/webm"><source src="asmirnov/v-hero.mp4" type="video/mp4">
-            </video>
-            <button class="play" type="button" hidden>пауза</button>
+        <div class="screen">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>asmirnov · концепт</b></div>
+          <div class="site"><div class="f">
+            <div class="w-nav"><span class="w-logo"><i>AS</i>Алексей Смирнов</span>
+              <span class="w-menu"><span>Цифры</span><span>Спросите резюме</span><span>Опыт</span><span>Стек</span></span>
+              <span class="w-menu-btn">Написать →</span></div>
+            <div class="hero" id="hero">
+              <canvas class="net" aria-hidden="true"></canvas>
+              <p class="status"><b></b>Staff / Principal AI &amp; ML Engineer · Москва</p>
+              <h4 class="metal"><span>Алексей</span><span>Смирнов</span></h4>
+              <p class="lead"><span id="typed">Довожу LLM-системы от прототипа до продакшена и считаю их эффект в деньгах</span><span class="caret js-only" aria-hidden="true"></span></p>
+              <ul class="theses">
+                <li><strong>RAG, дообучение, инференс</strong> — Llama-3-70B на 64 A100, ответ за 800&nbsp;мс</li>
+                <li><strong>10 лет в разработке</strong> — от Python-бэкенда до Lead AI / LLM Engineer</li>
+                <li><strong>Kaggle Competition Master</strong>, спикер DataFest и AI Journey</li>
+              </ul>
+              <div class="btns">
+                <button class="w-btn" type="button" data-demo><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Написать на почту</button>
+                <button class="w-btn ghostb" type="button" data-demo><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Резюме в PDF</button>
+              </div>
+              <p class="demo-note" data-demo-note aria-live="polite"></p>
+              <div class="plate" aria-hidden="true"><span>HEAD → main</span>Lead AI / LLM Engineer<br>NeuroTech Solutions</div>
+            </div>
           </div></div>
-          <div class="base"></div>
         </div>
       </div>
     </section>
     <section class="p cover-cap">
       <div class="in head" style="margin-bottom:0">
-        <div><p class="s-num">01 / 09 · первый экран · видео</p><h3 class="s-h">Нейросеть вместо фото</h3></div>
-        <p class="s-t">Специализация считывается раньше, чем прочитано имя</p>
+        <div><p class="s-num">01 / 08 · первый экран · интерактив</p><h3 class="s-h">Нейросеть вместо фото</h3></div>
+        <p class="s-t">Специализация считывается раньше имени. Подвигайте курсором по экрану: узлы тянутся к нему, как внимание модели, а подзаголовок печатается токенами</p>
       </div>
     </section>
 
     <section class="p card">
       <div class="in">
         <div class="head">
-          <div><p class="s-num">02 / 09 · стайл-гайд</p><h3 class="s-h">Палитра Titanium Grid и шрифты</h3></div>
+          <div><p class="s-num">02 / 08 · стайл-гайд</p><h3 class="s-h">Палитра Titanium Grid и шрифты</h3></div>
           <p class="s-t">Тёмный tech-стиль привычен CTO, а кобальт оставлен только для действий</p>
         </div>
         <div class="guide">
@@ -242,10 +447,41 @@
     </section>
 
     <section class="p">
-      <div class="in row">
-        <div class="txt"><p class="s-num">03 / 09 · цифры практики</p><h3 class="s-h">Цифры вместо обещаний</h3>
-          <p class="s-t">Нанимающий менеджер видит эффект в деньгах до того, как читает опыт</p></div>
-        <img class="shot" src="asmirnov/d-results.webp" width="1600" height="1073" loading="lazy" alt="Блок «Цифры практики»: крупно $1,2 млн экономии в год, ниже −45% расходов на AWS, 800 мс и $2,4 млн ARR; слева полушар-граф">
+      <div class="in">
+        <div class="head">
+          <div><p class="s-num">03 / 08 · цифры практики · анимация</p><h3 class="s-h">Цифры вместо обещаний</h3></div>
+          <p class="s-t">Нанимающий менеджер видит эффект в деньгах до того, как читает опыт. Цифры досчитываются при появлении, а граф за ними прокладывает маршрут</p>
+        </div>
+        <div class="screen">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>asmirnov / цифры</b></div>
+          <div class="site"><div class="f res" id="res" data-reveal>
+            <div class="res-orb" aria-hidden="true">
+              <svg viewBox="0 0 400 800" preserveAspectRatio="xMaxYMid slice">
+                <defs><linearGradient id="sweep" x1="0" x2="1"><stop offset="0" stop-color="#8AA4FF" stop-opacity="0"/><stop offset="1" stop-color="#8AA4FF" stop-opacity=".55"/></linearGradient></defs>
+                <g fill="none" stroke="#263040"><circle cx="40" cy="400" r="360"/><circle cx="40" cy="400" r="270"/><circle cx="40" cy="400" r="180"/><circle cx="40" cy="400" r="90"/></g>
+                <g class="o-spin">
+                  <path fill="none" stroke="#263040" d="M40 400 L376 271 M40 400 L400 400 M40 400 L376 529 M40 400 L295 145 M40 400 L295 655"/>
+                  <g fill="#3A475A"><circle cx="295" cy="145" r="4"/><circle cx="295" cy="655" r="4"/><circle cx="400" cy="400" r="4"/><circle cx="208" cy="569" r="3"/></g>
+                </g>
+                <line class="o-sweep" x1="40" y1="400" x2="400" y2="400" stroke="url(#sweep)" stroke-width="2"/>
+                <path class="o-route" pathLength="1" stroke="#8AA4FF" stroke-width="1.5" fill="none" opacity=".75" d="M130 400 L250 304 L376 271 M250 304 L310 400 L376 529"/>
+                <circle class="o-ping" cx="376" cy="271" r="6" fill="none" stroke="#8AA4FF"/>
+                <g fill="#8AA4FF"><circle cx="376" cy="271" r="6"/><circle cx="250" cy="304" r="5"/><circle cx="310" cy="400" r="4"/><circle cx="376" cy="529" r="4"/><circle cx="130" cy="400" r="4"/></g>
+              </svg>
+            </div>
+            <div>
+              <p class="w-k">Цифры практики</p>
+              <p class="w-h">Что изменилось после моей работы</p>
+              <div class="m-big"><b class="metal" data-count>$1,2&nbsp;млн</b><p>экономии в год в пересчёте на рабочие часы</p>
+                <small>Поиск по 2 ТБ документов: онбординг быстрее на 40%, поиск юридической информации — на 70%. NeuroTech, 2022–2026</small></div>
+              <div class="ms">
+                <div class="m"><b data-count>−45%</b><p>расходов на AWS</p><small>Экономия ~$45 тыс. в месяц: vLLM, TensorRT-LLM, AWQ-квантование. NeuroTech, 2022–2026</small></div>
+                <div class="m"><b data-count>800&nbsp;мс</b><p>ответ модели вместо 3,5&nbsp;с</p><small>vLLM + TensorRT-LLM. NeuroTech, 2022–2026</small></div>
+                <div class="m"><b data-count>$2,4&nbsp;млн</b><p>дополнительной выручки (ARR)</p><small>Модель оттока + win-back рассылки: отток −18% за первый квартал. DataSense, 2019–2022</small></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
       </div>
     </section>
 
@@ -253,63 +489,229 @@
       <span class="ghost low" aria-hidden="true">RAG</span>
       <div class="in">
         <div class="head">
-          <div><p class="s-num">04 / 09 · фирменный блок · видео</p><h3 class="s-h">Спросите резюме</h3></div>
-          <p class="s-t">Навык RAG доказан на самом сайте, а не описан словами</p>
+          <div><p class="s-num">04 / 08 · фирменный блок · интерактив</p><h3 class="s-h">Спросите резюме</h3></div>
+          <p class="s-t">Навык RAG доказан на самом сайте, а не описан словами. Выберите вопрос: система найдёт фрагменты резюме и напечатает ответ</p>
         </div>
-        <div class="vid">
-          <video class="shot" data-auto muted loop playsinline preload="none" poster="asmirnov/v-ask-poster.webp" width="960" height="465" aria-label="RAG-терминал: посетитель выбирает вопрос, система показывает найденные фрагменты резюме и печатает ответ">
-            <source src="asmirnov/v-ask.webm" type="video/webm"><source src="asmirnov/v-ask.mp4" type="video/mp4">
-          </video>
-          <button class="play" type="button" hidden>пауза</button>
+        <div class="screen">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>asmirnov / спросите резюме</b></div>
+          <div class="site"><div class="f ask">
+            <div class="ask-intro">
+              <p class="w-k">Спросите резюме</p>
+              <p class="w-h">RAG по моему опыту</p>
+              <p>Выберите вопрос: система найдёт фрагменты резюме и ответит со ссылками на источники</p>
+              <div class="qs js-only" role="group" aria-label="Вопросы к резюме">
+                <p class="qs-title">Выберите вопрос</p>
+                <button class="q" type="button" data-q="0" data-n="01" aria-pressed="true">Какой опыт с LLM в продакшене?</button>
+                <button class="q" type="button" data-q="1" data-n="02" aria-pressed="false">Сколько денег принесла работа?</button>
+                <button class="q" type="button" data-q="2" data-n="03" aria-pressed="false">Есть ли опыт руководства?</button>
+                <button class="q" type="button" data-q="3" data-n="04" aria-pressed="false">Где живёт и готов ли к переезду?</button>
+              </div>
+            </div>
+            <div>
+              <div class="term">
+                <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>rag://asmirnov/cv</span></div>
+                <div class="term-body" id="term" aria-live="polite">
+                  <div class="t-q">Какой опыт с LLM в продакшене?</div>
+                  <div class="t-step">// найдено 3 фрагмента</div>
+                  <ul class="t-src">
+                    <li><span>опыт/neurotech.md#rag</span><b>0.93</b><em style="--s:93%"></em></li>
+                    <li><span>опыт/neurotech.md#inference</span><b>0.89</b><em style="--s:89%"></em></li>
+                    <li><span>стек.md#llm</span><b>0.81</b><em style="--s:81%"></em></li>
+                  </ul>
+                  <div class="t-ans">С 2022 года руковожу направлением генеративного ИИ в NeuroTech Solutions. Построил Enterprise RAG по 2&nbsp;ТБ документов (~$1,2&nbsp;млн экономии в год), дообучил Llama-3-70B через RLHF и DPO на 64 A100 и ускорил ответ модели с 3,5&nbsp;с до 800&nbsp;мс</div>
+                </div>
+              </div>
+              <p class="term-note">Демо: ответы собраны заранее из резюме, модель не вызывается</p>
+            </div>
+          </div></div>
         </div>
       </div>
     </section>
 
     <section class="p">
-      <div class="in row rev">
-        <div class="txt"><p class="s-num">05 / 09 · опыт</p><h3 class="s-h">Опыт как git log</h3>
-          <p class="s-t">Карьера читается на языке разработчика, а текущая роль отмечена HEAD</p></div>
-        <img class="shot" src="asmirnov/d-experience.webp" width="1600" height="1520" loading="lazy" alt="Блок опыта лесенкой веток git: годы подложкой, текущая работа с меткой HEAD → main">
+      <div class="in">
+        <div class="head">
+          <div><p class="s-num">05 / 08 · опыт · анимация</p><h3 class="s-h">Опыт как git log</h3></div>
+          <p class="s-t">Карьера читается на языке разработчика: ветка дорисовывается по прокрутке, текущая роль отмечена HEAD, остальные результаты раскрываются по клику</p>
+        </div>
+        <div class="screen">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>asmirnov / опыт</b></div>
+          <div class="site"><div class="f xp">
+            <p class="w-k">Опыт · git log</p>
+            <p class="w-h">10 лет, 4 компании</p>
+            <div class="jobs" id="jobs">
+              <svg class="branch js-only" aria-hidden="true"><path d=""/></svg>
+              <article class="job now" style="--i:0" data-reveal>
+                <span class="yr" aria-hidden="true">2022</span>
+                <div><p class="job-per">11.2022 — сейчас</p><h5>Lead AI / LLM Engineer<span class="head-tag">HEAD → main</span></h5><p class="job-co">NeuroTech Solutions · B2B SaaS, Enterprise AI</p></div>
+                <div>
+                  <ul class="wins">
+                    <li>Enterprise RAG на гибридном поиске (BM25 + dense) по 2 ТБ документов — <mark>~$1,2 млн в год</mark></li>
+                    <li>Ускорение инференса: latency 3,5 с → 800 мс, <mark>AWS −45%</mark></li>
+                  </ul>
+                  <details><summary>Ещё 3 результата</summary><ul class="wins">
+                    <li>Свой пайплайн RLHF и DPO для Llama-3-70B на 64 GPU NVIDIA A100</li>
+                    <li>vLLM и TensorRT-LLM с AWQ-квантованием в продакшене</li>
+                    <li>Онбординг сотрудников быстрее на 40%, поиск юридической информации — на 70%</li>
+                  </ul></details>
+                </div>
+              </article>
+              <article class="job" style="--i:1" data-reveal>
+                <span class="yr" aria-hidden="true">2019</span>
+                <div><p class="job-per">03.2019 — 10.2022</p><h5>Senior Machine Learning Engineer</h5><p class="job-co">DataSense Analytics · E-commerce, MarTech</p></div>
+                <div>
+                  <ul class="wins">
+                    <li>Модель оттока (ROC-AUC 0,89) + автоматические win-back рассылки из CRM — <mark>отток −18%, +$2,4 млн ARR</mark></li>
+                    <li>MLOps на Kubeflow и MLflow: выпуск модели <mark>3 недели → 4 дня</mark></li>
+                  </ul>
+                  <details><summary>Ещё 2 результата</summary><ul class="wins">
+                    <li>NLP-классификатор отзывов на дообученной RoBERTa, до 5000 запросов в секунду</li>
+                    <li>Внедрил A/B-тесты как основу решений в компании</li>
+                  </ul></details>
+                </div>
+              </article>
+              <article class="job" style="--i:2" data-reveal>
+                <span class="yr" aria-hidden="true">2017</span>
+                <div><p class="job-per">07.2017 — 02.2019</p><h5>Software / Data Engineer</h5><p class="job-co">FinStream Hub · FinTech</p></div>
+                <div>
+                  <ul class="wins">
+                    <li>Асинхронные микросервисы на FastAPI — <mark>до 10 000 транзакций в секунду</mark></li>
+                    <li>Оптимизация PostgreSQL: дневная отчётность <mark>4 часа → 45 минут</mark></li>
+                  </ul>
+                  <details><summary>Ещё 2 результата</summary><ul class="wins">
+                    <li>ETL на Spark и Airflow из 15+ финансовых источников</li>
+                    <li>MVP кредитного скоринга на LightGBM: одобрение надёжных заёмщиков +5% без роста дефолтов</li>
+                  </ul></details>
+                </div>
+              </article>
+              <article class="job" style="--i:3" data-reveal>
+                <span class="yr" aria-hidden="true">2016</span>
+                <div><p class="job-per">06.2016 — 06.2017</p><h5>Junior Python Developer</h5><p class="job-co">WebLogic Core · Digital-агентство</p></div>
+                <div>
+                  <ul class="wins">
+                    <li>Мониторинг цен конкурентов, 500 000 SKU в день — <mark>−20 часов ручной работы в неделю</mark></li>
+                    <li>REST API на Django REST Framework для порталов с MAU 100 000+</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </div></div>
+        </div>
       </div>
     </section>
 
     <section class="p card">
-      <div class="in row">
-        <div class="txt"><p class="s-num">06 / 09 · стек</p><h3 class="s-h">Шесть категорий вместо облака</h3>
-          <p class="s-t">Скринер за секунды сверяет стек с вакансией</p></div>
-        <img class="shot" src="asmirnov/d-skills.webp" width="1600" height="1483" loading="lazy" alt="Стек: шесть категорий крупным моно — LLM, инференс, ML/DL, MLOps, языки, данные; ключевые технологии подсвечены">
+      <div class="in">
+        <div class="head">
+          <div><p class="s-num">06 / 08 · стек · интерактив</p><h3 class="s-h">Шесть категорий вместо облака</h3></div>
+          <p class="s-t">Скринер за секунды сверяет стек с вакансией. Наведите на категорию или нажмите на неё: подсветятся ключевые технологии</p>
+        </div>
+        <div class="screen">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>asmirnov / стек</b></div>
+          <div class="site"><div class="f stack">
+            <p class="w-k">Стек</p>
+            <p class="w-h">Стек от обучения до инференса</p>
+            <ol class="giant" id="giant">
+              <li class="hl" tabindex="0"><span class="n">01</span><h5>LLM</h5>
+                <div class="meta"><p>RAG по 2 ТБ, дообучение Llama-3-70B</p><ul class="chips"><li class="key">RAG · GraphRAG</li><li class="key">LoRA · QLoRA</li><li class="key">RLHF · DPO</li><li>Agentic AI</li><li>LangChain</li><li>LlamaIndex</li><li>OpenAI API</li><li>Anthropic API</li></ul></div></li>
+              <li tabindex="0"><span class="n">02</span><h5>Инференс</h5>
+                <div class="meta"><p>latency 3,5 с → 800 мс, AWS −45%</p><ul class="chips"><li class="key">vLLM</li><li class="key">TensorRT</li><li>Triton</li><li>ONNX</li><li>DeepSpeed</li><li>AWQ · GPTQ · GGUF</li></ul></div></li>
+              <li tabindex="0"><span class="n">03</span><h5>ML/DL</h5>
+                <div class="meta"><p>ML и Deep Learning</p><ul class="chips"><li class="key">PyTorch</li><li>Transformers</li><li>TensorFlow</li><li>scikit-learn</li><li>XGBoost</li><li>LightGBM</li><li>YOLOv8 · ViT</li></ul></div></li>
+              <li tabindex="0"><span class="n">04</span><h5>MLOps</h5>
+                <div class="meta"><p>выпуск модели 3 недели → 4 дня</p><ul class="chips"><li class="key">Kubernetes</li><li>Docker</li><li>MLflow</li><li>Kubeflow</li><li>Ray</li><li>Kafka</li><li>Spark</li><li>Airflow</li><li>AWS · GCP</li></ul></div></li>
+              <li tabindex="0"><span class="n">05</span><h5>Языки</h5>
+                <div class="meta"><ul class="chips"><li class="key">Python · 10 лет</li><li>C++</li><li>SQL</li><li>Bash</li><li>Go · базово</li></ul></div></li>
+              <li tabindex="0"><span class="n">06</span><h5>Данные</h5>
+                <div class="meta"><p>Базы и векторный поиск</p><ul class="chips"><li>PostgreSQL</li><li>ClickHouse</li><li>Redis</li><li>Elasticsearch</li><li class="key">Qdrant · Milvus · Pinecone</li></ul></div></li>
+            </ol>
+          </div></div>
+        </div>
       </div>
     </section>
 
     <section class="p">
-      <div class="in row rev">
-        <div class="txt"><p class="s-num">07 / 09 · обо мне</p><h3 class="s-h">Позиция вместо биографии</h3>
-          <p class="s-t">Заголовок отвечает на вопрос о доверии раньше фактов</p></div>
-        <img class="shot" src="asmirnov/d-about.webp" width="1600" height="1399" loading="lazy" alt="Блок «Обо мне»: заголовок «Отвечаю за результат, а не за модель», портрет справа, ниже путь и подпись с монограммой">
-      </div>
-    </section>
-
-    <section class="p deep">
-      <span class="ghost low" aria-hidden="true">SMIRNOV</span>
       <div class="in">
         <div class="head">
-          <div><p class="s-num">08 / 09 · контакты</p><h3 class="s-h">Финал одним вопросом</h3></div>
-          <p class="s-t">Один крупный вопрос и одна главная кнопка ведут к письму</p>
+          <div><p class="s-num">07 / 08 · обо мне и контакты</p><h3 class="s-h">Позиция вместо биографии</h3></div>
+          <p class="s-t">Заголовок отвечает на вопрос о доверии раньше фактов, а финал задаёт один вопрос и даёт одну главную кнопку</p>
         </div>
-        <img class="shot" src="asmirnov/d-contact.webp" width="1600" height="1051" loading="lazy" alt="Контакты: «Обсудим вашу задачу с LLM?», кнопка почты и резюме в PDF, ссылки LinkedIn, GitHub, Kaggle">
+        <div class="screen">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>asmirnov / обо мне</b></div>
+          <div class="site"><div class="f">
+            <div class="about" data-reveal>
+              <div>
+                <p class="w-k">Обо мне</p>
+                <p class="w-h metal">Отвечаю за результат, <span class="dim">а не&nbsp;за&nbsp;модель</span></p>
+                <div class="cap">
+                  <p>Начинал с Python-бэкенда и скрейперов, прошёл через FinTech и MarTech, с 2022 года руковожу генеративным ИИ в B2B SaaS. Оптимизирую инференс на GPU и считаю эффект для бизнеса</p>
+                  <p>Вырастил 5+ middle и senior инженеров</p>
+                </div>
+                <div class="sign"><i aria-hidden="true">AS</i><span><b>Алексей Смирнов</b><small>Москва · релокация или удалённо</small></span></div>
+              </div>
+              <figure class="portrait" style="margin:0"><img src="asmirnov/about.webp" width="960" height="1200" loading="lazy" alt="Сгенерированный портрет вымышленного героя концепта"></figure>
+            </div>
+            <div class="contact">
+              <span class="w-ghost" aria-hidden="true">SMIRNOV</span>
+              <p class="w-k">Контакты</p>
+              <p class="manifest"><span class="dim">Обсудим вашу</span> <u>задачу с&nbsp;LLM?</u></p>
+              <p class="sub">Открыт к роли Staff / Principal AI Engineer. Релокация или удалённо</p>
+              <div class="btns">
+                <button class="w-btn" type="button" data-demo><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Написать на почту</button>
+                <button class="w-btn ghostb" type="button" data-demo><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Резюме в PDF</button>
+              </div>
+              <p class="demo-note" data-demo-note aria-live="polite"></p>
+              <ul class="links" aria-hidden="true"><li><span>in</span>LinkedIn</li><li><span>gh</span>GitHub</li><li><span>kg</span>Kaggle</li></ul>
+            </div>
+          </div></div>
+        </div>
       </div>
     </section>
 
     <section class="p card">
       <div class="in">
         <div class="head">
-          <div><p class="s-num">09 / 09 · телефон</p><h3 class="s-h">Мобильная версия</h3></div>
-          <p class="s-t">Телефон получил свою раскладку, а не сжатую десктопную</p>
+          <div><p class="s-num">08 / 08 · телефон</p><h3 class="s-h">Мобильная версия</h3></div>
+          <p class="s-t">Нейросеть уходит наверх, цифры встают столбиком, а ветка опыта выпрямляется в одну линию</p>
         </div>
         <div class="phones" role="region" aria-label="Мобильная версия, три экрана" tabindex="0">
-          <div class="phone"><img src="asmirnov/m-hero.webp" width="780" height="1688" loading="lazy" alt="Первый экран на телефоне"></div>
-          <div class="phone"><img src="asmirnov/m-results.webp" width="780" height="1688" loading="lazy" alt="Цифры практики на телефоне"></div>
-          <div class="phone"><img src="asmirnov/m-experience.webp" width="780" height="1688" loading="lazy" alt="Опыт на телефоне"></div>
+          <div class="phone"><div class="site"><div class="f m-hero">
+            <canvas class="net" aria-hidden="true"></canvas>
+            <div class="m-top"><span class="w-logo"><i>AS</i></span><span class="m-burger" aria-hidden="true"></span></div>
+            <div class="b">
+              <p class="status"><b></b>AI &amp; ML Engineer</p>
+              <h4 class="metal">Алексей Смирнов</h4>
+              <p class="lead">Довожу LLM-системы до продакшена и считаю эффект в деньгах</p>
+              <span class="w-btn">Написать на почту</span>
+            </div>
+          </div></div></div>
+          <div class="phone"><div class="site"><div class="f">
+            <div class="m-top"><span class="w-logo"><i>AS</i></span><span class="m-burger" aria-hidden="true"></span></div>
+            <div class="m-pad" id="m-res">
+              <p class="w-k">Цифры практики</p>
+              <p class="w-h">Что изменилось после моей работы</p>
+              <div class="m-big" style="margin-top:calc(var(--u)*20)"><b class="metal" data-count>$1,2&nbsp;млн</b><p>экономии в год</p></div>
+              <div class="ms">
+                <div class="m"><b data-count>−45%</b><p>расходов на AWS</p></div>
+                <div class="m"><b data-count>800&nbsp;мс</b><p>ответ модели вместо 3,5&nbsp;с</p></div>
+              </div>
+            </div>
+          </div></div></div>
+          <div class="phone"><div class="site"><div class="f">
+            <div class="m-top"><span class="w-logo"><i>AS</i></span><span class="m-burger" aria-hidden="true"></span></div>
+            <div class="m-pad">
+              <p class="w-k">Опыт · git log</p>
+              <p class="w-h">10 лет, 4 компании</p>
+              <div class="jobs" style="position:relative">
+                <span class="branch-s" aria-hidden="true"></span>
+                <div class="job now" style="--i:0"><div><p class="job-per">11.2022 — сейчас</p><h5>Lead AI / LLM Engineer <span class="head-tag">HEAD</span></h5><p class="job-co">NeuroTech Solutions</p></div>
+                  <ul class="wins"><li>Enterprise RAG — <mark>~$1,2 млн в год</mark></li></ul></div>
+                <div class="job" style="--i:0"><div><p class="job-per">03.2019 — 10.2022</p><h5>Senior ML Engineer</h5><p class="job-co">DataSense Analytics</p></div>
+                  <ul class="wins"><li><mark>+$2,4 млн ARR</mark></li></ul></div>
+                <div class="job" style="--i:0"><div><p class="job-per">07.2017 — 02.2019</p><h5>Software / Data Engineer</h5><p class="job-co">FinStream Hub</p></div></div>
+              </div>
+            </div>
+          </div></div></div>
         </div>
       </div>
     </section>
@@ -328,34 +730,199 @@
 </main>
 
 <footer>
-  <div class="wrap"><span>@maria1moon</span><span>«Смирнов» — концепт: резюме, портрет и контакты вымышленные</span></div>
+  <div class="wrap"><span>@maria1moon</span><span>«Смирнов» — концепт: резюме, портрет и контакты вымышленные (портрет сгенерирован)</span></div>
 </footer>
 
 <script>
 (function () {
+  var root = document.documentElement;
+  root.classList.add('js');
   // Черновик сообщения в Telegram (CLAUDE.md: каждая ссылка — с ?text=)
   var draft = 'Здравствуйте, Мария! Пишу со страницы «Смирнов» в портфолио сайтов. Хочу такой сайт для своего проекта: ';
   document.querySelectorAll('[data-tg]').forEach(function (a) { a.href = 'https://t.me/maria1moon?text=' + encodeURIComponent(draft); });
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  var motionOK = matchMedia('(prefers-reduced-motion: no-preference)').matches;
+  var IO = 'IntersectionObserver' in window;
 
-  // Видео: играют только в кадре и без reduced-motion; кнопка паузы
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var vids = document.querySelectorAll('video[data-auto]');
-  vids.forEach(function (v) {
-    var b = v.parentNode.querySelector('.play'); b.hidden = false;
-    v.userPaused = reduce;
-    function sync() { b.textContent = v.paused ? 'смотреть' : 'пауза'; }
-    v.addEventListener('play', sync); v.addEventListener('pause', sync); sync();
-    b.addEventListener('click', function () { if (v.paused) { v.userPaused = false; v.play(); } else { v.userPaused = true; v.pause(); } });
-  });
-  if (!('IntersectionObserver' in window)) return;
-  var io = new IntersectionObserver(function (es) {
-    es.forEach(function (e) {
-      var v = e.target;
-      if (e.isIntersecting && !v.userPaused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-      else if (!e.isIntersecting) v.pause();
+  // Кнопки-демо: концепт ничего не отправляет
+  $$('[data-demo]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var n = b.closest('.btns').parentNode.querySelector('[data-demo-note]');
+      if (n) n.textContent = '// это концепт: почта и PDF не подключены';
     });
-  }, { threshold: .4 });
-  vids.forEach(function (v) { io.observe(v); });
+  });
+
+  // Подзаголовок «по токенам», как генерирует LLM
+  var typed = document.getElementById('typed'), LEAD = typed.textContent, typingTimer;
+  function typeLead() {
+    clearTimeout(typingTimer);
+    if (!motionOK) { typed.textContent = LEAD; return; }
+    var tokens = [];
+    LEAD.match(/\S+\s*/g).forEach(function (w) { if (w.length > 7) { var h = Math.ceil(w.length / 2); tokens.push(w.slice(0, h), w.slice(h)); } else tokens.push(w); });
+    var i = 0; typed.textContent = ''; typed.setAttribute('aria-label', LEAD);
+    (function step() { typed.textContent += tokens[i++]; if (i < tokens.length) typingTimer = setTimeout(step, 45 + Math.random() * 70); })();
+  }
+
+  // Досчёт цифр с нуля
+  function countUp(el) {
+    var final = el.dataset.final || (el.dataset.final = el.textContent);
+    var m = final.match(/(\d+)(?:([.,])(\d+))?/);
+    if (!m || !motionOK) { el.textContent = final; return; }
+    var dec = m[3] ? m[3].length : 0, sep = m[2] || '.', target = parseFloat(m[1] + '.' + (m[3] || 0)), t0 = performance.now();
+    (function frame(t) {
+      var p = Math.min(1, (t - t0) / 1200), v = target * (1 - Math.pow(1 - p, 3));
+      el.textContent = p < 1 ? final.replace(m[0], v.toFixed(dec).replace('.', sep)) : final;
+      if (p < 1) requestAnimationFrame(frame);
+    })(t0);
+  }
+
+  // Появление блоков и досчёт — только без reduced-motion; без JS всё видно
+  if (motionOK && IO) {
+    root.classList.add('anim');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in-view');
+        if (e.target.hasAttribute('data-count')) countUp(e.target);
+        io.unobserve(e.target);
+      });
+    }, { threshold: .3 });
+    $$('[data-reveal], [data-count]').forEach(function (el) { io.observe(el); });
+    var heroSeen = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { typeLead(); heroSeen.disconnect(); } }, { threshold: .4 });
+    heroSeen.observe(document.getElementById('hero'));
+  }
+
+  // «Спросите резюме»: поиск фрагментов и ответ по токенам
+  var QA = [
+    { q: 'Какой опыт с LLM в продакшене?',
+      src: [['опыт/neurotech.md#rag', .93], ['опыт/neurotech.md#inference', .89], ['стек.md#llm', .81]],
+      a: 'С 2022 года руковожу направлением генеративного ИИ в NeuroTech Solutions. Построил Enterprise RAG по 2 ТБ документов (~$1,2 млн экономии в год), дообучил Llama-3-70B через RLHF и DPO на 64 A100 и ускорил ответ модели с 3,5 с до 800 мс' },
+    { q: 'Сколько денег принесла работа?',
+      src: [['опыт/neurotech.md#rag', .95], ['опыт/neurotech.md#inference', .91], ['опыт/datasense.md#churn', .88]],
+      a: 'По резюме: около $1,2 млн экономии в год от RAG-системы, экономия ~$45 тыс. в месяц на AWS после ускорения инференса и +$2,4 млн ARR от модели оттока в DataSense' },
+    { q: 'Есть ли опыт руководства?',
+      src: [['опыт/neurotech.md#role', .92], ['навыки.md#менторинг', .87], ['сообщество.md#выступления', .74]],
+      a: 'С 2022 года — Lead AI / LLM Engineer, отвечаю за направление генеративного ИИ. Вырастил 5+ middle и senior инженеров' },
+    { q: 'Где живёт и готов ли к переезду?',
+      src: [['контакты.md#локация', .97], ['контакты.md#формат', .90], ['обо-мне.md', .62]],
+      a: 'Живу в Москве. Готов к релокации или удалённой работе' }
+  ];
+  var term = document.getElementById('term'), qBtns = $$('.q'), run = 0;
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, motionOK ? ms : 0); }); }
+  function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt) e.textContent = txt; return e; }
+  async function ask(i) {
+    var id = ++run, it = QA[i], t0 = performance.now();
+    qBtns.forEach(function (b, k) { b.setAttribute('aria-pressed', k === i); });
+    term.textContent = '';
+    var qEl = term.appendChild(el('div', 't-q'));
+    for (var c = 0; c < it.q.length; c++) { if (id !== run) return; qEl.textContent += it.q[c]; if (motionOK) await wait(22); }
+    var step = term.appendChild(el('div', 't-step', '// ищу по 4 документам…'));
+    await wait(450); if (id !== run) return;
+    step.textContent = '// найдено ' + it.src.length + ' фрагмента';
+    var ul = term.appendChild(el('ul', 't-src'));
+    for (var s = 0; s < it.src.length; s++) {
+      var li = el('li'), bar = el('em'); li.append(el('span', '', it.src[s][0]), el('b', '', it.src[s][1].toFixed(2)), bar);
+      ul.append(li); bar.offsetWidth; bar.style.setProperty('--s', Math.round(it.src[s][1] * 100) + '%');
+      await wait(160); if (id !== run) return;
+    }
+    var ans = term.appendChild(el('div', 't-ans')), toks = it.a.match(/\S+\s*/g);
+    for (var k = 0; k < toks.length; k++) { if (id !== run) return; ans.textContent += toks[k]; if (motionOK) await wait(28 + Math.random() * 40); }
+    term.appendChild(el('div', 't-meta', '// ' + toks.length + ' токенов · ' + ((performance.now() - t0) / 1000).toFixed(1).replace('.', ',') + ' с в демо'));
+  }
+  qBtns.forEach(function (b, i) { b.addEventListener('click', function () { ask(i); }); });
+
+  // git log: ветка-лесенка соединяет коммиты и дорисовывается по прокрутке
+  var jobs = document.getElementById('jobs'), branch = jobs.querySelector('.branch path'), blen = 0, bp = motionOK ? 0 : 1;
+  function setP(p) { bp = p; if (blen) branch.style.strokeDashoffset = (blen * (1 - p)).toFixed(1); }
+  function layoutBranch() {
+    var r0 = jobs.getBoundingClientRect();
+    var pts = $$('.job', jobs).map(function (j) {
+      var r = j.getBoundingClientRect(), cs = getComputedStyle(j, '::before'), dot = parseFloat(cs.width) || 14;
+      return { x: r.left - r0.left + parseFloat(cs.left) + dot / 2, y: r.top - r0.top + parseFloat(cs.top) + dot / 2, top: r.top - r0.top, bot: r.bottom - r0.top };
+    });
+    var d = 'M' + pts[0].x + ' ' + pts[0].y;
+    for (var i = 1; i < pts.length; i++) {
+      var a = pts[i - 1], b = pts[i], ym = (a.bot + b.top) / 2;
+      d += ' L' + a.x + ' ' + a.bot + ' C' + a.x + ' ' + ym + ' ' + b.x + ' ' + ym + ' ' + b.x + ' ' + b.top + ' L' + b.x + ' ' + b.y;
+    }
+    branch.setAttribute('d', d);
+    blen = branch.getTotalLength(); branch.style.strokeDasharray = blen; setP(bp);
+  }
+  if ('ResizeObserver' in window) new ResizeObserver(layoutBranch).observe(jobs); else layoutBranch();
+  if (motionOK) {
+    var tick = false;
+    var upd = function () { tick = false; var r = jobs.getBoundingClientRect(); setP(Math.min(1, Math.max(0, (innerHeight * .8 - r.top) / r.height))); };
+    addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
+    upd();
+  }
+
+  // Стек: категория под курсором или по клику подсвечивает ключевые технологии
+  var rows = $$('#giant > li');
+  function hl(li) { rows.forEach(function (r) { r.classList.toggle('hl', r === li); }); }
+  rows.forEach(function (li) {
+    li.addEventListener('mouseenter', function () { hl(li); });
+    li.addEventListener('click', function () { hl(li); });
+    li.addEventListener('focus', function () { hl(li); });
+  });
+
+  // Печать: всё раскрыто, цифры итоговые
+  addEventListener('beforeprint', function () {
+    clearTimeout(typingTimer); typed.textContent = LEAD; setP(1);
+    $$('details').forEach(function (d) { d.open = true; });
+    $$('[data-count]').forEach(function (e) { if (e.dataset.final) e.textContent = e.dataset.final; });
+  });
+
+  // Живая «нейросеть» на canvas: узлы — нейроны, рёбра — связи между близкими.
+  // Курсор работает как «внимание»: ближайшие узлы тянутся к нему, по рёбрам бегут импульсы. Играет только в кадре
+  function net(cv) {
+    var ctx = cv.getContext('2d'), area = cv.parentNode, W, H, pts = [], pulses = [], raf = null, vis = false, last = 0;
+    var A = '#8AA4FF', mouse = { x: -1e4, y: -1e4, on: false };
+    function resize() {
+      var dpr = Math.min(devicePixelRatio || 1, 2);
+      W = cv.clientWidth; H = cv.clientHeight; if (!W || !H) return;
+      cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.round(Math.min(90, Math.max(22, W * H / 9000)));
+      pts = []; for (var i = 0; i < n; i++) pts.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25, r: 1 + Math.random() * 1.6, ph: Math.random() * 6.28 });
+      pulses = []; if (!raf) draw(0);
+    }
+    function draw(t) {
+      var dt = Math.min(48, t - last || 16) / 16, L = Math.min(140, Math.max(70, W / 6)), L2 = L * L; last = t;
+      ctx.clearRect(0, 0, W, H);
+      pts.forEach(function (p) {
+        if (!raf) return;
+        p.x += p.vx * dt; p.y += p.vy * dt;
+        if (p.x < -20) p.x = W + 20; if (p.x > W + 20) p.x = -20; if (p.y < -20) p.y = H + 20; if (p.y > H + 20) p.y = -20;
+        if (mouse.on) { var dx = mouse.x - p.x, dy = mouse.y - p.y, d = Math.hypot(dx, dy); if (d < 220 && d > 30) { p.x += dx / d * .35 * dt; p.y += dy / d * .35 * dt; } }
+      });
+      ctx.lineWidth = 1; ctx.strokeStyle = A; ctx.fillStyle = A;
+      for (var i = 0; i < pts.length; i++) for (var j = i + 1; j < pts.length; j++) {
+        var a = pts[i], b = pts[j], dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy;
+        if (d2 < L2) {
+          ctx.globalAlpha = (1 - d2 / L2) * .4; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          if (raf && Math.random() < .0009 * dt && pulses.length < 26) pulses.push({ a: a, b: b, k: 0 });
+        }
+      }
+      if (mouse.on) pts.forEach(function (p) {
+        var d = Math.hypot(mouse.x - p.x, mouse.y - p.y);
+        if (d < 200) { ctx.globalAlpha = (1 - d / 200) * .9; ctx.beginPath(); ctx.moveTo(mouse.x, mouse.y); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+      });
+      pts.forEach(function (p) { ctx.globalAlpha = .85 * (.55 + .45 * Math.sin(t / 900 + p.ph)); ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill(); });
+      pulses = pulses.filter(function (q) { return (q.k += .018 * dt) < 1; });
+      pulses.forEach(function (q) { ctx.globalAlpha = Math.sin(q.k * Math.PI); ctx.beginPath(); ctx.arc(q.a.x + (q.b.x - q.a.x) * q.k, q.a.y + (q.b.y - q.a.y) * q.k, 2.2, 0, 6.283); ctx.fill(); });
+      ctx.globalAlpha = 1;
+      if (raf) raf = requestAnimationFrame(draw);
+    }
+    function start() { if (motionOK && !raf && vis && !document.hidden) raf = requestAnimationFrame(draw); }
+    function stop() { if (raf) cancelAnimationFrame(raf); raf = null; }
+    if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      area.addEventListener('pointermove', function (e) { var r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.on = true; });
+      area.addEventListener('pointerleave', function () { mouse.on = false; });
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(cv); else resize();
+    if (IO) new IntersectionObserver(function (es) { vis = es[0].isIntersecting; vis ? start() : stop(); }).observe(cv); else { vis = true; start(); }
+    document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+  }
+  $$('canvas.net').forEach(net);
 })();
 </script>
 </body>

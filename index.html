@@ -243,8 +243,8 @@
   #ai { position: relative; isolation: isolate; overflow: hidden; }
   .poly-ai {
     inset: 0; width: 100%; height: 100%; stroke-opacity: .1; --facet-fill: var(--accent);
-    -webkit-mask-image: radial-gradient(ellipse at 85% 20%, #000 10%, transparent 65%);
-    mask-image: radial-gradient(ellipse at 85% 20%, #000 10%, transparent 65%);
+    -webkit-mask-image: radial-gradient(ellipse at 85% 20%, #000 10%, transparent 65%), radial-gradient(ellipse at 5% 80%, #000 5%, transparent 55%);
+    mask-image: radial-gradient(ellipse at 85% 20%, #000 10%, transparent 65%), radial-gradient(ellipse at 5% 80%, #000 5%, transparent 55%);
   }
   /* Запас 10px под параллакс за курсором */
   .poly-hero {
@@ -252,6 +252,20 @@
     transform: translate3d(var(--mx, 0px), var(--my, 0px), 0); transition: transform .4s ease-out;
     -webkit-mask-image: radial-gradient(closest-side at 65% 45%, #000 35%, transparent 100%);
     mask-image: radial-gradient(closest-side at 65% 45%, #000 35%, transparent 100%);
+  }
+  /* Слева — та же сетка зеркально, гаснет к тексту (Мария 18.10.2026: полигоны и влево) */
+  .poly-hero-l {
+    top: 0; left: 0; width: max(30%, calc((100% - 1080px) / 2 + 160px)); height: 100%; stroke-opacity: .18;
+    transform: scaleX(-1);
+    -webkit-mask-image: radial-gradient(farthest-side at 100% 60%, #000 20%, transparent 100%);
+    mask-image: radial-gradient(farthest-side at 100% 60%, #000 20%, transparent 100%);
+  }
+  /* Контакты: сетка и по сторонам карточки, во всю ширину секции; под карточкой не видна */
+  .contact { position: relative; isolation: isolate; overflow: hidden; }
+  .poly-contact-bg {
+    inset: 0; width: 100%; height: 100%; stroke-opacity: .14;
+    -webkit-mask-image: linear-gradient(to right, #000, transparent 40%, transparent 60%, #000);
+    mask-image: linear-gradient(to right, #000, transparent 40%, transparent 60%, #000);
   }
   .poly-contact {
     inset: 0; width: 100%; height: 100%; stroke-opacity: .16;
@@ -343,6 +357,8 @@
     }
     .cases::-webkit-scrollbar { display: none; }
     .cases > .case { flex: 0 0 calc(100% - 72px); scroll-snap-align: start; }
+    /* Все свёрнуты — карточки одной высоты (Web3Eco короче остальных); раскрытая растёт одна */
+    .cases:not(:has(details[open])) { align-items: stretch; }
   }
   @media screen and (min-width: 721px) and (max-width: 900px) { .cases > .case { flex-basis: 78%; } }
   /* Под лентой: номер кейса (моно) и стрелки */
@@ -758,6 +774,7 @@
 
   <!-- 1. Первый экран -->
   <section class="hero">
+    <svg class="poly poly-hero-l" viewBox="0 0 700 600" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"><use href="#poly-g"/></svg>
     <svg class="poly poly-hero" viewBox="0 0 700 600" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"><defs><linearGradient id="facet-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="700" y2="0"><stop offset="0" stop-color="#635BFF"/><stop offset=".5" stop-color="#3D7BFF"/><stop offset="1" stop-color="#22C7FF"/></linearGradient></defs><g id="poly-g"><g class="facets"><path d="M555 99L586 0L700 0" style="--o:0.068"/><path d="M0 0L0 110L103 0" style="--o:0.025"/><path d="M198 115L207 0L361 0" style="--o:0.058"/><path d="M83 121L103 0L207 0" style="--o:0.047"/><path d="M361 0L434 0L461 145" style="--o:0.072"/><path d="M434 0L461 145L586 0" style="--o:0.057"/><path d="M198 115L317 89L361 0" style="--o:0.044"/><path d="M555 99L700 0L700 130" style="--o:0.038"/><path d="M0 110L83 121L103 0" style="--o:0.015"/><path d="M317 89L361 0L461 145" style="--o:0.030"/><path d="M83 121L198 115L207 0" style="--o:0.016"/><path d="M461 145L555 99L586 0" style="--o:0.048"/><path d="M198 115L270 206L317 89" style="--o:0.023"/><path d="M83 121L198 115L270 206" style="--o:0.018"/><path d="M317 89L377 224L461 145" style="--o:0.030"/><path d="M555 99L569 264L700 130" style="--o:0.037"/><path d="M0 110L0 274L83 121" style="--o:0.033"/><path d="M461 145L555 99L569 264" style="--o:0.070"/><path d="M270 206L317 89L377 224" style="--o:0.057"/><path d="M83 121L123 232L270 206" style="--o:0.059"/><path d="M377 224L440 211L461 145" style="--o:0.041"/><path d="M569 264L700 130L700 216" style="--o:0.043"/><path d="M440 211L461 145L569 264" style="--o:0.034"/><path d="M0 274L83 121L123 232" style="--o:0.015"/><path d="M237 327L270 206L377 224" style="--o:0.023"/><path d="M317 338L377 224L440 211" style="--o:0.027"/><path d="M123 232L127 350L270 206" style="--o:0.015"/><path d="M440 211L480 354L569 264" style="--o:0.031"/><path d="M569 264L700 216L700 356" style="--o:0.065"/><path d="M0 274L123 232L127 350" style="--o:0.015"/><path d="M127 350L237 327L270 206" style="--o:0.039"/><path d="M237 327L317 338L377 224" style="--o:0.022"/><path d="M317 338L440 211L480 354" style="--o:0.075"/><path d="M480 354L569 264L569 367" style="--o:0.028"/><path d="M569 264L569 367L700 356" style="--o:0.039"/><path d="M0 274L0 366L127 350" style="--o:0.039"/><path d="M317 338L480 354L484 464" style="--o:0.029"/><path d="M127 350L139 495L237 327" style="--o:0.024"/><path d="M480 354L569 367L620 451" style="--o:0.024"/><path d="M237 327L317 338L352 509" style="--o:0.022"/><path d="M569 367L700 356L700 474" style="--o:0.023"/><path d="M0 366L127 350L139 495" style="--o:0.015"/><path d="M480 354L484 464L620 451" style="--o:0.022"/><path d="M569 367L620 451L700 474" style="--o:0.057"/><path d="M139 495L214 486L237 327" style="--o:0.015"/><path d="M317 338L352 509L484 464" style="--o:0.033"/><path d="M214 486L237 327L352 509" style="--o:0.030"/><path d="M0 366L0 465L139 495" style="--o:0.038"/><path d="M484 464L596 600L620 451" style="--o:0.038"/><path d="M596 600L620 451L700 474" style="--o:0.016"/><path d="M0 465L136 600L139 495" style="--o:0.060"/><path d="M352 509L432 600L484 464" style="--o:0.015"/><path d="M136 600L139 495L214 486" style="--o:0.041"/><path d="M214 486L349 600L352 509" style="--o:0.015"/><path d="M432 600L484 464L596 600" style="--o:0.036"/><path d="M0 465L0 600L136 600" style="--o:0.015"/><path d="M596 600L700 474L700 600" style="--o:0.028"/><path d="M136 600L207 600L214 486" style="--o:0.015"/><path d="M207 600L214 486L349 600" style="--o:0.015"/><path d="M349 600L352 509L432 600" style="--o:0.039"/></g><path d="M0 0L0 110M0 0L103 0M0 110L0 274M0 110L83 121M0 274L0 366M0 274L123 232M0 274L127 350M0 366L0 465M0 366L127 350M0 366L139 495M0 465L0 600M0 465L136 600M0 465L139 495M0 600L136 600M83 121L0 274M83 121L123 232M83 121L198 115M83 121L270 206M103 0L0 110M103 0L83 121M103 0L207 0M123 232L127 350M123 232L270 206M127 350L139 495M127 350L237 327M136 600L207 600M139 495L136 600M139 495L214 486M198 115L270 206M198 115L317 89M207 0L83 121M207 0L198 115M207 0L361 0M207 600L349 600M214 486L136 600M214 486L207 600M214 486L349 600M214 486L352 509M237 327L139 495M237 327L214 486M237 327L317 338M237 327L352 509M270 206L127 350M270 206L237 327M270 206L377 224M317 89L270 206M317 89L377 224M317 89L461 145M317 338L352 509M317 338L480 354M317 338L484 464M349 600L432 600M352 509L349 600M352 509L432 600M352 509L484 464M361 0L198 115M361 0L317 89M361 0L434 0M361 0L461 145M377 224L237 327M377 224L317 338M377 224L440 211M432 600L596 600M434 0L461 145M434 0L586 0M440 211L317 338M440 211L480 354M440 211L569 264M461 145L377 224M461 145L440 211M461 145L555 99M461 145L569 264M480 354L484 464M480 354L569 367M480 354L620 451M484 464L432 600M484 464L596 600M484 464L620 451M555 99L569 264M555 99L700 130M569 264L480 354M569 264L569 367M569 264L700 216M569 264L700 356M569 367L620 451M569 367L700 356M569 367L700 474M586 0L461 145M586 0L555 99M586 0L700 0M596 600L700 600M620 451L596 600M620 451L700 474M700 0L555 99M700 0L700 130M700 130L569 264M700 130L700 216M700 216L700 356M700 356L700 474M700 474L596 600M700 474L700 600"/><circle cx="0" cy="0" r="2.2" style="--d:0.40s"/><circle cx="361" cy="0" r="2.2" style="--d:0.92s"/><circle cx="700" cy="0" r="2.2" style="--d:1.40s"/><circle cx="198" cy="115" r="2.2" style="--d:0.68s"/><circle cx="555" cy="99" r="2.2" style="--d:1.19s"/><circle cx="123" cy="232" r="2.2" style="--d:0.58s"/><circle cx="440" cy="211" r="2.2" style="--d:1.03s"/><circle cx="0" cy="366" r="2.2" style="--d:0.40s"/><circle cx="317" cy="338" r="2.2" style="--d:0.85s"/><circle cx="700" cy="356" r="2.2" style="--d:1.40s"/><circle cx="214" cy="486" r="2.2" style="--d:0.71s"/><circle cx="620" cy="451" r="2.2" style="--d:1.29s"/><circle cx="136" cy="600" r="2.2" style="--d:0.59s"/><circle cx="432" cy="600" r="2.2" style="--d:1.02s"/></g></svg>
     <div class="wrap">
       <div class="hero-main">
@@ -1231,6 +1248,7 @@
 
   <!-- 7. Контакты -->
   <section id="contact" class="contact">
+    <svg class="poly poly-contact-bg" viewBox="0 0 700 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#poly-g"/></svg>
     <div class="wrap">
      <div class="contact-card">
       <svg class="poly poly-contact" viewBox="0 0 700 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#poly-g"/></svg>
@@ -1373,7 +1391,7 @@
 
   // Карусели кейсов, «ИИ в работе» и «Форматов» (на телефоне): номер текущей карточки и стрелки «назад / вперёд»;
   // у кейсов ещё плашки над лентой: клик листает к кейсу, текущая отмечена
-  [['.cases', '.cases-nav', '.case'], ['.ai-work', '.ai-nav', '.ai-item'], ['.offers', '.offers-nav', '.offer']].forEach(([t, n, c]) => {
+  [['.cases', '#cases .cases-nav', '.case'], ['.ai-work', '.ai-nav', '.ai-item'], ['.offers', '.offers-nav', '.offer']].forEach(([t, n, c]) => {
     const track = document.querySelector(t), nav = document.querySelector(n);
     const cards = [...track.querySelectorAll(c)], num = nav.querySelector('b');
     const [prev, next] = nav.querySelectorAll('button');
@@ -1381,6 +1399,7 @@
     const chips = t === '.cases' ? [...document.querySelectorAll('.case-chips a')] : [];
     let idx = 0, raf = 0;
     const sync = () => {
+      const was = idx;
       raf = 0;
       const start = track.getBoundingClientRect().left + (parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0);
       const end = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
@@ -1390,6 +1409,8 @@
       prev.disabled = track.scrollLeft < 2;
       next.disabled = end;
       chips.forEach((a, i) => i === idx ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+      // Кейсы: пролистали к другой карточке — раскрытый «Подробнее» схлопывается
+      if (idx !== was) cards.forEach((c, i) => { const d = c.querySelector('details[open]'); if (d && i !== idx) d.open = false; });
     };
     const go = i => track.scrollTo({ left: cards[i].offsetLeft - cards[0].offsetLeft, behavior: smooth });
     prev.addEventListener('click', () => go(Math.max(0, idx - 1)));

@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>«ЭПД Лаб» — портфолио сайтов · Мария В.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Лендинг интегратора электронных перевозочных документов «ЭПД Лаб»: голубой и графит, живой отсчёт до срока, радар налоговых рисков, сравнение и схема подключения партнёров">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23635BFF'/%3E%3Cstop offset='.55' stop-color='%233D7BFF'/%3E%3Cstop offset='1' stop-color='%2322C7FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M16 2l12 7v14l-12 7-12-7V9z' fill='url(%23g)'/%3E%3C/svg%3E">
+<style>
+  @font-face { font-family: "Inter Fallback"; src: local("Arial"), local("ArialMT");
+    ascent-override: 90.49%; descent-override: 22.56%; line-gap-override: 0%; size-adjust: 107.06%; }
+  @font-face { font-family: "Manrope Fallback"; src: local("Arial"), local("ArialMT");
+    ascent-override: 106.6%; descent-override: 30%; line-gap-override: 0%; size-adjust: 103%; }
+  @font-face { font-family: "Inter"; font-weight: 400 700; font-display: swap; src: url(../fonts/inter-cyrillic.woff2) format("woff2");
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+  @font-face { font-family: "Inter"; font-weight: 400 700; font-display: swap; src: url(../fonts/inter-latin.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: "Manrope"; font-weight: 300 800; font-display: swap; src: url(../fonts/manrope-cyrillic.woff2) format("woff2");
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+  @font-face { font-family: "Manrope"; font-weight: 300 800; font-display: swap; src: url(../fonts/manrope-latin.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: "JetBrains Mono"; font-weight: 400 500; font-display: swap; src: url(../fonts/jetbrains-mono-cyrillic.woff2) format("woff2");
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+  @font-face { font-family: "JetBrains Mono"; font-weight: 400 500; font-display: swap; src: url(../fonts/jetbrains-mono-latin.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+  /* Рамка — визитка (белый, Inter, один акцент); слайды — палитра проекта «ЭПД Лаб» */
+  :root {
+    color-scheme: light;
+    --bg: #ffffff; --soft: #f6f9fc; --ink: #0a2540; --muted: #425466; --line: #e3e8ee;
+    --accent: #635bff; --accent-text: #5850e8;
+    --sans: "Inter", "Inter Fallback", system-ui, sans-serif;
+    --display: "Manrope", "Manrope Fallback", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    --wrap: 1080px;
+    /* палитра проекта «ЭПД Лаб» (как на сайте) */
+    --s-bg: #f3f8ff; --s-card: #ffffff; --s-deep: #16324f; --s-text: #16324f; --s-muted: #4a5e75; --s-line: #dce7f3;
+    --s-blue: #1a68c2; --s-teal: #4da3ff; --s-mint: #eaf4ff; --s-sky: #d6eaff; --s-coral: #ff4f79; --s-coral-btn: #db2e58; --s-ghost: #e3eefb;
+    --s-sans: "Inter", "Inter Fallback", system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: calc(var(--wrap) + 32px); margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .nw { white-space: nowrap; }
+
+  /* Шапка */
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: rgba(255,255,255,.88); }
+  header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: rgba(255,255,255,.88);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; }
+  .back { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: none; font: 500 14px var(--mono); color: var(--muted); }
+  .back:hover { color: var(--accent); }
+  .nav-tg { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border-radius: 999px;
+    background: var(--accent); color: #fff; text-decoration: none; font: 600 14px var(--display); white-space: nowrap; }
+  .nav-tg:hover { background: #5047f0; }
+  .nav-tg svg { width: 16px; height: 16px; }
+
+  /* Полотно презентации — целиком в стиле проекта, без вставок визитки.
+     Панели встык: светлый фон, белые и мятные поверхности, графитовые — как «Налоги» на сайте; коралл только для действия.
+     Иерархия: номер (моно) → заголовок капсом Manrope → текст → живой экран */
+  .canvas { font: 400 17px/1.55 var(--s-sans); color: var(--s-text); background: var(--s-bg); }
+  .p { position: relative; overflow: hidden; padding-block: clamp(56px, 8vw, 120px); }
+  .p.card { background: var(--s-card); }
+  .p.mint { background: var(--s-mint); }
+  .p.deep { background: radial-gradient(ellipse 60% 90% at 85% 100%, rgba(77,163,255,.22), transparent 70%), var(--s-deep); color: #f3f8ff; }
+  .p + .p { border-top: 1px solid var(--s-line); }
+  .p.deep + .p, .p + .p.deep { border-top-color: transparent; }
+  .in { max-width: 1240px; margin: 0 auto; position: relative; z-index: 1;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .s-num { font: 500 12.5px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--s-blue); margin: 0; }
+  .s-h { font: 700 clamp(28px, 3.6vw, 46px)/1.04 var(--display); letter-spacing: -.03em; text-transform: uppercase; margin: 12px 0 14px; text-wrap: balance; color: var(--s-text); }
+  .s-h em { font-style: normal; color: var(--s-blue); }
+  .s-t { color: var(--s-muted); max-width: 460px; margin: 0; }
+  .deep .s-num, .deep .s-h em { color: var(--s-teal); }
+  .deep .s-h { color: #f3f8ff; }
+  .deep .s-t { color: #b8c8da; }
+  .head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px clamp(24px, 4vw, 64px); align-items: end; margin-bottom: clamp(28px, 4vw, 48px); }
+  .head .s-h { margin-bottom: 0; }
+  @media (max-width: 860px) { .head { grid-template-columns: 1fr; } }
+
+  /* Обложка полотна */
+  .cover .title { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: clamp(28px, 4vw, 48px); }
+  .cover h1 { font: 700 clamp(48px, 10.5vw, 160px)/.9 var(--display); letter-spacing: -.05em; text-transform: uppercase; margin: 10px 0 0; color: var(--s-text); }
+  .mono-badge { flex: none; width: clamp(56px, 7vw, 88px); aspect-ratio: 1; display: block; filter: drop-shadow(0 12px 24px rgba(22,50,79,.35)); }
+  .cover { padding-bottom: 0; }
+  .cover-cap { padding-block: clamp(40px, 5vw, 72px) clamp(56px, 8vw, 120px); }
+  .p.cover-cap { border-top: 0; }
+  /* Подложка — «ЭПД»; волны — как фон секций сайта */
+  .ghost { position: absolute; font: 800 clamp(120px, 22vw, 320px)/1 var(--display); letter-spacing: -.05em; color: var(--s-ghost); z-index: 0; user-select: none;
+    right: -4%; top: -2%; white-space: nowrap; }
+  .deep .ghost { color: #1c3b5c; }
+  .ghost.low { right: auto; left: -3%; top: auto; bottom: -8%; }
+  .waves { position: absolute; left: 0; right: 0; bottom: 0; height: clamp(90px, 14vw, 180px); z-index: 0; pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 240' preserveAspectRatio='none'%3E%3Cpath d='M0 70q150.0 -46 300 0t300 0t300 0t300 0t300 0V240H0Z' fill='%234DA3FF' fill-opacity='0.12'/%3E%3Cpath d='M0 120q120.0 -34 240 0t240 0t240 0t240 0t240 0t240 0t240 0V240H0Z' fill='%234DA3FF' fill-opacity='0.18'/%3E%3Cpath d='M0 170q100.0 -26 200 0t200 0t200 0t200 0t200 0t200 0t200 0t200 0V240H0Z' fill='%2316324F' fill-opacity='0.1'/%3E%3C/svg%3E") 0 100% / 1200px 100% repeat-x; }
+  .deep .waves { opacity: .5; }
+
+  /* Живой экран сайта: браузер в стиле проекта. Внутри всё в единицах --u = 1px макета 1280 */
+  .screen { border-radius: 14px; overflow: hidden; background: #fff; position: relative; z-index: 1;
+    box-shadow: 0 0 0 1px var(--s-line), 0 30px 80px -30px rgba(26,104,194,.45); }
+  .deep .screen { box-shadow: 0 0 0 1px #2a4766, 0 30px 80px -24px rgba(0,0,0,.5); }
+  .bar { display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 14px; background: #e9f1fa; border-bottom: 1px solid var(--s-line); }
+  .bar i { width: 9px; height: 9px; border-radius: 50%; background: #c6d6e8; }
+  .bar b { margin-left: 12px; font: 400 11px var(--mono); color: #6b7f96; }
+  .site { container-type: inline-size; position: relative; }
+  .site > .f { --u: calc(100cqw / 1280); position: relative; font: 400 calc(var(--u) * 17)/1.55 var(--s-sans); color: var(--s-text); background: #fff; }
+  .site button { cursor: pointer; }
+
+  /* Элементы сайта «ЭПД Лаб» */
+  .e-pad { padding: calc(var(--u)*64) calc(var(--u)*56); }
+  .e-soft { background: var(--s-bg) !important; }
+  .e-k { font: 500 calc(var(--u)*13)/1.4 var(--mono); color: var(--s-blue); margin: 0; }
+  .e-h { font: 700 calc(var(--u)*34)/1.15 var(--display); letter-spacing: -.02em; margin: 0; color: var(--s-text); max-width: calc(var(--u)*900); }
+  .e-btn { display: inline-flex; align-items: center; gap: calc(var(--u)*8); padding: calc(var(--u)*14) calc(var(--u)*22); border-radius: calc(var(--u)*10);
+    background: var(--s-coral-btn); color: #fff; font: 600 calc(var(--u)*16)/1.2 var(--s-sans); white-space: nowrap; }
+  .e-ghost { display: inline-flex; align-items: center; padding: calc(var(--u)*9) calc(var(--u)*16); border-radius: calc(var(--u)*10); border: 1px solid var(--s-line);
+    font: 600 calc(var(--u)*15)/1.2 var(--s-sans); background: #fff; }
+  .e-logo { display: inline-flex; align-items: center; gap: calc(var(--u)*10); font: 800 calc(var(--u)*19)/1 var(--display); letter-spacing: -.02em; }
+  .e-logo svg { width: calc(var(--u)*30); height: calc(var(--u)*30); }
+  .e-note { display: flex; align-items: center; gap: calc(var(--u)*6); margin: calc(var(--u)*10) 0 0; font-size: calc(var(--u)*14); color: var(--s-muted); }
+  .e-note::before { content: ""; width: calc(var(--u)*7); height: calc(var(--u)*7); border-radius: 50%; background: var(--s-teal); }
+  .e-seg { display: inline-flex; gap: calc(var(--u)*4); padding: calc(var(--u)*4); border: 1px solid var(--s-line); border-radius: calc(var(--u)*12); background: #fff; }
+  .e-seg button { border: 0; background: transparent; padding: calc(var(--u)*9) calc(var(--u)*16); border-radius: calc(var(--u)*9); font: 600 calc(var(--u)*14)/1.2 var(--s-sans); color: var(--s-muted);
+    transition: background .25s, color .25s; }
+  .e-seg button:hover { color: var(--s-text); }
+  .e-seg button[aria-pressed="true"] { background: var(--s-deep); color: #fff; }
+
+  /* 01 Первый экран */
+  .e-nav { display: flex; align-items: center; justify-content: space-between; gap: calc(var(--u)*24); padding: calc(var(--u)*18) calc(var(--u)*56); border-bottom: 1px solid var(--s-line); background: rgba(255,255,255,.8); position: relative; z-index: 2; }
+  .e-menu { display: flex; gap: calc(var(--u)*6); font-size: calc(var(--u)*15); color: var(--s-muted); }
+  .e-menu span { padding: calc(var(--u)*8) calc(var(--u)*10); }
+  .e-prog { position: absolute; left: 0; bottom: -1px; height: calc(var(--u)*3); width: 34%; background: linear-gradient(90deg, var(--s-teal), var(--s-blue) 60%, var(--s-coral)); }
+  .e-hero { position: relative; overflow: hidden; display: grid; grid-template-columns: 1.25fr 1fr; gap: calc(var(--u)*40); align-items: center; padding: calc(var(--u)*48) calc(var(--u)*56) calc(var(--u)*64);
+    background: radial-gradient(ellipse 50% 70% at 100% 0%, rgba(77,163,255,.25), transparent 70%), radial-gradient(ellipse 45% 80% at 0% 100%, rgba(77,163,255,.14), transparent 70%), var(--s-bg); }
+  .e-demo { margin: 0 0 calc(var(--u)*10); font-size: calc(var(--u)*12); color: var(--s-muted); }
+  .e-pill { display: inline-block; padding: calc(var(--u)*5) calc(var(--u)*12); border-radius: 999px; background: rgba(255,255,255,.7); border: 1px solid #bcd3ec;
+    font: 500 calc(var(--u)*13)/1.4 var(--mono); color: var(--s-blue); }
+  .e-hero h4 { font: 700 calc(var(--u)*48)/1.12 var(--display); letter-spacing: -.02em; margin: calc(var(--u)*16) 0 calc(var(--u)*16); }
+  .e-hero h4 em { font-style: normal; color: var(--s-blue); }
+  .e-sub { font-size: calc(var(--u)*16); color: var(--s-muted); margin: 0 0 calc(var(--u)*22); max-width: calc(var(--u)*600); }
+  .e-sub b { color: var(--s-text); }
+  .e-theses { list-style: none; margin: 0 0 calc(var(--u)*26); padding: 0; display: flex; flex-wrap: wrap; gap: calc(var(--u)*10); }
+  .e-theses li { display: inline-flex; align-items: center; gap: calc(var(--u)*8); padding: calc(var(--u)*8) calc(var(--u)*14) calc(var(--u)*8) calc(var(--u)*8); border-radius: 999px;
+    background: var(--s-mint); border: 1px solid #b8d8fb; font: 500 calc(var(--u)*14)/1.3 var(--s-sans); }
+  .e-theses svg { width: calc(var(--u)*24); height: calc(var(--u)*24); flex: none; }
+  .e-cta { display: flex; align-items: center; gap: calc(var(--u)*18); flex-wrap: wrap; }
+  .e-price { font-size: calc(var(--u)*15); color: var(--s-muted); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--s-line); }
+  .e-price b { color: var(--s-text); }
+  .e-art { position: relative; border: 1px solid var(--s-line); border-radius: calc(var(--u)*16); background: #fff; padding: calc(var(--u)*10); box-shadow: 0 calc(var(--u)*18) calc(var(--u)*40) calc(var(--u)*-24) rgba(22,50,79,.35); }
+  .e-art img { border-radius: calc(var(--u)*10); width: 100%; aspect-ratio: 960 / 812; object-fit: cover; }
+  .glass { position: absolute; z-index: 2; display: flex; align-items: center; gap: calc(var(--u)*10); padding: calc(var(--u)*10) calc(var(--u)*14); border-radius: calc(var(--u)*14);
+    background: rgba(255,255,255,.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.8);
+    box-shadow: 0 calc(var(--u)*12) calc(var(--u)*30) calc(var(--u)*-12) rgba(22,50,79,.45); font-size: calc(var(--u)*15); line-height: 1.3; }
+  .glass b { display: block; font-weight: 700; }
+  .glass small { display: block; font: 500 calc(var(--u)*12)/1.3 var(--mono); color: var(--s-muted); }
+  .glass--sign { left: calc(var(--u)*-28); bottom: calc(var(--u)*34); }
+  .glass--days { right: calc(var(--u)*-18); top: calc(var(--u)*26); display: block; }
+  .glass--days b { font-size: calc(var(--u)*18); }
+  .ok { position: relative; flex: none; display: grid; place-items: center; width: calc(var(--u)*34); height: calc(var(--u)*34); border-radius: 50%; background: var(--s-sky); }
+  .ok svg { width: 60%; height: 60%; }
+  .ok::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid var(--s-coral); opacity: 0; }
+
+  /* 03 Срок и роли */
+  .e-dead { display: grid; grid-template-columns: auto 1fr; gap: calc(var(--u)*32); align-items: center; margin-bottom: calc(var(--u)*44); }
+  .e-days { display: grid; place-items: center; min-width: calc(var(--u)*210); padding: calc(var(--u)*22) calc(var(--u)*28); border-radius: calc(var(--u)*16); text-align: center; color: #fff;
+    background: radial-gradient(ellipse 45% 80% at 0% 100%, rgba(77,163,255,.45), transparent 70%), var(--s-deep); }
+  .e-days .tag { font: 500 calc(var(--u)*12)/1 var(--mono); padding: calc(var(--u)*5) calc(var(--u)*10); border-radius: 999px; background: rgba(255,255,255,.12); }
+  .e-days b { display: block; font: 700 calc(var(--u)*64)/1 var(--display); letter-spacing: -.03em; color: var(--s-mint); margin: calc(var(--u)*10) 0 calc(var(--u)*6); font-variant-numeric: tabular-nums; }
+  .e-days .lbl { display: inline-flex; align-items: center; gap: calc(var(--u)*8); font-size: calc(var(--u)*14); opacity: .88; }
+  .e-pulse { position: relative; width: calc(var(--u)*8); height: calc(var(--u)*8); border-radius: 50%; background: var(--s-coral); flex: none; }
+  .e-lead { font-size: calc(var(--u)*15); color: var(--s-muted); margin: calc(var(--u)*12) 0 0; max-width: calc(var(--u)*620); }
+  .e-lead b { color: var(--s-text); }
+  .e-roles-h { font: 700 calc(var(--u)*22)/1.2 var(--display); margin: 0 0 calc(var(--u)*18); }
+  .e-roles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: calc(var(--u)*16); }
+  .role { text-align: left; border: 1px solid var(--s-line); border-radius: calc(var(--u)*14); padding: calc(var(--u)*20); background: #fff; position: relative;
+    transition: border-color .25s, transform .25s, box-shadow .25s, opacity .25s; }
+  .role svg { width: calc(var(--u)*36); height: calc(var(--u)*36); margin-bottom: calc(var(--u)*12); display: block; }
+  .role h5 { font: 700 calc(var(--u)*17)/1.25 var(--display); margin: 0 0 calc(var(--u)*8); }
+  .role p { margin: 0; font-size: calc(var(--u)*15); color: var(--s-muted); }
+  .role::after { content: "это я"; position: absolute; right: calc(var(--u)*14); top: calc(var(--u)*14); font: 500 calc(var(--u)*11)/1 var(--mono); padding: calc(var(--u)*6) calc(var(--u)*9);
+    border-radius: 999px; border: 1px solid var(--s-line); color: var(--s-muted); transition: background .25s, color .25s, border-color .25s; }
+  .role:hover { border-color: var(--s-teal); transform: translateY(-2px); box-shadow: 0 calc(var(--u)*12) calc(var(--u)*28) calc(var(--u)*-20) rgba(22,50,79,.4); }
+  .role[aria-pressed="true"] { border-color: var(--s-teal); background: var(--s-mint); box-shadow: inset 0 0 0 1px var(--s-teal); }
+  .role[aria-pressed="true"]::after { content: "✓ это я"; background: var(--s-deep); border-color: var(--s-deep); color: #fff; }
+  .e-roles.picked .role:not([aria-pressed="true"]) { opacity: .55; }
+  .e-hint { display: flex; align-items: center; justify-content: space-between; gap: calc(var(--u)*20); margin-top: calc(var(--u)*18); padding: calc(var(--u)*18) calc(var(--u)*22);
+    border-radius: calc(var(--u)*14); background: var(--s-mint); border-left: calc(var(--u)*4) solid var(--s-teal); font-size: calc(var(--u)*16); }
+  .e-hint b { font-weight: 700; }
+  .e-wave { position: absolute; right: calc(var(--u)*24); top: calc(var(--u)*24); width: calc(var(--u)*150); border-radius: 50%; opacity: .9; }
+
+  /* 04 Услуги и налоги */
+  .e-serv { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: calc(var(--u)*16); margin-top: calc(var(--u)*28); }
+  .service { border: 1px solid var(--s-line); border-radius: calc(var(--u)*14); padding: calc(var(--u)*20); background: #fff; display: grid; grid-template-columns: 1fr auto; gap: 0 calc(var(--u)*12);
+    transition: border-color .25s, transform .25s; }
+  .service:hover { border-color: var(--s-teal); transform: translateY(calc(var(--u)*-3)); }
+  .service .num { font: 800 calc(var(--u)*56)/1 var(--display); letter-spacing: -.03em; color: transparent; -webkit-text-stroke: 1.5px var(--s-teal); }
+  .service .steps { display: flex; gap: calc(var(--u)*4); align-self: center; }
+  .service .steps i { width: calc(var(--u)*18); height: calc(var(--u)*4); border-radius: 2px; background: var(--s-sky); position: relative; overflow: hidden; }
+  .service .steps i::after { content: ""; position: absolute; inset: 0; background: var(--s-teal); transform-origin: left; }
+  .service:nth-child(1) .steps i:nth-child(n+2)::after, .service:nth-child(2) .steps i:nth-child(n+3)::after, .service:nth-child(3) .steps i:nth-child(n+4)::after { transform: scaleX(0); }
+  .service h5 { grid-column: 1 / -1; font: 700 calc(var(--u)*18)/1.25 var(--display); margin: calc(var(--u)*18) 0 calc(var(--u)*8); }
+  .service p { grid-column: 1 / -1; margin: 0; font-size: calc(var(--u)*15); color: var(--s-muted); }
+  .tax { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: calc(var(--u)*24); align-items: center; margin-top: calc(var(--u)*16);
+    padding: calc(var(--u)*32) calc(var(--u)*36); border-radius: calc(var(--u)*14); color: #fff;
+    background: radial-gradient(ellipse 45% 80% at 100% 100%, rgba(77,163,255,.35), transparent 70%), var(--s-deep); }
+  .tax-t svg { width: calc(var(--u)*44); height: calc(var(--u)*44); }
+  .tax h5 { font: 700 calc(var(--u)*24)/1.2 var(--display); margin: calc(var(--u)*12) 0 calc(var(--u)*8); color: var(--s-mint); }
+  .tax p { margin: 0; font-size: calc(var(--u)*16); color: rgba(255,255,255,.86); max-width: calc(var(--u)*440); }
+  .tax-radar { position: relative; width: 100%; max-width: calc(var(--u)*460); justify-self: center; }
+  .tax-radar svg { display: block; width: 100%; height: auto; }
+  .sweep { transform-box: view-box; transform-origin: 110px 104px; }
+  .blip-ring { transform-box: fill-box; transform-origin: center; }
+  .chip { position: absolute; font: 500 calc(var(--u)*13)/1 var(--mono); padding: calc(var(--u)*8) calc(var(--u)*12); border-radius: 999px; white-space: nowrap;
+    border: 1px solid rgba(214,234,255,.45); background: rgba(22,50,79,.75); color: var(--s-mint); transition: background .3s, border-color .3s, color .3s; }
+  .chip--1 { left: 0; top: 30%; } .chip--2 { right: 2%; top: 46%; } .chip--3 { left: 52%; top: 0; }
+  .chip.hit { background: var(--s-coral-btn); border-color: var(--s-coral); color: #fff; }
+
+  /* 05 Пакеты */
+  .e-row { display: flex; align-items: end; justify-content: space-between; gap: calc(var(--u)*24); flex-wrap: wrap; }
+  .e-plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(var(--u)*16); margin-top: calc(var(--u)*28); }
+  .plan { display: flex; flex-direction: column; border: 1px solid var(--s-line); border-radius: calc(var(--u)*14); padding: calc(var(--u)*24); background: #fff;
+    transition: border-color .3s, box-shadow .3s, opacity .3s, transform .3s; }
+  .plan .e-k { margin: 0; }
+  .plan h5 { font: 700 calc(var(--u)*20)/1.2 var(--display); margin: calc(var(--u)*6) 0 calc(var(--u)*14); }
+  .plan .cost { font: 700 calc(var(--u)*22)/1.2 var(--display); margin: 0 0 calc(var(--u)*18); padding-bottom: calc(var(--u)*18); border-bottom: 1px solid var(--s-line); }
+  .plan .ask { font-size: calc(var(--u)*17); font-weight: 600; color: var(--s-blue); }
+  .plan ul { list-style: none; margin: 0; padding: 0; display: grid; gap: calc(var(--u)*10); font-size: calc(var(--u)*15); }
+  .plan li { display: flex; gap: calc(var(--u)*10); }
+  .plan li::before { content: ""; flex: none; width: calc(var(--u)*16); height: calc(var(--u)*16); margin-top: calc(var(--u)*4); border-radius: 50%;
+    background: var(--s-sky) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2L7 10.5L11.5 5.8' fill='none' stroke='%2316324F' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; }
+  .plan.on { border-color: var(--s-coral-btn); box-shadow: inset 0 0 0 1px var(--s-coral-btn), 0 calc(var(--u)*24) calc(var(--u)*40) calc(var(--u)*-28) rgba(219,46,88,.55); transform: translateY(calc(var(--u)*-6)); }
+  .e-plans.picked .plan:not(.on) { opacity: .5; }
+  .plan .fit { margin-top: auto; padding-top: calc(var(--u)*20); }
+  .plan .fit span { display: inline-flex; padding: calc(var(--u)*8) calc(var(--u)*14); border-radius: calc(var(--u)*10); font: 600 calc(var(--u)*14)/1.2 var(--s-sans);
+    border: 1px solid var(--s-line); color: var(--s-muted); transition: background .3s, color .3s, border-color .3s; }
+  .plan.on .fit span { background: var(--s-coral-btn); border-color: var(--s-coral-btn); color: #fff; }
+
+  /* 06 Сравнение */
+  .e-cmp { margin-top: calc(var(--u)*28); border: 1px solid var(--s-line); border-radius: calc(var(--u)*14); overflow: hidden; background: #fff; }
+  .e-cmp .r { display: grid; grid-template-columns: 1fr 1.2fr 1.2fr; }
+  .e-cmp .r + .r { border-top: 1px solid var(--s-line); }
+  .e-cmp .c { padding: calc(var(--u)*16) calc(var(--u)*20); font-size: calc(var(--u)*15); transition: background .35s, color .35s, opacity .35s; }
+  .e-cmp .r > .c:first-child { font-weight: 600; }
+  .e-cmp .base { color: var(--s-muted); }
+  .e-cmp .ours { font-weight: 600; }
+  .e-cmp .th .c { font: 500 calc(var(--u)*13)/1.4 var(--mono); color: var(--s-blue); padding-block: calc(var(--u)*14); }
+  .e-cmp[data-side="ours"] .ours { background: var(--s-mint); }
+  .e-cmp[data-side="ours"] .base { opacity: .55; }
+  .e-cmp[data-side="base"] .base { background: #eef2f7; color: var(--s-text); }
+  .e-cmp[data-side="base"] .ours { opacity: .4; }
+  .e-cmp .ours .ck { display: inline-grid; place-items: center; width: calc(var(--u)*18); height: calc(var(--u)*18); margin-right: calc(var(--u)*8); border-radius: 50%; background: var(--s-teal); vertical-align: calc(var(--u)*-3); }
+  .e-cmp .ours .ck::before { content: ""; width: 40%; height: 22%; border: solid #fff; border-width: 0 0 2px 2px; transform: translateY(-15%) rotate(-45deg); }
+  .e-cmp .r:hover .c:first-child { color: var(--s-blue); }
+
+  /* 07 Команда и партнёры */
+  .trust { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: calc(var(--u)*16); margin-top: calc(var(--u)*28); }
+  .trust > div { border: 1px solid var(--s-line); border-radius: calc(var(--u)*14); padding: calc(var(--u)*20); background: #fff; }
+  .trust svg { width: calc(var(--u)*36); height: calc(var(--u)*36); }
+  .trust h5 { font: 700 calc(var(--u)*18)/1.25 var(--display); margin: calc(var(--u)*10) 0 calc(var(--u)*6); }
+  .trust p { margin: 0; font-size: calc(var(--u)*15); color: var(--s-muted); }
+  .trust .st b { display: block; font: 700 calc(var(--u)*48)/1 var(--display); letter-spacing: -.03em; color: var(--s-blue); margin-bottom: calc(var(--u)*8); font-variant-numeric: tabular-nums; }
+  .experts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(var(--u)*16); margin-top: calc(var(--u)*16); }
+  .expert { border: 1px solid var(--s-line); border-radius: calc(var(--u)*14); padding: calc(var(--u)*20); background: #fff; display: grid; grid-template-columns: auto 1fr; gap: 0 calc(var(--u)*16); align-items: center;
+    transition: border-color .25s, transform .25s; }
+  .expert:hover { border-color: var(--s-teal); transform: translateY(calc(var(--u)*-2)); }
+  .expert img { width: calc(var(--u)*72); height: calc(var(--u)*72); border-radius: 50%; grid-row: span 2; box-shadow: 0 0 0 calc(var(--u)*3) var(--s-mint); }
+  .expert h6 { font: 700 calc(var(--u)*17)/1.2 var(--display); margin: 0; }
+  .expert .ro { margin: calc(var(--u)*4) 0 0; font: 500 calc(var(--u)*13)/1.4 var(--mono); color: var(--s-blue); }
+  .expert p { grid-column: 1 / -1; margin: calc(var(--u)*14) 0 0; font-size: calc(var(--u)*14); color: var(--s-muted); }
+  .expert p b { color: var(--s-text); }
+  .invite { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: calc(var(--u)*24); align-items: center; margin-top: calc(var(--u)*24);
+    padding: calc(var(--u)*32) calc(var(--u)*36); border-radius: calc(var(--u)*14); background: var(--s-mint); border-left: calc(var(--u)*4) solid var(--s-teal); }
+  .invite h5 { font: 700 calc(var(--u)*26)/1.2 var(--display); margin: 0 0 calc(var(--u)*10); }
+  .invite p { margin: 0 0 calc(var(--u)*18); font-size: calc(var(--u)*16); color: var(--s-muted); }
+  .nodes { display: flex; flex-wrap: wrap; gap: calc(var(--u)*6); }
+  .nodes button { border: 1px solid var(--s-line); background: #fff; border-radius: 999px; padding: calc(var(--u)*7) calc(var(--u)*12); font: 500 calc(var(--u)*13)/1.2 var(--s-sans); color: var(--s-text);
+    transition: background .25s, color .25s, border-color .25s; }
+  .nodes button:hover { border-color: var(--s-teal); }
+  .nodes button[aria-pressed="true"] { background: var(--s-deep); border-color: var(--s-deep); color: #fff; }
+  .graph { display: block; width: 100%; height: auto; }
+  .graph .ln { stroke-dasharray: 4 6; transition: stroke .3s, stroke-width .3s, opacity .3s; }
+  .graph.picked .ln { opacity: .3; }
+  .graph .ln.on { stroke: #ff4f79; stroke-width: 2.5; opacity: 1; }
+  .graph .nd { cursor: pointer; }
+  .graph .nd circle { transition: stroke .3s, fill .3s; }
+  .graph .nd.on circle { stroke: #ff4f79; fill: #fff0f4; }
+
+  /* Стайл-гайд */
+  .guide { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); }
+  .guide h3 { font: 500 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--s-blue); margin: 0 0 14px; }
+  .sw { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .sw div { aspect-ratio: 1 / 1.05; padding: 12px; display: flex; flex-direction: column; justify-content: flex-end; border-radius: 16px; font: 500 12px/1.45 var(--mono);
+    border: 1px solid var(--s-line); color: var(--s-muted); }
+  .sw b { font: 600 14px/1.3 var(--s-sans); color: var(--s-text); }
+  .sw .bg { background: #fff; }
+  .sw .mi { background: var(--s-mint); }
+  .sw .te { background: var(--s-teal); color: #e6f2ff; } .sw .te b { color: #fff; }
+  .sw .bl { background: var(--s-blue); color: #d6e7fa; } .sw .bl b { color: #fff; }
+  .sw .tx { background: var(--s-deep); color: #a9bdd3; } .sw .tx b { color: #fff; }
+  .sw .co { background: var(--s-coral-btn); color: #ffe1e8; box-shadow: 0 10px 30px -12px rgba(219,46,88,.7); } .sw .co b { color: #fff; }
+  .type { display: grid; gap: 10px; }
+  .type div { background: var(--s-bg); border: 1px solid var(--s-line); padding: 16px 18px; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 12px; border-radius: 16px; }
+  .type .s { font: 500 12px/1.5 var(--mono); color: var(--s-muted); }
+  .type .s b { display: block; font: 600 15px var(--s-sans); color: var(--s-text); }
+  .type .a1 { font: 700 44px/1 var(--display); letter-spacing: -.02em; color: var(--s-text); }
+  .type .a2 { font: 500 24px/1 var(--mono); color: var(--s-blue); }
+  .type .a3 { font: 400 30px/1 var(--s-sans); color: var(--s-muted); }
+  @media (max-width: 760px) { .guide { grid-template-columns: 1fr; } .type .a1 { font-size: 34px; } }
+
+  /* Телефоны: --u = 1px макета 390 */
+  .phones { display: flex; justify-content: center; gap: clamp(16px, 3vw, 40px); }
+  .phone { width: clamp(150px, 22vw, 260px); flex: none; border-radius: 36px; background: var(--s-deep); padding: 10px; position: relative;
+    box-shadow: 0 0 0 1px #2a4766, 0 24px 60px -24px rgba(26,104,194,.45); }
+  .phone::before { content: ""; position: absolute; top: 18px; left: 50%; width: 28%; height: 18px; transform: translateX(-50%); background: var(--s-deep); border-radius: 12px; z-index: 4; }
+  .phone .site { border-radius: 27px; overflow: hidden; aspect-ratio: 390 / 844; background: #fff; }
+  .phone .site > .f { --u: calc(100cqw / 390); height: 100%; overflow: hidden; }
+  .phones .phone:nth-child(2) { transform: translateY(clamp(16px, 3vw, 40px)); }
+  @media (max-width: 720px) {
+    .phones { overflow-x: auto; justify-content: flex-start; padding-bottom: 48px; scroll-snap-type: x mandatory; }
+    .phones .phone { width: 64%; scroll-snap-align: center; }
+  }
+  .m-top { display: flex; justify-content: space-between; align-items: center; padding: calc(var(--u)*52) calc(var(--u)*18) calc(var(--u)*12); border-bottom: 1px solid var(--s-line); position: relative; }
+  .m-top .e-logo { font-size: calc(var(--u)*17); }
+  .m-top .e-logo svg { width: calc(var(--u)*26); height: calc(var(--u)*26); }
+  .m-burger { width: calc(var(--u)*22); height: calc(var(--u)*10); border-top: 2px solid var(--s-text); border-bottom: 2px solid var(--s-text); }
+  .m-pad { padding: calc(var(--u)*20) calc(var(--u)*18); }
+  .m-hero { background: radial-gradient(ellipse 70% 50% at 100% 0%, rgba(77,163,255,.25), transparent 70%), var(--s-bg); height: 100%; }
+  .m-hero .e-art { padding: calc(var(--u)*6); margin-bottom: calc(var(--u)*18); }
+  .m-hero .glass--sign { left: calc(var(--u)*10); bottom: calc(var(--u)*-14); font-size: calc(var(--u)*13); }
+  .m-hero h4 { font: 700 calc(var(--u)*29)/1.14 var(--display); letter-spacing: -.02em; margin: calc(var(--u)*26) 0 calc(var(--u)*12); }
+  .m-hero h4 em { font-style: normal; color: var(--s-blue); }
+  .m-hero .e-sub { font-size: calc(var(--u)*14); margin-bottom: calc(var(--u)*18); }
+  .m-hero .e-btn { width: 100%; justify-content: center; }
+  .m-days { display: flex; align-items: center; gap: calc(var(--u)*14); padding: calc(var(--u)*16) calc(var(--u)*18); border-radius: calc(var(--u)*14); color: #fff; margin-bottom: calc(var(--u)*18);
+    background: radial-gradient(ellipse 45% 80% at 0% 100%, rgba(77,163,255,.45), transparent 70%), var(--s-deep); }
+  .m-days b { font: 700 calc(var(--u)*46)/1 var(--display); color: var(--s-mint); letter-spacing: -.03em; }
+  .m-days span { font-size: calc(var(--u)*13); opacity: .88; }
+  .m-h { font: 700 calc(var(--u)*24)/1.2 var(--display); margin: 0 0 calc(var(--u)*14); }
+  .m-rail { display: flex; gap: calc(var(--u)*10); margin-right: calc(var(--u)*-18); }
+  .m-rail > * { flex: 0 0 80%; }
+  .m-rail .role, .m-rail .plan { padding: calc(var(--u)*18); }
+  .m-rail .role p, .m-rail .plan ul { font-size: calc(var(--u)*14); }
+  .m-hint { flex-direction: column; align-items: stretch; gap: calc(var(--u)*14); margin-top: calc(var(--u)*22); font-size: calc(var(--u)*14); }
+  .m-hint .e-btn { justify-content: center; font-size: calc(var(--u)*15); }
+  .m-cmp { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--s-line); border-radius: calc(var(--u)*12); overflow: hidden; font-size: calc(var(--u)*13); margin-top: calc(var(--u)*8); }
+  .m-cmp p { grid-column: 1 / -1; margin: 0; padding: calc(var(--u)*10) calc(var(--u)*12) 0; font-weight: 600; }
+  .m-cmp span { padding: calc(var(--u)*6) calc(var(--u)*12) calc(var(--u)*10); color: var(--s-muted); }
+  .m-cmp .ours { background: var(--s-mint); color: var(--s-text); font-weight: 600; }
+  .m-count { margin-top: calc(var(--u)*14); font: 500 calc(var(--u)*11) var(--mono); color: var(--s-muted); letter-spacing: .1em; }
+
+  /* Анимации: только при no-preference и классе anim (без JS всё видно) */
+  @media (prefers-reduced-motion: no-preference) {
+    .anim [data-reveal] .rv { opacity: 0; transform: translateY(14px); transition: opacity .7s, transform .7s; }
+    .anim [data-reveal].in-view .rv { opacity: 1; transform: none; }
+    .anim [data-reveal] .rv:nth-child(2) { transition-delay: .12s; } .anim [data-reveal] .rv:nth-child(3) { transition-delay: .24s; }
+    .anim [data-reveal] .rv:nth-child(4) { transition-delay: .36s; } .anim [data-reveal] .rv:nth-child(5) { transition-delay: .48s; } .anim [data-reveal] .rv:nth-child(6) { transition-delay: .6s; }
+    .anim .glass--sign { opacity: 0; transform: translateY(10px) scale(.96); transition: opacity .7s 1s, transform .7s 1s; }
+    .anim .glass--days { opacity: 0; transform: translateY(-8px); transition: opacity .7s 1.5s, transform .7s 1.5s; }
+    .anim .in-view .glass--sign, .anim .in-view .glass--days { opacity: 1; transform: none; }
+    .anim .in-view .glass--sign .ok::after { animation: ping 1.6s 1.6s ease-out 2; }
+    @keyframes ping { from { transform: scale(1); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }
+    .anim .e-prog { transform-origin: left; transform: scaleX(0); transition: transform 1.6s .4s cubic-bezier(.2,.7,.2,1); }
+    .anim .in-view .e-prog { transform: none; }
+    .e-pulse::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--s-coral); animation: ping 2s ease-out infinite; }
+    .anim .service .steps i::after { transform: scaleX(0); transition: transform .5s; }
+    .anim .in-view .service .steps i::after { transform: none; }
+    .anim .in-view .service:nth-child(1) .steps i:nth-child(n+2)::after, .anim .in-view .service:nth-child(2) .steps i:nth-child(n+3)::after,
+    .anim .in-view .service:nth-child(3) .steps i:nth-child(n+4)::after { transform: scaleX(0); }
+    .anim .in-view .service .steps i:nth-child(2)::after { transition-delay: .5s; } .anim .in-view .service .steps i:nth-child(3)::after { transition-delay: .8s; }
+    .anim .in-view .service .steps i:nth-child(4)::after { transition-delay: 1.1s; }
+    .sweep { animation: sweep 4.8s ease-in-out infinite alternate; }
+    @keyframes sweep { from { transform: rotate(-92deg); } to { transform: rotate(62deg); } }
+    .blip-ring { animation: blip 2.4s ease-out infinite; }
+    @keyframes blip { from { transform: scale(.6); opacity: 1; } to { transform: scale(2.2); opacity: 0; } }
+    .graph .ln { animation: flow 1.1s linear infinite; }
+    .graph .ln.on { animation-duration: .55s; }
+    @keyframes flow { to { stroke-dashoffset: -20; } }
+    .anim .e-cmp .r { opacity: 0; transform: translateX(-10px); transition: opacity .6s, transform .6s; }
+    .anim .e-cmp.in-view .r { opacity: 1; transform: none; }
+    .anim .e-cmp .r:nth-child(2) { transition-delay: .15s; } .anim .e-cmp .r:nth-child(3) { transition-delay: .3s; } .anim .e-cmp .r:nth-child(4) { transition-delay: .45s; }
+    .anim .e-cmp .r:nth-child(5) { transition-delay: .6s; } .anim .e-cmp .r:nth-child(6) { transition-delay: .75s; }
+  }
+
+  /* Финал полотна — в стиле проекта: графит, волны, коралловая кнопка */
+  .s-end { display: grid; gap: 20px; justify-items: start; }
+  .s-end .s-h { font-size: clamp(36px, 6vw, 84px); margin: 0; max-width: 900px; }
+  .s-btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 10px;
+    background: var(--s-coral-btn); color: #fff; text-decoration: none; font: 600 16px var(--s-sans); }
+  .s-btn:hover { background: #c4234b; }
+  .s-btn svg { width: 18px; height: 18px; }
+  .s-end .mono { font: 400 13px var(--mono); color: #b8c8da; }
+  footer { border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 22px; font: 400 13px var(--mono); color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="back" href="index.html">← все сайты</a>
+    <a class="nav-tg" data-tg href="https://t.me/maria1moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 3.5 2.8 10.7c-.9.4-.9 1.6.1 1.9l4.6 1.4 1.8 5.6c.3.8 1.3 1 1.9.4l2.6-2.5 4.8 3.5c.7.5 1.7.1 1.9-.7L23 4.9c.2-1-.7-1.8-1.5-1.4Z"/><path d="m7.5 14 11-7.5-8 9"/></svg>Обсудить сайт</a>
+  </div>
+</header>
+
+<main>
+  <div class="canvas">
+    <section class="p cover">
+      <span class="ghost" aria-hidden="true">ЭПД</span>
+      <div class="in">
+        <p class="s-num">Сайт интегратора электронных документов для логистики · лендинг · концепт · 2026</p>
+        <div class="title"><h1>ЭПД Лаб</h1><svg class="mono-badge" viewBox="10 10 80 80" aria-hidden="true"><rect x="10" y="10" width="80" height="80" rx="20" fill="#16324F"/><path d="M26 44q12-12 24 0t24 0M26 62q12-12 24 0" stroke="#4DA3FF" stroke-width="7" fill="none" stroke-linecap="round"/><circle cx="72" cy="62" r="6" fill="#FF4F79"/></svg></div>
+        <div class="screen" id="s-hero">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>epd-lab · концепт</b></div>
+          <div class="site"><div class="f" data-reveal>
+            <div class="e-nav">
+              <span class="e-logo"><svg viewBox="10 10 80 80" aria-hidden="true"><rect x="10" y="10" width="80" height="80" rx="20" fill="#16324F"/><path d="M26 44q12-12 24 0t24 0M26 62q12-12 24 0" stroke="#4DA3FF" stroke-width="7" fill="none" stroke-linecap="round"/><circle cx="72" cy="62" r="6" fill="#FF4F79"/></svg>ЭПД Лаб</span>
+              <span class="e-menu" aria-hidden="true"><span>Сроки</span><span>Услуги</span><span>Пакеты</span><span>Сравнение</span><span>Команда</span><span>Вопросы</span></span>
+              <span class="e-ghost">Консультация</span>
+              <span class="e-prog" aria-hidden="true"></span>
+            </div>
+            <div class="e-hero">
+              <div>
+                <p class="e-demo">Демо-сайт для портфолио: бренд, команда и цифры вымышленные</p>
+                <span class="e-pill">Электронные перевозочные документы (ЭПД) на Контур.Логистике</span>
+                <h4>ЭПД <em>под ключ</em>: от первой накладной до полностью налаженного процесса</h4>
+                <p class="e-sub"><b>Наши эксперты погружаются в ваш бизнес,</b> настраивают работу с каждым контрагентом и связывают всё в одну работающую схему</p>
+                <ul class="e-theses">
+                  <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="11" fill="#D6EAFF" stroke="none"/><path d="M8 5.5H13.5L16.5 8.5V18.5H8Z M13.5 5.5V8.5H16.5" stroke="#16324F"/><path d="M10 13.2L11.7 14.9L14.6 11.6" stroke="#4DA3FF"/></svg>Бухгалтерия закрывает каждый рейс</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="11" fill="#D6EAFF" stroke="none"/><path d="M10.6 9.4L8.4 12.6M13.4 9.4L15.6 12.6M9.6 15H14.4" stroke="#16324F"/><circle cx="7" cy="15" r="2.3" stroke="#16324F"/><circle cx="17" cy="15" r="2.3" stroke="#16324F"/><circle cx="12" cy="7" r="2.3" stroke="#4DA3FF"/></svg>Контрагенты подключены и проверены</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="11" fill="#D6EAFF" stroke="none"/><path d="M12 8.6C10.4 7.4 8.4 7 6 7.2V16.4C8.4 16.2 10.4 16.6 12 17.8C13.6 16.6 15.6 16.2 18 16.4V7.2C15.6 7 13.6 7.4 12 8.6V17.8" stroke="#16324F"/><path d="M14.5 10.5H16M14.5 13H16" stroke="#4DA3FF"/></svg>Водители и склад обучены</li>
+                </ul>
+                <div class="e-cta"><span class="e-btn">Записаться на консультацию</span><span class="e-price">Быстрый старт — <b class="nw">от 45 тыс. ₽</b></span></div>
+                <p class="e-note">Первый созвон с экспертом бесплатно</p>
+              </div>
+              <div class="e-art">
+                <img src="epd-lab/hero-rampa-960.webp" width="960" height="812" alt="Логист и водитель сверяют электронную накладную на планшете у погрузочной рампы">
+                <div class="glass glass--sign"><span class="ok"><svg viewBox="0 0 20 20" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 10.3L8.6 13.2L14.5 7" stroke="#16324F"/></svg></span><span><b>Накладная подписана</b><small>ЭТрН · все стороны</small></span></div>
+                <div class="glass glass--days"><small>до 1 марта 2027</small><b><span data-days>133</span> <span data-unit>дня</span></b></div>
+              </div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+    <section class="p cover-cap">
+      <div class="in head" style="margin-bottom:0">
+        <div><p class="s-num">01 / 08 · первый экран</p><h3 class="s-h">Накладная <em>уже подписана</em></h3></div>
+        <p class="s-t">Результат услуги виден раньше, чем прочитан заголовок</p>
+      </div>
+    </section>
+
+    <section class="p card">
+      <div class="in">
+        <div class="head">
+          <div><p class="s-num">02 / 08 · стайл-гайд</p><h3 class="s-h">Голубой, графит <em>и коралл</em></h3></div>
+          <p class="s-t">Голубой и графит говорят на языке логистики и 1С, а коралл оставлен для целевых действий</p>
+        </div>
+        <div class="guide">
+          <div>
+            <h3>Палитра</h3>
+            <div class="sw">
+              <div class="bg"><b>Фон</b>#FFFFFF</div>
+              <div class="mi"><b>Светлый</b>#EAF4FF</div>
+              <div class="te"><b>Голубой</b>#4DA3FF</div>
+              <div class="bl"><b>Синий текст</b>#1A68C2</div>
+              <div class="tx"><b>Графит</b>#16324F</div>
+              <div class="co"><b>Коралл, кнопки</b>#DB2E58</div>
+            </div>
+          </div>
+          <div>
+            <h3>Шрифты</h3>
+            <div class="type">
+              <div><span class="s"><b>Manrope 700</b>заголовки</span><span class="a1">Аа</span></div>
+              <div><span class="s"><b>Моноширинный</b>метки и подписи схем</span><span class="a2">ЭТрН</span></div>
+              <div><span class="s"><b>Inter 400</b>текст</span><span class="a3">Аа</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p">
+      <div class="in">
+        <div class="head">
+          <div><p class="s-num">03 / 08 · срок и роли · интерактив</p><h3 class="s-h">Отсчёт <em>до 1&nbsp;марта</em></h3></div>
+          <p class="s-t">Дата даёт повод написать как можно скорее, а четыре роли помогают узнать себя. Выберите свою</p>
+        </div>
+        <div class="screen">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>epd-lab / сроки</b></div>
+          <div class="site"><div class="f e-pad" data-reveal>
+            <img class="e-wave" src="epd-lab/roles-wave-480.webp" width="480" height="480" loading="lazy" alt="">
+            <div class="e-dead">
+              <div class="e-days"><span class="tag">Осталось</span><b data-days data-count>133</b><span class="lbl"><i class="e-pulse"></i><span><span data-unit>дня</span> до 1 марта 2027</span></span></div>
+              <div><p class="e-h">Срок — 1 марта 2027</p>
+                <p class="e-lead"><b>В этот день закончится мягкий период проверок на дорогах и заработает реестр перевозчиков.</b> Сроки могут сдвинуть — мы за этим следим</p></div>
+            </div>
+            <p class="e-roles-h">Узнаёте свою ситуацию?</p>
+            <div class="e-roles" id="roles">
+              <button class="role rv" type="button" aria-pressed="false" data-role="Грузоотправитель"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15" fill="#D6EAFF" stroke="none"/><path d="M6 12H18V24H6Z M10 12V16.5H14V12" stroke="#16324F"/><path d="M20.5 18H26.5M23.5 15L26.5 18L23.5 21" stroke="#4DA3FF"/></svg><h5>Грузоотправитель</h5><p>Накладные висят у перевозчиков и получателей. Бухгалтерия не может закрыть расходы и подтвердить НДС</p></button>
+              <button class="role rv" type="button" aria-pressed="false" data-role="Экспедитор"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15" fill="#D6EAFF" stroke="none"/><circle cx="8.5" cy="22.5" r="2.2" stroke="#16324F"/><path d="M10.3 20.9L13.9 17.8M18.4 15.3L22.4 14.1M24 13.6C22.1 12 20.8 10.4 20.8 8.6A3.2 3.2 0 0 1 27.2 8.6C27.2 10.4 25.9 12 24 13.6Z" stroke="#16324F"/><circle cx="16" cy="16.3" r="2.6" stroke="#4DA3FF"/></svg><h5>Экспедитор</h5><p>Нестандартные схемы, склады не подписывают документы, впереди обязательный реестр ГосЛог</p></button>
+              <button class="role rv" type="button" aria-pressed="false" data-role="Перевозчик"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15" fill="#D6EAFF" stroke="none"/><path d="M5 9.5H18.5V20H5Z" stroke="#16324F"/><circle cx="9.5" cy="23" r="2.1" stroke="#16324F"/><circle cx="22.5" cy="23" r="2.1" stroke="#16324F"/><path d="M20.5 20V12.5H24.2L27.5 16.5V20Z" stroke="#4DA3FF"/></svg><h5>Перевозчик</h5><p>Заказчики требуют ЭТрН, а своего ЭДО нет. Оплата ждёт подписи получателя</p></button>
+              <button class="role rv" type="button" aria-pressed="false" data-role="Грузополучатель"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15" fill="#D6EAFF" stroke="none"/><path d="M6 25V14L16 8L26 14V25Z M10.5 25V17.5H21.5V25" stroke="#16324F"/><path d="M13.4 21.4L15.4 23.2L18.8 19.8" stroke="#4DA3FF"/></svg><h5>Грузополучатель</h5><p>Накладная не видна в вашей системе, приёмка идёт ночью, у поставщиков разные форматы</p></button>
+            </div>
+            <div class="e-hint"><span id="role-hint" aria-live="polite"><b>Узнали себя?</b> Разберём вашу схему перевозок на бесплатной консультации</span><span class="e-btn">Записаться на консультацию</span></div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p deep">
+      <span class="ghost low" aria-hidden="true">НДС</span>
+      <div class="in">
+        <div class="head">
+          <div><p class="s-num">04 / 08 · услуги и налоги · анимация</p><h3 class="s-h">Радар <em>налоговых рисков</em></h3></div>
+          <p class="s-t">Главный страх бухгалтерии вынесен в отдельный блок, и луч радара сам находит риски</p>
+        </div>
+        <div class="screen">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>epd-lab / услуги</b></div>
+          <div class="site"><div class="f e-pad e-soft" data-reveal>
+            <p class="e-h">Полностью настраиваем обмен под ваши процессы и 1С</p>
+            <div class="e-serv">
+              <div class="service rv"><span class="num">01</span><span class="steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><h5>Находим, где застревают документы</h5><p>Разбираем, кто отправляет, кто везёт и кто принимает</p></div>
+              <div class="service rv"><span class="num">02</span><span class="steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><h5>Настраиваем 1С и подписи</h5><p>Роли подписантов и машиночитаемые доверенности (МЧД)</p></div>
+              <div class="service rv"><span class="num">03</span><span class="steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><h5>Подключаем контрагентов</h5><p>Каждого перевозчика и получателя</p></div>
+              <div class="service rv"><span class="num">04</span><span class="steps" aria-hidden="true"><i></i><i></i><i></i><i></i></span><h5>Обучаем людей</h5><p>Водителей, склад и бухгалтерию; первые рейсы проходим вместе</p></div>
+            </div>
+            <div class="tax">
+              <div class="tax-t"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 6L24.5 9.5V16C24.5 21 20.8 24.6 16 26.5C11.2 24.6 7.5 21 7.5 16V9.5Z" stroke="#D6EAFF"/><path d="M12.4 16.2L15 18.8L19.8 13.6" stroke="#4DA3FF"/></svg>
+                <h5>Налоги</h5><p>Снижаем риск претензий ФНС к транспортным расходам: доводим документооборот с контрагентами до налаженного процесса</p></div>
+              <div class="tax-radar" id="radar" aria-label="Радар рисков: транспортные расходы, НДС, ЭТрН" role="img">
+                <svg viewBox="0 0 220 120" fill="none" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round">
+                  <g stroke="#4DA3FF" stroke-opacity=".35" stroke-width="1.2"><path d="M76 104A34 34 0 0 1 144 104M46 104A64 64 0 0 1 174 104M16 104A94 94 0 0 1 204 104M10 104H210"/><path d="M123.9 96L196.6 54M118 90.1L160 17.4M110 88V6M102 90.1L60 17.4M96.1 96L23.4 54"/></g>
+                  <path class="sweep" d="M110 104L157 22.6A94 94 0 0 0 110 10Z" fill="#4DA3FF" fill-opacity=".2" stroke="#4DA3FF" stroke-width="1.2"/>
+                  <g fill="#EAF4FF"><circle cx="86" cy="80" r="3"/><circle cx="165.4" cy="72" r="3"/><circle cx="28.6" cy="57" r="3"/></g>
+                  <circle class="blip-ring" cx="126.6" cy="42.2" r="5" stroke="#FF4F79" stroke-width="1.5"/>
+                  <circle cx="126.6" cy="42.2" r="4" fill="#FF4F79"/>
+                  <circle cx="110" cy="104" r="13" fill="#16324F" stroke="#D6EAFF" stroke-width="1.75"/><path d="M110 96.5L116 99V103.5C116 107.5 113.5 110 110 111.2C106.5 110 104 107.5 104 103.5V99Z" stroke="#D6EAFF" stroke-width="1.75"/>
+                </svg>
+                <span class="chip chip--1" data-a="-62">Транспортные расходы</span><span class="chip chip--2" data-a="48">НДС</span><span class="chip chip--3" data-a="10">ЭТрН</span>
+              </div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p card">
+      <div class="in">
+        <div class="head">
+          <div><p class="s-num">05 / 08 · пакеты · интерактив</p><h3 class="s-h">Цена только <em>у базового тарифа</em></h3></div>
+          <p class="s-t">Цена названа у «Быстрого старта», а остальные ведут на консультацию. Переключите размер бизнеса</p>
+        </div>
+        <div class="screen">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>epd-lab / пакеты</b></div>
+          <div class="site"><div class="f e-pad" data-reveal>
+            <div class="e-row"><p class="e-h">Три решения под ваш бизнес</p>
+              <div class="e-seg" id="size" role="group" aria-label="Размер бизнеса"><button type="button" aria-pressed="false" data-i="0">Малый</button><button type="button" aria-pressed="true" data-i="1">Средний</button><button type="button" aria-pressed="false" data-i="2">Крупный</button></div></div>
+            <div class="e-plans" id="plans">
+              <div class="plan rv"><p class="e-k">Малый бизнес</p><h5>Быстрый старт</h5><p class="cost">от 45 тыс. ₽</p>
+                <ul><li>Подключение в 1С (типовой модуль Контура) или в веб-версии</li><li>Настройка обмена, ролей подписантов и МЧД</li><li>Схема перевозок</li><li>Обучение водителей и склада</li><li>Первые рейсы вместе</li></ul>
+                <div class="fit"><span>Записаться на консультацию</span></div></div>
+              <div class="plan rv on"><p class="e-k">Средний бизнес</p><h5>Экспертный</h5><p class="cost ask">Цена после консультации</p>
+                <ul><li>Аудит процессов и карта схем перевозок</li><li>Пилот на одном маршруте, затем тираж</li><li>Настройка под вашу версию 1С и сложные схемы</li><li>Проверка связки со всеми контрагентами и роуминг</li><li>Обучение по ролям, регламенты</li></ul>
+                <div class="fit"><span>Записаться на консультацию</span></div></div>
+              <div class="plan rv"><p class="e-k">Крупный бизнес</p><h5>Энтерпрайз</h5><p class="cost ask">Цена после консультации</p>
+                <ul><li>Всё из Экспертного</li><li>Интеграция с ERP, нетиповой 1С и CRM</li><li>Аудит работающего внедрения</li><li>Тираж по филиалам</li><li>Программа подключения поставщиков</li><li>Отдельный менеджер</li></ul>
+                <div class="fit"><span>Записаться на консультацию</span></div></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p">
+      <span class="waves" aria-hidden="true"></span>
+      <div class="in">
+        <div class="head">
+          <div><p class="s-num">06 / 08 · фирменный блок · интерактив</p><h3 class="s-h">Типовое решение <em>против ЭПД Лаб</em></h3></div>
+          <p class="s-t">Возражение «на рынке есть предложения дешевле» закрывает одна таблица. Переключите сторону</p>
+        </div>
+        <div class="screen">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>epd-lab / сравнение</b></div>
+          <div class="site"><div class="f e-pad">
+            <div class="e-row"><p class="e-h">Готовых решений много, а мы ведём ваш проект от и до: ничего не придётся переделывать</p>
+              <div class="e-seg" id="side" role="group" aria-label="Что показать"><button type="button" aria-pressed="false" data-side="base">Типовое решение</button><button type="button" aria-pressed="true" data-side="ours">ЭПД Лаб</button></div></div>
+            <div class="e-cmp" id="cmp" data-side="ours" data-reveal role="table" aria-label="Типовое решение и ЭПД Лаб">
+              <div class="r th" role="row"><span class="c" role="columnheader">Параметр</span><span class="c base" role="columnheader">Типовое решение</span><span class="c ours" role="columnheader">ЭПД Лаб</span></div>
+              <div class="r" role="row"><span class="c" role="rowheader">Что делаем</span><span class="c base" role="cell">Установка программы, базовый сценарий</span><span class="c ours" role="cell"><i class="ck"></i>Настройка под ваши процессы и вашу 1С</span></div>
+              <div class="r" role="row"><span class="c" role="rowheader">Контрагенты</span><span class="c base" role="cell">Подключение только вашей компании</span><span class="c ours" role="cell"><i class="ck"></i>Проверяем связку с каждым и помогаем подключиться</span></div>
+              <div class="r" role="row"><span class="c" role="rowheader">Обучение</span><span class="c base" role="cell">Инструкция и видеоуроки</span><span class="c ours" role="cell"><i class="ck"></i>Водители, склад, бухгалтерия — по ролям</span></div>
+              <div class="r" role="row"><span class="c" role="rowheader">Первые рейсы</span><span class="c base" role="cell">Самостоятельно</span><span class="c ours" role="cell"><i class="ck"></i>Проходим вместе</span></div>
+              <div class="r" role="row"><span class="c" role="rowheader">Нестандартная 1С, сложная схема</span><span class="c base" role="cell">Типовое подключение не подходит</span><span class="c ours" role="cell"><i class="ck"></i>Пакет «Экспертный»</span></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p mint">
+      <div class="in">
+        <div class="head">
+          <div><p class="s-num">07 / 08 · команда и партнёры · интерактив</p><h3 class="s-h">Эксперты <em>и схема связей</em></h3></div>
+          <p class="s-t">Внедрение продаёт человек, а схема показывает, как будут подключены все отделы. Нажмите на участника</p>
+        </div>
+        <div class="screen">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>epd-lab / команда</b></div>
+          <div class="site"><div class="f e-pad" data-reveal>
+            <p class="e-h">Кто ведёт ваш проект</p>
+            <div class="trust">
+              <div class="rv"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15" fill="#D6EAFF" stroke="none"/><g transform="rotate(-35 16 16)"><rect x="4.5" y="12.5" width="13.5" height="7" rx="3.5" stroke="#16324F"/><rect x="14" y="12.5" width="13.5" height="7" rx="3.5" stroke="#4DA3FF"/></g></svg>
+                <h5>Команда ЭПД Лаб</h5><p>Интеграторы 1С и ЭДО, которые ведут ваш проект от и до</p></div>
+              <div class="st rv"><b data-count>260</b><p>успешных проектов с 2016 года</p></div>
+              <div class="st rv"><b data-count>25</b><p>готовых решений и свой отдел разработки</p></div>
+            </div>
+            <div class="experts">
+              <div class="expert rv"><img src="epd-lab/expert-anna-208.webp" width="208" height="208" loading="lazy" alt="Анна Соколова"><h6>Анна Соколова</h6><p class="ro">Руководитель внедрения</p><p>Опыт: 12 лет в интеграциях, 80+ проектов ЭДО. <b>Соберёт схему перевозок и план запуска</b></p></div>
+              <div class="expert rv"><img src="epd-lab/expert-dmitry-208.webp" width="208" height="208" loading="lazy" alt="Дмитрий Орлов"><h6>Дмитрий Орлов</h6><p class="ro">Архитектор 1С</p><p>Опыт: 10 лет с 1С и ERP, 60+ интеграций. <b>Настроит обмен под вашу конфигурацию 1С</b></p></div>
+              <div class="expert rv"><img src="epd-lab/expert-olga-208.webp" width="208" height="208" loading="lazy" alt="Ольга Миронова"><h6>Ольга Миронова</h6><p class="ro">Наставник по обучению</p><p>Опыт: 8 лет в логистике, обучила 1500+ сотрудников. <b>Проведёт водителей и склад через первые рейсы</b></p></div>
+            </div>
+            <div class="invite">
+              <div><h5>Подключим ваших партнёров</h5>
+                <p>Пригласите своих перевозчиков и получателей — подключим их по нашему пакету. Условия вознаграждения расскажем на консультации</p>
+                <div class="nodes" id="nodes" role="group" aria-label="Участники схемы">
+                  <button type="button" aria-pressed="false" data-n="0">Грузоотправитель</button><button type="button" aria-pressed="false" data-n="1">Перевозчик</button><button type="button" aria-pressed="false" data-n="2">Экспедитор</button>
+                  <button type="button" aria-pressed="false" data-n="3">Получатель</button><button type="button" aria-pressed="false" data-n="4">Склад</button><button type="button" aria-pressed="false" data-n="5">Учёт в 1С</button>
+                </div></div>
+              <svg class="graph" id="graph" viewBox="0 0 400 260" fill="none" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round">
+                <g stroke="#4DA3FF" stroke-width="1.5">
+                  <path class="ln" d="M70 48C130 48 160 100 200 130"/><path class="ln" d="M330 48C270 48 240 100 200 130"/><path class="ln" d="M50 130C100 112 150 112 200 130"/>
+                  <path class="ln" d="M350 130C300 112 250 112 200 130"/><path class="ln" d="M70 212C130 212 160 160 200 130"/><path class="ln" d="M330 212C270 212 240 160 200 130"/>
+                </g>
+                <circle cx="200" cy="130" r="40" stroke="#4DA3FF" stroke-width="1.5" opacity=".25"/><circle cx="200" cy="130" r="28" fill="#16324F"/>
+                <path d="M184 125q8-8 16 0t16 0M184 137q8-8 16 0" stroke="#fff" stroke-width="3.5"/><circle cx="214" cy="137" r="3.5" fill="#FF4F79"/>
+                <g fill="#fff" stroke="#4DA3FF" stroke-width="1.5">
+                  <g class="nd" data-n="0"><circle cx="70" cy="48" r="14"/></g><g class="nd" data-n="1"><circle cx="330" cy="48" r="14"/></g><g class="nd" data-n="2"><circle cx="50" cy="130" r="14"/></g>
+                  <g class="nd" data-n="3"><circle cx="350" cy="130" r="14"/></g><g class="nd" data-n="4"><circle cx="70" cy="212" r="14"/></g><g class="nd" data-n="5"><circle cx="330" cy="212" r="14"/></g>
+                </g>
+                <g stroke-width="1.5" pointer-events="none"><g transform="translate(62 40)"><path d="M2 5.5L8 2.5L14 5.5V11.5L8 14.5L2 11.5ZM2 5.5L8 8.5L14 5.5M8 8.5V14.5" stroke="#16324F"/><path d="M5 4L11 7" stroke="#4DA3FF"/></g><g transform="translate(322 40)"><path d="M1.5 4H10V10.5H1.5Z" stroke="#16324F"/><circle cx="4.5" cy="12.6" r="1.6" stroke="#16324F"/><circle cx="12" cy="12.6" r="1.6" stroke="#16324F"/><path d="M10 10.5V6.5H12.8L14.5 8.8V10.5Z" stroke="#4DA3FF"/></g><g transform="translate(42 122)"><circle cx="3.5" cy="12.5" r="1.6" stroke="#16324F"/><path d="M11.5 9.8C9.8 8.3 9 7 9 5.6A2.5 2.5 0 0 1 14 5.6C14 7 13.2 8.3 11.5 9.8Z" stroke="#16324F"/><path d="M5.5 12.5H9.5Q11.5 12.5 11.5 11.8" stroke="#4DA3FF"/></g><g transform="translate(342 122)"><path d="M2 14.5V7L8 2.5L14 7V14.5Z" stroke="#16324F"/><path d="M5.6 10.4L7.4 12.2L10.6 8.8" stroke="#4DA3FF"/></g><g transform="translate(62 204)"><path d="M2.5 1.5V14.5M13.5 1.5V14.5M2.5 6.5H13.5M2.5 11.5H13.5" stroke="#16324F"/><path d="M4.5 6.5V4H8V6.5M8.5 11.5V9H12V11.5" stroke="#4DA3FF"/></g></g>
+                <text x="330" y="215.6" font-size="10" font-weight="700" font-family="Inter, sans-serif" fill="#16324F" text-anchor="middle" pointer-events="none">1С</text>
+                <g fill="#fff" stroke="#DCE7F3" pointer-events="none"><rect x="9" y="8" width="122" height="20" rx="10"/><rect x="285" y="8" width="90" height="20" rx="10"/><rect x="5" y="152" width="90" height="20" rx="10"/><rect x="306" y="152" width="88" height="20" rx="10"/><rect x="41" y="232" width="58" height="20" rx="10"/><rect x="288" y="232" width="84" height="20" rx="10"/></g>
+                <g font-size="11" font-family="Inter, sans-serif" fill="#16324F" text-anchor="middle" pointer-events="none"><text x="70" y="22">Грузоотправитель</text><text x="330" y="22">Перевозчик</text><text x="50" y="166">Экспедитор</text><text x="350" y="166">Получатель</text><text x="70" y="246">Склад</text><text x="330" y="246">Учёт в 1С</text></g>
+              </svg>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p card">
+      <div class="in">
+        <div class="head">
+          <div><p class="s-num">08 / 08 · телефон</p><h3 class="s-h">Мобильная <em>версия</em></h3></div>
+          <p class="s-t">Роли и пакеты листаются лентой, поэтому экран не превращается в длинный столбик</p>
+        </div>
+        <div class="phones" role="region" aria-label="Мобильная версия, три экрана" tabindex="0">
+          <div class="phone"><div class="site"><div class="f m-hero">
+            <div class="m-top"><span class="e-logo"><svg viewBox="10 10 80 80" aria-hidden="true"><rect x="10" y="10" width="80" height="80" rx="20" fill="#16324F"/><path d="M26 44q12-12 24 0t24 0M26 62q12-12 24 0" stroke="#4DA3FF" stroke-width="7" fill="none" stroke-linecap="round"/><circle cx="72" cy="62" r="6" fill="#FF4F79"/></svg>ЭПД Лаб</span><span class="m-burger" aria-hidden="true"></span></div>
+            <div class="m-pad">
+              <div class="e-art"><img src="epd-lab/hero-rampa-960.webp" width="960" height="812" loading="lazy" alt="Первый экран на телефоне: фото у рампы и плашка «Накладная подписана»">
+                <div class="glass glass--sign" style="opacity:1;transform:none"><span class="ok"><svg viewBox="0 0 20 20" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 10.3L8.6 13.2L14.5 7" stroke="#16324F"/></svg></span><span><b>Накладная подписана</b><small>ЭТрН · все стороны</small></span></div></div>
+              <h4>ЭПД <em>под ключ</em>: от первой накладной до налаженного процесса</h4>
+              <p class="e-sub">Эксперты настраивают работу с каждым контрагентом и связывают всё в одну схему</p>
+              <span class="e-btn">Записаться на консультацию</span>
+              <p class="e-note">Первый созвон с экспертом бесплатно</p>
+            </div>
+          </div></div></div>
+          <div class="phone"><div class="site"><div class="f">
+            <div class="m-top"><span class="e-logo"><svg viewBox="10 10 80 80" aria-hidden="true"><rect x="10" y="10" width="80" height="80" rx="20" fill="#16324F"/><path d="M26 44q12-12 24 0t24 0M26 62q12-12 24 0" stroke="#4DA3FF" stroke-width="7" fill="none" stroke-linecap="round"/><circle cx="72" cy="62" r="6" fill="#FF4F79"/></svg>ЭПД Лаб</span><span class="m-burger" aria-hidden="true"></span></div>
+            <div class="m-pad">
+              <div class="m-days"><b data-days>133</b><span><i class="e-pulse" style="display:inline-block;margin-right:6px"></i><span data-unit>дня</span> до 1 марта 2027</span></div>
+              <p class="m-h">Узнаёте свою ситуацию?</p>
+              <div class="m-rail" aria-hidden="true">
+                <div class="role"><svg viewBox="0 0 32 32" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15" fill="#D6EAFF" stroke="none"/><path d="M5 9.5H18.5V20H5Z" stroke="#16324F"/><circle cx="9.5" cy="23" r="2.1" stroke="#16324F"/><circle cx="22.5" cy="23" r="2.1" stroke="#16324F"/><path d="M20.5 20V12.5H24.2L27.5 16.5V20Z" stroke="#4DA3FF"/></svg><h5>Перевозчик</h5><p>Заказчики требуют ЭТрН, а своего ЭДО нет. Оплата ждёт подписи получателя</p></div>
+                <div class="role"><svg viewBox="0 0 32 32" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="15" fill="#D6EAFF" stroke="none"/><path d="M6 25V14L16 8L26 14V25Z M10.5 25V17.5H21.5V25" stroke="#16324F"/><path d="M13.4 21.4L15.4 23.2L18.8 19.8" stroke="#4DA3FF"/></svg><h5>Грузополучатель</h5><p>Накладная не видна в вашей системе</p></div>
+              </div>
+              <p class="m-count">03 / 04 ⟶</p>
+              <div class="e-hint m-hint"><span><b>Перевозчик:</b> разберём вашу схему перевозок на бесплатной консультации</span><span class="e-btn">Записаться на консультацию</span></div>
+            </div>
+          </div></div></div>
+          <div class="phone"><div class="site"><div class="f">
+            <div class="m-top"><span class="e-logo"><svg viewBox="10 10 80 80" aria-hidden="true"><rect x="10" y="10" width="80" height="80" rx="20" fill="#16324F"/><path d="M26 44q12-12 24 0t24 0M26 62q12-12 24 0" stroke="#4DA3FF" stroke-width="7" fill="none" stroke-linecap="round"/><circle cx="72" cy="62" r="6" fill="#FF4F79"/></svg>ЭПД Лаб</span><span class="m-burger" aria-hidden="true"></span></div>
+            <div class="m-pad">
+              <p class="m-h">Три решения под ваш бизнес</p>
+              <div class="m-rail" aria-hidden="true">
+                <div class="plan on" style="transform:none"><p class="e-k">Средний бизнес</p><h5>Экспертный</h5><p class="cost ask">Цена после консультации</p>
+                  <ul><li>Аудит процессов и карта схем перевозок</li><li>Пилот на одном маршруте, затем тираж</li><li>Настройка под вашу версию 1С</li><li>Обучение по ролям, регламенты</li></ul>
+                  <div class="fit"><span>Записаться на консультацию</span></div></div>
+                <div class="plan"><p class="e-k">Крупный бизнес</p><h5>Энтерпрайз</h5><p class="cost ask">Цена после консультации</p><ul><li>Всё из Экспертного</li><li>Интеграция с ERP</li></ul></div>
+              </div>
+              <p class="m-count">02 / 03 ⟶</p>
+              <p class="m-h" style="margin-top:calc(var(--u)*26)">Типовое решение или ЭПД Лаб</p>
+              <div class="m-cmp"><p>Контрагенты</p><span>Только ваша компания</span><span class="ours">Проверяем связку с каждым</span></div>
+              <div class="m-cmp"><p>Первые рейсы</p><span>Самостоятельно</span><span class="ours">Проходим вместе</span></div>
+            </div>
+          </div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p deep" id="contacts">
+      <span class="ghost low" aria-hidden="true">ЭПД</span>
+      <span class="waves" aria-hidden="true"></span>
+      <div class="in s-end">
+        <p class="s-num">Хочу такой сайт</p>
+        <h2 class="s-h">Соберу сайт <em>под ваш проект</em></h2>
+        <p class="s-t">Напишите в Telegram, что за проект и какая задача у сайта. Черновик сообщения уже готов</p>
+        <a class="s-btn" data-tg href="https://t.me/maria1moon">Хочу такой сайт<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 3.5 2.8 10.7c-.9.4-.9 1.6.1 1.9l4.6 1.4 1.8 5.6c.3.8 1.3 1 1.9.4l2.6-2.5 4.8 3.5c.7.5 1.7.1 1.9-.7L23 4.9c.2-1-.7-1.8-1.5-1.4Z"/><path d="m7.5 14 11-7.5-8 9"/></svg></a>
+        <span class="mono">t.me/maria1moon</span>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap"><span>@maria1moon</span><span>«ЭПД Лаб» — концепт: бренд, команда и цифры вымышленные</span></div>
+</footer>
+
+<script>
+(function () {
+  // Черновик сообщения в Telegram (CLAUDE.md: каждая ссылка — с ?text=)
+  var draft = 'Здравствуйте, Мария! Пишу со страницы «ЭПД Лаб» в портфолио сайтов. Хочу такой сайт для своего проекта: ';
+  document.querySelectorAll('[data-tg]').forEach(function (a) { a.href = 'https://t.me/maria1moon?text=' + encodeURIComponent(draft); });
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function press(btn, on) { btn.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Отсчёт до 1 марта 2027 — по сегодняшней дате
+  var days = Math.max(0, Math.ceil((new Date(2027, 2, 1) - new Date()) / 864e5));
+  function plural(n) { var a = n % 10, b = n % 100; return a === 1 && b !== 11 ? 'день' : a >= 2 && a <= 4 && (b < 12 || b > 14) ? 'дня' : 'дней'; }
+  $$('[data-days]').forEach(function (el) { el.textContent = days; });
+  $$('[data-unit]').forEach(function (el) { el.textContent = plural(days); });
+
+  // Роли: «это я» подсвечивает карточку и подсказку
+  var roles = document.getElementById('roles'), hint = document.getElementById('role-hint');
+  $$('.role', roles).forEach(function (r) {
+    r.addEventListener('click', function () {
+      var on = r.getAttribute('aria-pressed') !== 'true';
+      $$('.role', roles).forEach(function (o) { press(o, false); }); press(r, on);
+      roles.classList.toggle('picked', on);
+      hint.innerHTML = on ? '<b>' + r.dataset.role + ':</b> разберём вашу схему перевозок на бесплатной консультации' : '<b>Узнали себя?</b> Разберём вашу схему перевозок на бесплатной консультации';
+    });
+  });
+
+  // Пакеты: размер бизнеса выделяет свой тариф
+  var plans = $$('#plans .plan');
+  $$('#size button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      $$('#size button').forEach(function (o) { press(o, o === b); });
+      plans.forEach(function (p, i) { p.classList.toggle('on', i === +b.dataset.i); });
+      document.getElementById('plans').classList.add('picked');
+    });
+  });
+
+  // Сравнение: переключатель стороны
+  var cmp = document.getElementById('cmp');
+  $$('#side button').forEach(function (b) {
+    b.addEventListener('click', function () { $$('#side button').forEach(function (o) { press(o, o === b); }); cmp.dataset.side = b.dataset.side; });
+  });
+
+  // Схема партнёров: участник подсвечивает свою линию до центра
+  var graph = document.getElementById('graph'), lns = $$('.ln', graph), nds = $$('.nd', graph), nbs = $$('#nodes button');
+  function pick(n) {
+    var same = nbs[n].getAttribute('aria-pressed') === 'true';
+    nbs.forEach(function (b, i) { press(b, !same && i === n); });
+    lns.forEach(function (l, i) { l.classList.toggle('on', !same && i === n); });
+    nds.forEach(function (d, i) { d.classList.toggle('on', !same && i === n); });
+    graph.classList.toggle('picked', !same);
+  }
+  nbs.forEach(function (b, i) { b.addEventListener('click', function () { pick(i); }); });
+  nds.forEach(function (d, i) { d.addEventListener('click', function () { pick(i); }); });
+
+  // Радар: метка вспыхивает, когда до неё доходит луч
+  var sweep = document.querySelector('.sweep'), chips = $$('#radar .chip');
+  if (!reduce && sweep && window.getComputedStyle) {
+    (function tick() {
+      var m = getComputedStyle(sweep).transform, a = 0;
+      if (m && m !== 'none') { var v = m.match(/-?[\d.e]+/g); a = Math.atan2(+v[1], +v[0]) * 180 / Math.PI + 15; }
+      chips.forEach(function (c) { c.classList.toggle('hit', Math.abs(a - +c.dataset.a) < 14); });
+      requestAnimationFrame(tick);
+    })();
+  }
+
+  // Анимации — только без reduced-motion; без JS всё видно
+  if (reduce || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('anim');
+  function count(el) {
+    var to = +el.textContent, t0 = null;
+    (function step(t) { t0 = t0 || t; var k = Math.min(1, (t - t0) / 1200); el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); })(performance.now());
+  }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in-view'); $$('[data-count]', e.target).forEach(count); io.unobserve(e.target);
+    });
+  }, { threshold: .25 });
+  $$('[data-reveal]').forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
