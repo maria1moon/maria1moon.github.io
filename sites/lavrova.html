@@ -107,6 +107,9 @@
   .w-nav { position: absolute; inset: 0 0 auto; z-index: 3; display: flex; align-items: center; justify-content: space-between; padding: calc(var(--u)*28) calc(var(--u)*56); }
   .w-logo { font: 600 calc(var(--u)*20)/1 var(--sans); letter-spacing: -.01em; }
   .w-logo small { display: block; font: 400 calc(var(--u)*10) var(--sans); letter-spacing: .26em; text-transform: uppercase; color: var(--d-muted); margin-top: calc(var(--u)*5); }
+  .w-right { display: flex; align-items: center; gap: calc(var(--u)*20); }
+  .w-addr { display: flex; align-items: center; gap: calc(var(--u)*7); font: 400 calc(var(--u)*14) var(--sans); color: var(--d-muted); }
+  .w-addr::before { content: ""; width: calc(var(--u)*7); height: calc(var(--u)*7); border-radius: 50%; background: var(--d-sage); }
   .w-menu { display: flex; gap: calc(var(--u)*32); font: 400 calc(var(--u)*14) var(--sans); color: var(--d-muted); }
   .w-btn { display: inline-flex; align-items: center; gap: calc(var(--u)*10); padding: calc(var(--u)*15) calc(var(--u)*26); border-radius: 999px; border: 0; background: var(--d-sage); color: #fff;
     font: 500 calc(var(--u)*15) var(--sans); cursor: pointer; transition: background .3s; white-space: nowrap; }
@@ -122,37 +125,28 @@
   /* 01 Первый экран — по Ivory Clinic: туман, врач по центру, заголовок обтекает, цифры по углам */
   .hero { aspect-ratio: 16 / 9.4; position: relative; overflow: hidden;
     background: radial-gradient(60% 70% at 80% 10%, #ffffff, rgba(255,255,255,0) 70%), radial-gradient(45% 50% at 22% 85%, rgba(163,217,201,.38), rgba(163,217,201,0) 70%), linear-gradient(170deg, #e4ece8, #f2f5f3 45%, #ffffff); }
-  .orbit { position: absolute; left: 50%; top: 48%; width: calc(var(--u)*640); height: calc(var(--u)*200); transform: translate(-50%, -50%) rotate(-8deg); border: 1px solid rgba(74,124,89,.28); border-radius: 50%; z-index: 0; }
-  .o-dot { position: absolute; z-index: 2; display: flex; align-items: center; gap: calc(var(--u)*8); font: 400 calc(var(--u)*12) var(--sans); color: var(--d-muted); }
-  .o-dot::before { content: ""; width: calc(var(--u)*9); height: calc(var(--u)*9); border-radius: 50%; background: var(--d-sage); box-shadow: 0 0 0 calc(var(--u)*5) rgba(74,124,89,.15); }
   .h-l { position: absolute; z-index: 2; left: calc(var(--u)*96); top: calc(var(--u)*112); margin: 0; font: 300 calc(var(--u)*62)/1 var(--sans); letter-spacing: -.02em; }
-  .h-r { position: absolute; z-index: 2; right: calc(var(--u)*96); top: calc(var(--u)*300); margin: 0; font: 300 calc(var(--u)*62)/1 var(--sans); letter-spacing: -.02em; text-align: right; }
-  .h-l b, .h-r b { font-weight: 600; }
-  .h-l i, .h-r i { font-style: normal; color: var(--d-pale); }
+  .h-l b { font-weight: 600; }
+  .h-l i { font-style: normal; color: var(--d-pale); }
   .hero .sub { position: absolute; z-index: 2; left: calc(var(--u)*96); top: calc(var(--u)*348); width: calc(var(--u)*330); margin: 0; font-size: calc(var(--u)*15); line-height: 1.55; color: var(--d-muted); }
-  .hero .sub::before { content: "✦"; display: block; color: var(--d-sage); margin-bottom: calc(var(--u)*8); }
-  .hero .cta { position: absolute; z-index: 2; right: calc(var(--u)*96); top: calc(var(--u)*468); display: grid; justify-items: end; gap: calc(var(--u)*10); }
+  .hero .cta { position: absolute; z-index: 2; left: calc(var(--u)*96); top: calc(var(--u)*452); display: grid; justify-items: start; gap: calc(var(--u)*10); }
   .slots { font: 400 calc(var(--u)*12) var(--sans); color: var(--d-muted); display: flex; align-items: center; gap: calc(var(--u)*8); }
   .slots::before { content: ""; width: calc(var(--u)*7); height: calc(var(--u)*7); border-radius: 50%; background: #3bb37a; }
-  .big { position: absolute; z-index: 2; bottom: calc(var(--u)*-34); display: flex; align-items: flex-end; gap: calc(var(--u)*14); }
-  .big b { font: 400 calc(var(--u)*190)/.8 var(--sans); letter-spacing: -.05em; color: var(--d-slate); }
-  .big span { font: 400 calc(var(--u)*13)/1.35 var(--sans); color: var(--d-muted); padding-bottom: calc(var(--u)*58); }
-  .big.l { left: calc(var(--u)*90); }
-  .big.r { right: calc(var(--u)*90); flex-direction: row-reverse; text-align: right; }
-  .rail { position: absolute; z-index: 2; left: calc(var(--u)*30); top: 50%; transform: translateY(-50%); display: grid; gap: calc(var(--u)*14); font: 500 calc(var(--u)*11) var(--mono); color: var(--d-pale); }
-  .rail b { color: var(--d-slate); font-weight: 500; }
+  .trust { margin-top: calc(var(--u)*14); padding-top: calc(var(--u)*14); border-top: 1px solid var(--d-line); font: 400 calc(var(--u)*12) var(--sans); color: var(--d-muted); }
+  .tag { position: absolute; z-index: 2; left: calc(var(--u)*588); top: calc(var(--u)*560); margin: 0; display: grid; gap: calc(var(--u)*4); padding: calc(var(--u)*12) calc(var(--u)*16); border-radius: calc(var(--u)*14); background: rgba(255,255,255,.6); -webkit-backdrop-filter: blur(calc(var(--u)*12)); backdrop-filter: blur(calc(var(--u)*12)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.8), 0 calc(var(--u)*10) calc(var(--u)*30) rgba(26,37,44,.1); font: 600 calc(var(--u)*14)/1.2 var(--sans); color: var(--d-slate); }
+  .tag span { font: 400 calc(var(--u)*12) var(--sans); color: var(--d-muted); }
   .rail-r { position: absolute; z-index: 2; right: calc(var(--u)*30); top: 50%; transform: translateY(-50%); display: grid; gap: calc(var(--u)*10); }
   .rail-r span { width: calc(var(--u)*34); height: calc(var(--u)*34); border-radius: 50%; background: rgba(255,255,255,.75); box-shadow: inset 0 0 0 1px var(--d-line); display: grid; place-items: center; font: 600 calc(var(--u)*10) var(--sans); color: var(--d-muted); }
 
   /* Фото проекта */
   .pic { position: relative; overflow: hidden; background: var(--d-ice); }
-  .pic > img, .ba-fr > img, .m-ba > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .hero .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .pic > img, .ba-fr > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero .hero-img { position: absolute; top: 0; left: 18%; width: 100%; height: 100%; object-fit: cover; z-index: 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%); mask-image: linear-gradient(90deg, transparent, #000 14%); }
   .hero::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(45% 50% at 18% 88%, rgba(163,217,201,.32), rgba(163,217,201,0) 70%); }
   .stage .base img, .lens .inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .m-hero .m-img { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 68%; object-fit: cover; object-position: 50% 0; }
+  .m-hero .m-img { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 61%; object-fit: cover; object-position: 50% 0; }
   .m-hero > *:not(.m-img) { position: relative; z-index: 1; }
-  .m-hero .m-cta { position: absolute; z-index: 2; }
+  .m-hero .m-cta { position: static; width: 100%; }
   .why .pic { display: flex; align-items: flex-end; min-height: 100%; }
   .doc6 .det { aspect-ratio: 16 / 6; border-radius: calc(var(--u)*16); margin-top: calc(var(--u)*24); }
   /* Стайл-гайд */
@@ -332,6 +326,23 @@
   .addr { margin-top: calc(var(--u)*28); display: grid; gap: calc(var(--u)*6); font-size: calc(var(--u)*15); color: var(--d-muted); }
   .addr b { color: var(--d-slate); font-weight: 600; }
   .picker { background: #fff; border-radius: calc(var(--u)*20); padding: calc(var(--u)*28); box-shadow: 0 calc(var(--u)*30) calc(var(--u)*60) calc(var(--u)*-34) rgba(26,37,44,.4); }
+  .lb-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: calc(var(--u)*10); }
+  .lb-row .lb { margin: 0; }
+  .wk { display: flex; align-items: center; gap: calc(var(--u)*6); font: 500 calc(var(--u)*13) var(--sans); color: var(--d-slate); }
+  .wk-l { min-height: 44px; border: 0; background: none; padding: 0 calc(var(--u)*4); font: inherit; color: inherit; cursor: pointer; text-decoration: underline dotted var(--d-pale); text-underline-offset: 4px; }
+  .wk-l::after { content: " ▾"; color: var(--d-muted); }
+  .wk-l[aria-expanded="true"]::after { content: " ▴"; }
+  .mcal { margin: 0 0 calc(var(--u)*16); padding: calc(var(--u)*14); border-radius: calc(var(--u)*14); background: #F2F5F3; }
+  .mc-h { margin: 0 0 calc(var(--u)*8); font: 600 calc(var(--u)*13) var(--sans); }
+  .mc-g { display: grid; grid-template-columns: repeat(7, 1fr); gap: calc(var(--u)*4); text-align: center; }
+  .mc-g i { font: 400 calc(var(--u)*12)/calc(var(--u)*30) var(--sans); font-style: normal; color: var(--d-muted); }
+  .mc-g i.off { color: #C3CEC9; }
+  .mc-g button { height: calc(var(--u)*30); border: 0; border-radius: calc(var(--u)*8); background: #fff; font: 500 calc(var(--u)*12) var(--sans); color: var(--d-slate); cursor: pointer; }
+  .mc-g button.cur { box-shadow: inset 0 0 0 1px var(--d-sage); }
+  .mc-g button:hover { background: var(--d-sage); color: #fff; }
+  .wk-b { width: 44px; height: 44px; max-width: calc(var(--u)*36); max-height: calc(var(--u)*36); border: 0; border-radius: 50%; background: var(--d-ice, #F2F5F3); color: var(--d-slate); font: 500 calc(var(--u)*18)/1 var(--sans); cursor: pointer; }
+  .wk-b:disabled { opacity: .35; cursor: default; }
+  .wk-b:not(:disabled):hover { background: var(--d-mint, #A3D9C9); }
   .picker .lb { font: 500 calc(var(--u)*10) var(--sans); letter-spacing: .24em; text-transform: uppercase; color: var(--d-muted); margin: 0 0 calc(var(--u)*10); }
   .days, .times { display: flex; flex-wrap: wrap; gap: calc(var(--u)*8); margin-bottom: calc(var(--u)*22); }
   .chip { border: 0; box-shadow: inset 0 0 0 1px var(--d-line); background: #fff; border-radius: calc(var(--u)*12); padding: calc(var(--u)*10) calc(var(--u)*14); font: 400 calc(var(--u)*14) var(--sans); cursor: pointer; transition: box-shadow .3s, background .3s; }
@@ -359,17 +370,30 @@
     .phone { width: 62vw; scroll-snap-align: start; }
   }
   .m-hero { height: 100%; position: relative; background: radial-gradient(60% 40% at 80% 8%, #fff, rgba(255,255,255,0) 70%), radial-gradient(60% 40% at 15% 90%, rgba(163,217,201,.4), rgba(163,217,201,0) 70%), linear-gradient(170deg, #e4ece8, #f2f5f3 45%, #ffffff); }
-  .m-top { display: flex; justify-content: space-between; align-items: center; padding: calc(var(--u)*22) calc(var(--u)*20); }
+  .m-top { display: flex; justify-content: space-between; align-items: center; padding: calc(var(--u)*40) calc(var(--u)*20) calc(var(--u)*18); }
   .m-burger { width: calc(var(--u)*22); height: calc(var(--u)*10); border-top: 2px solid var(--d-slate); border-bottom: 2px solid var(--d-slate); }
   .m-h { padding: calc(var(--u)*14) calc(var(--u)*20) 0; margin: 0; font: 300 calc(var(--u)*38)/1 var(--sans); letter-spacing: -.02em; }
   .m-h b { font-weight: 600; } .m-h i { font-style: normal; color: var(--d-pale); }
-  .m-cta { position: absolute; left: calc(var(--u)*20); right: calc(var(--u)*20); bottom: calc(var(--u)*24); z-index: 2; justify-content: center; font-size: calc(var(--u)*15); padding: calc(var(--u)*16); }
+  .m-cta { justify-content: center; font-size: calc(var(--u)*15); padding: calc(var(--u)*16); }
+  .m-hero .m-cta-w { position: absolute; left: calc(var(--u)*20); right: calc(var(--u)*20); bottom: calc(var(--u)*18); z-index: 2; display: grid; justify-items: center; gap: calc(var(--u)*10); }
+  .m-cta-w .slots { background: rgba(255,255,255,.75); padding: calc(var(--u)*4) calc(var(--u)*10); border-radius: 99px; }
+  .m-plan-cta { margin-top: calc(var(--u)*28); justify-content: center; width: 100%; box-sizing: border-box; }
+  .m-cal { margin: calc(var(--u)*18) 0 calc(var(--u)*16); }
+  .m-cal-h { display: flex; align-items: center; gap: calc(var(--u)*8); margin: 0 0 calc(var(--u)*10); font-size: calc(var(--u)*14); }
+  .m-cal-h b { flex: 1; font-weight: 600; }
+  .m-cal-h span { width: calc(var(--u)*28); height: calc(var(--u)*28); border-radius: 50%; background: #F2F5F3; display: grid; place-items: center; color: var(--d-slate); }
+  .m-cal-w, .m-cal-g { display: grid; grid-template-columns: repeat(7, 1fr); gap: calc(var(--u)*4); margin: 0; text-align: center; }
+  .m-cal-w i { font: 500 calc(var(--u)*10) var(--sans); font-style: normal; color: var(--d-muted); padding-bottom: calc(var(--u)*6); }
+  .m-cal-g i { font-style: normal; font-size: calc(var(--u)*12); width: calc(var(--u)*30); height: calc(var(--u)*30); margin: 0 auto; display: grid; place-items: center; border-radius: 50%; color: var(--d-slate); }
+  .m-cal-g i.off { color: #C3CEC9; }
+  .m-cal-g i.on { background: var(--d-sage); color: #fff; font-weight: 600; }
+  .m-note { margin: calc(var(--u)*12) 0 calc(var(--u)*16); font-size: calc(var(--u)*13); line-height: 1.5; color: var(--d-muted); }
+  .m-sub { padding: calc(var(--u)*12) calc(var(--u)*20) 0; margin: 0; font-size: calc(var(--u)*14); line-height: 1.5; color: var(--d-muted); }
+  .m-meta { display: flex; flex-wrap: wrap; gap: calc(var(--u)*6) calc(var(--u)*14); padding: calc(var(--u)*10) calc(var(--u)*20) 0; margin: 0; font-size: calc(var(--u)*12); color: var(--d-muted); }
+  .m-meta .w-addr { font-size: inherit; }
+  .m-hero .m-tag { position: absolute; top: auto; left: calc(var(--u)*20); bottom: calc(var(--u)*130); }
   .m-pad { padding: calc(var(--u)*28) calc(var(--u)*20); }
   .m-pad .w-h { font-size: calc(var(--u)*30); }
-  .m-ba { margin-top: calc(var(--u)*22); position: relative; aspect-ratio: 1 / 1.1; border-radius: calc(var(--u)*18); overflow: hidden; }
-  .m-ba .veil p { font-size: calc(var(--u)*17); }
-  .m-count { margin-top: calc(var(--u)*16); font: 500 calc(var(--u)*12) var(--mono); color: var(--d-muted); display: flex; justify-content: space-between; }
-  .m-count b { color: var(--d-sage); font-weight: 500; }
   .m-pad .chip { font-size: calc(var(--u)*14); }
   .m-pad .w-btn { width: 100%; justify-content: center; margin-top: calc(var(--u)*6); font-size: calc(var(--u)*15); padding: calc(var(--u)*16); }
 
@@ -386,14 +410,11 @@
 
   /* Анимации: только при no-preference и классе anim (без JS всё видно) */
   @media (prefers-reduced-motion: no-preference) {
-    .anim [data-reveal] .h-l, .anim [data-reveal] .h-r, .anim [data-reveal] .big { opacity: 0; transform: translateY(14px); transition: opacity 1s, transform 1s; }
-    .anim [data-reveal] .h-r { transition-delay: .2s; } .anim [data-reveal] .big { transition-delay: .45s; }
-    .anim [data-reveal].in-view .h-l, .anim [data-reveal].in-view .h-r, .anim [data-reveal].in-view .big { opacity: 1; transform: none; }
+    .anim [data-reveal] .h-l { opacity: 0; transform: translateY(14px); transition: opacity 1s, transform 1s; }
+    .anim [data-reveal].in-view .h-l { opacity: 1; transform: none; }
     .anim .tl[data-reveal] .track { transform: scaleX(0); transform-origin: left; transition: transform 1.6s cubic-bezier(.2,.7,.2,1); }
     
     .anim .tl[data-reveal].in-view .track { transform: none; }
-    .orbit { animation: orb 14s ease-in-out infinite alternate; }
-    @keyframes orb { to { transform: translate(-50%, -50%) rotate(-3deg); } }
   }
   @media (prefers-reduced-motion: reduce) { .card .d, .cert, .veil { transition: none; } }
   @media print { header { display: none; } .card .d { grid-template-rows: 1fr; } .p { break-inside: avoid; } }
@@ -421,19 +442,13 @@
             <div class="hero" data-reveal>
               <div class="w-nav"><span class="w-logo">Лаврова<small>стоматология</small></span>
                 <span class="w-menu"><span>Услуги</span><span>До / после</span><span>О враче</span><span>Отзывы</span></span>
-                <span class="w-btn ghost">Записаться</span></div>
-              <div class="orbit" aria-hidden="true"></div>
-              <span class="o-dot" style="left:calc(var(--u)*318);top:calc(var(--u)*520)" aria-hidden="true">микроскоп</span>
-              <span class="o-dot" style="right:calc(var(--u)*340);top:calc(var(--u)*246)" aria-hidden="true">фото каждого этапа</span>
+                <span class="w-right"><span class="w-addr">м. Беговая</span><span class="w-btn ghost">Записаться</span></span></div>
               <img class="hero-img" src="lavrova/doctor.webp" width="1600" height="1000" alt="Врач-стоматолог в шалфейном костюме и с лупами на голове, руки скрещены, улыбается">
-              <span class="rail" aria-hidden="true"><b>01</b><span>02</span><span>03</span></span>
               <span class="rail-r" aria-hidden="true"><span>TG</span><span>WA</span><span>↓</span></span>
-              <p class="h-l"><b>Спокойное</b><br><b>лечение</b> <i>зубов</i><br><i>на Беговой</i></p>
-              <p class="h-r"><i>качество</i><br><b>и комфорт</b></p>
-              <p class="sub">Частный приём терапевта: кариес, каналы, реставрация, гигиена. Работаю с микроскопом, один пациент за раз</p>
-              <div class="cta"><span class="w-btn">Записаться на консультацию ⟶</span><span class="slots">Ближайшие окна: чт 10:00 · пт 16:30</span></div>
-              <div class="big l"><b>60</b><span>минут на приём,<br>не меньше</span></div>
-              <div class="big r"><b>1:1</b><span>один пациент<br>за раз</span></div>
+              <p class="h-l"><b>Терапевт,</b><br><i>к которому</i><br><i>ходят</i> <b>семьями</b></p>
+              <p class="sub">Кариес, каналы, сколы и чистка. Каждый этап показываю на фото, чтобы вы видели, за что платите</p>
+              <div class="cta"><span class="w-btn">Записаться на осмотр ⟶</span><span class="slots">Ближайшие окна: чт 10:00 · пт 16:30</span><span class="trust">Осмотр и план на первом приёме · фото каждого этапа</span></div>
+              <p class="tag"><b>Стоматолог-терапевт</b><span>лечу с 2012</span></p>
             </div>
           </div></div>
         </div>
@@ -443,7 +458,7 @@
       <div class="in">
         <div class="head">
           <div><p class="s-num">01 / 09 · первый экран</p><h3 class="s-h"><b>Подход</b> <i>вместо скидок</i></h3></div>
-          <p class="s-t">Тревожному пациенту нужен не оффер, а ощущение безопасности: тихий туман, врач в центре и формат приёма вместо обещаний</p>
+          <p class="s-t">Тревожный пациент ищет безопасность, поэтому на первом экране врач, спокойные цвета и формат приёма вместо скидок</p>
         </div>
         <div class="guide">
           <div>
@@ -474,7 +489,7 @@
       <div class="in">
         <div class="head">
           <div><p class="s-num">02 / 09 · почему частный приём · анимация</p><h3 class="s-h"><b>Столько времени,</b> <i>сколько нужно</i></h3></div>
-          <p class="s-t">Показываем, из чего складывается приём и на что уходит время, без сравнения с другими клиниками</p>
+          <p class="s-t">Шкала показывает, на что уходит час приёма. Так пациент видит, за что платит</p>
         </div>
         <div class="screen">
           <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>dr-lavrova · почему частный приём</b></div>
@@ -487,10 +502,10 @@
                   <div class="me"><p>Один приём <b>от 60 мин, если нужно — дольше</b></p><div class="track seg"><i style="--w:15%">Осмотр</i><i style="--w:15%">Анестезия</i><i style="--w:55%">Лечение</i><i style="--w:15%">Итог</i></div></div>
                 </div>
                 <ul class="pts">
-                  <li>Приём от часа, а если нужно — дольше: успеваю объяснить каждый шаг</li>
-                  <li>Микроскоп и оптика на каждом приёме</li>
-                  <li>Начинаю, только когда анестезия подействовала</li>
-                  <li>Ко мне ходят семьями и приводят друзей</li>
+                  <li>Приём длится от часа. Успеваю всё сделать и объяснить каждый шаг</li>
+                  <li>Работаю с микроскопом на каждом приёме, а не только в сложных случаях</li>
+                  <li>Начинаю лечение, только когда анестезия подействовала</li>
+                  <li>Ко мне приходят семьями и по рекомендации друзей</li>
                 </ul>
               </div>
               <div class="pic"><img src="lavrova/cabinet.webp" width="1600" height="1000" loading="lazy" alt="Светлый кабинет: кресло с шалфейной обивкой, микроскоп на штативе, окно и растение"><div class="stats"><div><b>14 лет</b><span>практики</span></div><div><b>≈70</b><span>пациентов в месяц</span></div><small>цифры — пример</small></div></div>
@@ -505,7 +520,7 @@
       <div class="in">
         <div class="head">
           <div><p class="s-num">03 / 09 · микроскоп · интерактив</p><h3 class="s-h"><b>Увеличение</b> <i>до 20×</i></h3></div>
-          <p class="s-t">Пациент не понимает, что даёт микроскоп, пока не увидит. Посмотрите сами</p>
+          <p class="s-t">Слово «микроскоп» пациенту ничего не говорит, а увеличительная лупа показывает разницу за секунду. Посмотрите сами</p>
         </div>
         <div class="screen">
           <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>dr-lavrova · микроскоп</b></div>
@@ -514,7 +529,7 @@
               <div class="l">
                 <span class="w-k">Работаю с микроскопом</span>
                 <p class="w-h"><b>Вижу</b> <i>больше</i></p>
-                <p>Под увеличением видно трещины эмали и скрытые каналы. Поэтому лечу точно и сохраняю больше здоровых тканей</p>
+                <p>Под увеличением видны трещины эмали и скрытые каналы. Убираю только поражённое, здоровые ткани остаются</p>
                 <div class="zoom-k" id="zoom-k"><span data-k="crack">Трещина эмали</span><span data-k="pig">Пигмент в фиссуре</span><span data-k="fis">Глубокая фиссура</span></div>
               </div>
               <div class="stage" id="stage" tabindex="0" role="img" aria-label="Макро зуба с лупой: наведите или проведите пальцем, чтобы увеличить">
@@ -533,7 +548,7 @@
       <div class="in">
         <div class="head">
           <div><p class="s-num">04 / 09 · услуги и цены · интерактив</p><h3 class="s-h"><b>Четыре</b> <i>услуги</i></h3></div>
-          <p class="s-t">Короткий список услуг сразу показывает, с чем идти именно к этому врачу. Откройте карточку</p>
+          <p class="s-t">Четыре услуги вместо длинного прайса: сразу ясно, с чем идти к этому врачу. Откройте карточку</p>
         </div>
         <div class="screen">
           <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>dr-lavrova · услуги</b></div>
@@ -544,19 +559,19 @@
                 <div class="card" data-open><button type="button" aria-expanded="true">
                   <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#1a252c" stroke-width="1.5" stroke-linejoin="round"><path d="M7 3c-2.5 0-4 2-4 5 0 4 2 6 2.5 10 .3 2 1 3 2 3 1.5 0 1.5-3 2.5-5 .5-1 1.5-1 2 0 1 2 1 5 2.5 5 1 0 1.7-1 2-3 .5-4 2.5-6 2.5-10 0-3-1.5-5-4-5-2 0-3 1-5 1S9 3 7 3Z"/></svg></span>
                   <h5>Кариес и реставрация</h5><span class="pr">от <b>6 500 ₽</b><span class="pl">+</span></span></button>
-                  <div class="d"><div><ul><li><b>Что делаю</b>Послойная реставрация: зуб выглядит естественно, а не как белая пломба</li><li><b>Визитов</b>Обычно один</li></ul></div></div></div>
+                  <div class="d"><div><ul><li><b>Что делаю</b>Восстанавливаю зуб слоями и подбираю оттенок, чтобы пломба выглядела как своя эмаль</li><li><b>Визитов</b>Обычно один</li></ul></div></div></div>
                 <div class="card"><button type="button" aria-expanded="false">
                   <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#1a252c" stroke-width="1.5" stroke-linecap="round"><path d="M7 3c-2.5 0-4 2-4 5 0 4 2 6 2.5 10 .3 2 1 3 2 3 1.5 0 1.5-3 2.5-5M17 3c2.5 0 4 2 4 5 0 4-2 6-2.5 10-.3 2-1 3-2 3-1.5 0-1.5-3-2.5-5"/><path d="M10 9v9M14 9v9"/></svg></span>
                   <h5>Лечение каналов</h5><span class="pr">от <b>14 000 ₽</b><span class="pl">+</span></span></button>
-                  <div class="d"><div><ul><li><b>Что делаю</b>Лечу каналы под микроскопом, если зуб можно сохранить. Если нельзя, скажу честно на первом приёме</li><li><b>Визитов</b>1–3</li></ul></div></div></div>
+                  <div class="d"><div><ul><li><b>Что делаю</b>Если зуб можно сохранить, лечу каналы под микроскопом. Если нельзя, честно скажу об этом на первом приёме</li><li><b>Визитов</b>1–3</li></ul></div></div></div>
                 <div class="card"><button type="button" aria-expanded="false">
                   <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#1a252c" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg></span>
                   <h5>Гигиена и профилактика</h5><span class="pr"><b>6 000 ₽</b><span class="pl">+</span></span></button>
-                  <div class="d"><div><ul><li><b>Что делаю</b>Ультразвук и мягкая порошковая чистка, полировка, реминерализация</li><li><b>Как часто</b>Раз в полгода</li></ul></div></div></div>
+                  <div class="d"><div><ul><li><b>Что делаю</b>Снимаю камень и налёт ультразвуком и мягким порошком, затем полирую и укрепляю эмаль</li><li><b>Как часто</b>Раз в полгода</li></ul></div></div></div>
                 <div class="card"><button type="button" aria-expanded="false">
                   <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#1a252c" stroke-width="1.5" stroke-linecap="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8Z"/><path d="M19 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7Z"/></svg></span>
                   <h5>Эстетика</h5><span class="pr">от <b>9 000 ₽</b><span class="pl">+</span></span></button>
-                  <div class="d"><div><ul><li><b>Что делаю</b>Отбеливание, закрытие щелей и сколов композитом без обточки зубов</li><li><b>Визитов</b>1–2</li></ul></div></div></div>
+                  <div class="d"><div><ul><li><b>Что делаю</b>Отбеливаю зубы и закрываю щели и сколы композитом. Свои зубы при этом не обтачиваю</li><li><b>Визитов</b>1–2</li></ul></div></div></div>
               </div>
             </div>
           </div></div>
@@ -569,7 +584,7 @@
       <div class="in">
         <div class="head">
           <div><p class="s-num">05 / 09 · до / после · интерактив</p><h3 class="s-h"><b>Клинические фото</b> <i>по запросу</i></h3></div>
-          <p class="s-t">Примеры работ до и после показывают качество лечения. Фото скрыты: открывает тот, кто готов смотреть</p>
+          <p class="s-t">До и после показывают качество лучше слов. Фото скрыты, их откроет только тот, кто готов смотреть</p>
         </div>
         <div class="screen">
           <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>dr-lavrova · до и после</b></div>
@@ -578,7 +593,7 @@
               <div class="l">
                 <span class="w-k">До / после</span>
                 <p class="w-h"><b>Работы</b> <i>врача</i></p>
-                <p>Сколы и профессиональная гигиена. Под каждой парой — что было и сколько визитов понадобилось</p>
+                <p>Здесь сколы и профессиональная чистка. Под каждой парой написано, что было и сколько визитов понадобилось</p>
                 <div class="ba-nav"><button type="button" data-d="-1" aria-label="Предыдущая пара">←</button><span><b id="ba-i">01</b> / 02</span><button type="button" data-d="1" aria-label="Следующая пара">→</button></div>
               </div>
               <div>
@@ -610,7 +625,7 @@
       <div class="in">
         <div class="head">
           <div><p class="s-num">06 / 09 · о враче · интерактив</p><h3 class="s-h"><b>Врач рядом</b> <i>с домом</i></h3></div>
-          <p class="s-t">Диплом и путь врача — коротко, курсы — темами, понятными пациенту. Нажмите на стопку, чтобы листать</p>
+          <p class="s-t">Пациенту важно, где врач учился и сколько лечит. Путь и курсы уместились в короткую ленту. Нажмите на стопку</p>
         </div>
         <div class="screen">
           <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>dr-lavrova · о враче</b></div>
@@ -657,8 +672,8 @@
                 <button type="button" aria-pressed="true" data-s="1"><b>02</b><span>План и фиксированная цена</span></button>
                 <button type="button" aria-pressed="false" data-s="2"><b>03</b><span>Спокойное лечение</span></button>
               </div>
-              <div class="pane"><p>Осматриваю, делаю снимки и фото каждого зуба. Вы видите на экране то же, что и я. Первый приём — только осмотр и разговор</p><div class="pic vis"><img src="lavrova/cabinet.webp" width="1600" height="1000" loading="lazy" alt=""></div></div>
-              <div class="pane on"><p>Разбираю снимки и составляю план: что лечим, в каком порядке и сколько это стоит. Цена в плане не меняется по ходу лечения</p>
+              <div class="pane"><p>Осматриваю и фотографирую каждый зуб. Вы видите на экране то же, что и я. На первом приёме ничего не лечим, только смотрим и обсуждаем</p><div class="pic vis"><img src="lavrova/cabinet.webp" width="1600" height="1000" loading="lazy" alt=""></div></div>
+              <div class="pane on"><p>Составляю план: что лечим, в каком порядке и сколько это стоит. Сумма из плана не вырастет по ходу лечения</p>
                 <div class="plan">
                   <h6>План лечения <span>пример</span></h6>
                   <table>
@@ -672,7 +687,7 @@
                   <span class="fix">✓ Цена фиксирована в плане</span>
                 </div>
               </div>
-              <div class="pane"><p>Сначала анестезия. Жду, пока подействует, и только потом начинаю. Можно смотреть сериал в наушниках. Поднимете руку — остановлюсь</p><div class="pic vis"><img src="lavrova/cabinet.webp" width="1600" height="1000" loading="lazy" alt=""></div></div>
+              <div class="pane"><p>Сначала делаю анестезию и жду, пока она подействует. Во время лечения можно смотреть сериал в наушниках. Поднимите руку, и я остановлюсь</p><div class="pic vis"><img src="lavrova/cabinet.webp" width="1600" height="1000" loading="lazy" alt=""></div></div>
             </div>
           </div></div>
         </div>
@@ -684,7 +699,7 @@
       <div class="in">
         <div class="head">
           <div><p class="s-num">08 / 09 · отзывы · карта</p><h3 class="s-h"><b>Отзывы</b> <i>на карте</i></h3></div>
-          <p class="s-t">Пациент всё равно проверит врача на картах, поэтому показываем это прямо на сайте</p>
+          <p class="s-t">Пациент всё равно проверит врача на картах. Отзывы прямо на сайте экономят ему этот шаг</p>
         </div>
         <div class="screen">
           <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>dr-lavrova · отзывы</b></div>
@@ -720,25 +735,26 @@
       <div class="in">
         <div class="head">
           <div><p class="s-num">09 / 09 · запись · интерактив</p><h3 class="s-h"><b>Запись</b> <i>в два касания</i></h3></div>
-          <p class="s-t">Пациент выбирает день и время, а дальше пишет в привычный мессенджер. Без длинных форм</p>
+          <p class="s-t">Выбрать день, время и написать в привычный мессенджер можно в два касания, без длинной формы</p>
         </div>
         <div class="screen">
           <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>dr-lavrova · запись</b></div>
           <div class="site"><div class="f">
             <div class="book">
               <div>
-                <span class="w-k">Запись на консультацию</span>
+                <span class="w-k">Запись на осмотр</span>
                 <p class="w-h"><b>Первый приём —</b><br><i>осмотр и план</i></p>
                 <div class="addr"><b>Санкт-Петербург, м. Беговая</b><span>Адрес кабинета — пример для концепта</span><span>Пн–Пт 10:00–20:00</span></div>
               </div>
               <div class="picker" id="picker">
-                <p class="lb">День</p>
+                <div class="lb-row"><p class="lb">День</p><span class="wk"><button type="button" class="wk-b" data-wk="-1" aria-label="Предыдущая неделя" disabled>‹</button><button type="button" class="wk-l" id="wk" aria-expanded="false" aria-controls="mcal">2–6 ноября</button><button type="button" class="wk-b" data-wk="1" aria-label="Следующая неделя">›</button></span></div>
+                <div class="mcal" id="mcal" hidden></div>
                 <div class="days">
-                  <button type="button" class="chip" aria-pressed="false" data-day="пн 3 ноября"><small>пн</small>3</button>
-                  <button type="button" class="chip" disabled><small>вт</small>4</button>
-                  <button type="button" class="chip" aria-pressed="true" data-day="ср 5 ноября"><small>ср</small>5</button>
-                  <button type="button" class="chip" aria-pressed="false" data-day="чт 6 ноября"><small>чт</small>6</button>
-                  <button type="button" class="chip" aria-pressed="false" data-day="пт 7 ноября"><small>пт</small>7</button>
+                  <button type="button" class="chip" aria-pressed="false" data-day="пн 2 ноября"><small>пн</small>2</button>
+                  <button type="button" class="chip" disabled><small>вт</small>3</button>
+                  <button type="button" class="chip" aria-pressed="true" data-day="ср 4 ноября"><small>ср</small>4</button>
+                  <button type="button" class="chip" aria-pressed="false" data-day="чт 5 ноября"><small>чт</small>5</button>
+                  <button type="button" class="chip" aria-pressed="false" data-day="пт 6 ноября"><small>пт</small>6</button>
                 </div>
                 <p class="lb">Время</p>
                 <div class="times">
@@ -748,7 +764,7 @@
                   <button type="button" class="chip" aria-pressed="false">16:30</button>
                   <button type="button" class="chip" aria-pressed="false">18:00</button>
                 </div>
-                <p class="sum" id="sum">Вы выбрали: <b>ср 5 ноября, 12:00</b></p>
+                <p class="sum" id="sum">Вы выбрали: <b>ср 4 ноября, 12:00</b></p>
                 <div class="msg"><button type="button" class="w-btn" data-demo>Записаться в Telegram</button><button type="button" class="w-btn ghost" data-demo>WhatsApp</button></div>
                 <p class="note" id="note"></p>
               </div>
@@ -764,27 +780,44 @@
       <div class="in">
         <div class="head">
           <div><p class="s-num">Телефон</p><h3 class="s-h"><b>Мобильная</b> <i>версия</i></h3></div>
-          <p class="s-t">Врач и кнопка записи помещаются в первый экран, фото до/после скрыты и на телефоне</p>
+          <p class="s-t">На телефоне врач и кнопка записи видны сразу, а фото до/после так же скрыты</p>
         </div>
         <div class="phones" role="region" aria-label="Мобильная версия, три экрана" tabindex="0">
           <div class="phone"><div class="site"><div class="f">
             <div class="m-hero">
               <div class="m-top"><span class="w-logo">Лаврова<small>стоматология</small></span><span class="m-burger" aria-hidden="true"></span></div>
-              <p class="m-h"><b>Спокойное лечение</b> <i>зубов на Беговой</i></p>
+              <p class="m-h"><b>Терапевт,</b><br><i>к которому ходят</i> <b>семьями</b></p>
+              <p class="m-sub">Кариес, каналы, сколы и чистка. Каждый этап показываю на фото, чтобы вы видели, за что платите</p>
+              <p class="m-meta"><span class="w-addr">м. Беговая</span><span>Осмотр и план на первом приёме</span></p>
               <img class="m-img" src="lavrova/doctor.webp" width="1600" height="1000" loading="lazy" alt="Первый экран на телефоне: врач и заголовок">
-              <span class="w-btn m-cta">Записаться ⟶</span>
+              <p class="tag m-tag"><b>Стоматолог-терапевт</b><span>лечу с 2012</span></p>
+              <div class="m-cta-w"><span class="w-btn m-cta">Записаться на осмотр ⟶</span><span class="slots">Ближайшие окна: чт 10:00 · пт 16:30</span></div>
             </div>
           </div></div></div>
           <div class="phone"><div class="site"><div class="f m-pad">
-            <span class="w-k">До / после</span><p class="w-h"><b>Работы</b> <i>врача</i></p>
-            <div class="m-ba"><img class="bef" src="lavrova/chip-before.webp" width="1600" height="1000" loading="lazy" alt="">
-              <div class="veil"><p>Клинические фото</p><span class="w-btn" style="width:auto">Показать</span></div></div>
-            <p class="m-count"><span>Скол переднего зуба</span><span><b>01</b> / 02</span></p>
+            <span class="w-k">Цены</span><p class="w-h"><b>Цена в плане</b> <i>не вырастет</i></p>
+            <p class="m-note">После осмотра составляю план: что лечим, в каком порядке и сколько это стоит</p>
+            <div class="plan m-plan">
+              <h6>План лечения <span>пример</span></h6>
+              <table>
+                <tbody>
+                  <tr><td>2.6</td><td>Кариес, реставрация</td><td>7 200 ₽</td></tr>
+                  <tr><td>1.1</td><td>Скол, композит</td><td>9 000 ₽</td></tr>
+                  <tr><td>—</td><td>Гигиена</td><td>6 000 ₽</td></tr>
+                </tbody>
+                <tfoot><tr><td></td><td>Итого, 3 визита</td><td>22 200 ₽</td></tr></tfoot>
+              </table>
+              <span class="fix">✓ Цена фиксирована в плане</span>
+            </div>
+            <span class="w-btn m-plan-cta">Записаться на осмотр ⟶</span>
           </div></div></div>
           <div class="phone"><div class="site"><div class="f m-pad">
             <span class="w-k">Запись</span><p class="w-h"><b>Первый приём</b> <i>осмотр и план</i></p>
-            <p style="font:500 calc(var(--u)*10) var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--d-muted);margin:calc(var(--u)*20) 0 calc(var(--u)*10)">День</p>
-            <div class="days" aria-hidden="true"><span class="chip">пн 3</span><span class="chip" aria-pressed="true">ср 5</span><span class="chip">чт 6</span></div>
+            <div class="m-cal" aria-hidden="true">
+              <p class="m-cal-h"><b>Ноябрь 2026</b><span>‹</span><span>›</span></p>
+              <p class="m-cal-w"><i>пн</i><i>вт</i><i>ср</i><i>чт</i><i>пт</i><i>сб</i><i>вс</i></p>
+              <p class="m-cal-g"><i></i><i></i><i></i><i></i><i></i><i></i><i class="off">1</i><i>2</i><i class="off">3</i><i class="on">4</i><i>5</i><i>6</i><i class="off">7</i><i class="off">8</i><i>9</i><i class="off">10</i><i>11</i><i>12</i><i>13</i><i class="off">14</i><i class="off">15</i><i>16</i><i>17</i><i>18</i><i>19</i><i>20</i><i class="off">21</i><i class="off">22</i><i>23</i><i>24</i><i>25</i><i>26</i><i>27</i><i class="off">28</i><i class="off">29</i><i>30</i></p>
+            </div>
             <div class="times" aria-hidden="true"><span class="chip">10:00</span><span class="chip" aria-pressed="true">12:00</span><span class="chip">16:30</span></div>
             <span class="w-btn">Записаться в Telegram</span>
           </div></div></div>
@@ -885,10 +918,46 @@
 
   // 09 Запись — демо
   function pick(sel) {
-    $$(sel + ' .chip:not([disabled])').forEach(function (c) {
-      c.addEventListener('click', function () { $$(sel + ' .chip').forEach(function (o) { if (!o.disabled) o.setAttribute('aria-pressed', o === c ? 'true' : 'false'); }); upd(); });
+    document.querySelector(sel).addEventListener('click', function (e) {
+      var c = e.target.closest('.chip'); if (!c || c.disabled) return;
+      $$(sel + ' .chip').forEach(function (o) { if (!o.disabled) o.setAttribute('aria-pressed', o === c ? 'true' : 'false'); }); upd();
     });
   }
+  // Листание недель: 4 недели вперёд, один занятый день в каждой
+  var wkPick = null, wkOff = 0, wkBase = new Date(2026, 10, 2), dn = ['пн', 'вт', 'ср', 'чт', 'пт'],
+    mn = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+  function week() {
+    var box = document.querySelector('#picker .days'), cur = box.querySelector('[aria-pressed="true"]'),
+      si = wkPick != null ? wkPick : cur ? [].indexOf.call(box.children, cur) : 2, busy = (wkOff + 1) % 5, ds = [], html = '';
+    wkPick = null;
+    if (si === busy) si = (si + 1) % 5;
+    for (var i = 0; i < 5; i++) { var d = new Date(wkBase); d.setDate(wkBase.getDate() + wkOff * 7 + i); ds.push(d); }
+    ds.forEach(function (d, i) {
+      html += i === busy ? '<button type="button" class="chip" disabled><small>' + dn[i] + '</small>' + d.getDate() + '</button>'
+        : '<button type="button" class="chip" aria-pressed="' + (i === si) + '" data-day="' + dn[i] + ' ' + d.getDate() + ' ' + mn[d.getMonth()] + '"><small>' + dn[i] + '</small>' + d.getDate() + '</button>';
+    });
+    box.innerHTML = html;
+    var a = ds[0], b = ds[4];
+    document.getElementById('wk').textContent = a.getMonth() === b.getMonth() ? a.getDate() + '–' + b.getDate() + ' ' + mn[b.getMonth()] : a.getDate() + ' ' + mn[a.getMonth()] + ' – ' + b.getDate() + ' ' + mn[b.getMonth()];
+    $$('#picker .wk-b').forEach(function (k) { k.disabled = k.dataset.wk === '-1' ? wkOff === 0 : wkOff === 3; });
+    upd();
+  }
+  $$('#picker .wk-b').forEach(function (k) { k.addEventListener('click', function () { wkOff += +k.dataset.wk; week(); mcal(); }); });
+  // Месяц по клику на подпись недели: будни 2–27 ноября, занятый день недели серый
+  var mc = document.getElementById('mcal'), wl = document.getElementById('wk');
+  function mcal() {
+    var h = '<p class="mc-h">Ноябрь 2026</p><div class="mc-g">' + dn.concat(['сб', 'вс']).map(function (x) { return '<i>' + x + '</i>'; }).join('') + '<i></i><i></i><i></i><i></i><i></i><i></i>';
+    for (var d = 1; d <= 30; d++) {
+      var wd = (d + 5) % 7, w = Math.floor((d - 2) / 7), ok = wd < 5 && d >= 2 && d <= 27 && wd !== (w + 1) % 5;
+      h += ok ? '<button type="button" data-w="' + w + '" data-i="' + wd + '"' + (w === wkOff ? ' class="cur"' : '') + '>' + d + '</button>' : '<i class="off">' + d + '</i>';
+    }
+    mc.innerHTML = h + '</div>';
+  }
+  wl.addEventListener('click', function () { var o = mc.hidden; if (o) mcal(); mc.hidden = !o; wl.setAttribute('aria-expanded', o); });
+  mc.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    wkOff = +b.dataset.w; wkPick = +b.dataset.i; week(); mc.hidden = true; wl.setAttribute('aria-expanded', 'false');
+  });
   function upd() {
     var d = document.querySelector('#picker .days [aria-pressed="true"]'), t = document.querySelector('#picker .times [aria-pressed="true"]');
     document.getElementById('sum').innerHTML = 'Вы выбрали: <b>' + d.dataset.day + ', ' + t.textContent + '</b>';
