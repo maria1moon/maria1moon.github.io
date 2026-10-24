@@ -259,6 +259,22 @@
   .phone .site { border-radius: 27px; overflow: hidden; aspect-ratio: 390 / 844; background: #fff; }
   .phone .site > .f { --u: calc(100cqw / 390); height: 100%; }
   .phones .phone:nth-child(2) { transform: translateY(clamp(16px, 3vw, 40px)); }
+
+  /* Фото людей: заглушка видна, пока файла нет; фото ложится поверх (люди вымышленные, концепт) */
+  .ph { position: relative; margin: 0; overflow: hidden; background: var(--k-cel2); aspect-ratio: 16 / 10; }
+  .ph::before { content: attr(data-hz); position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font: 400 calc(var(--u)*120)/1 var(--k-hanzi); color: rgba(11,115,82,.16); }
+  .ph::after { content: attr(data-file); position: absolute; left: calc(var(--u)*14); bottom: calc(var(--u)*12); font: 500 calc(var(--u)*12)/1 var(--mono); letter-spacing: .06em; color: var(--k-green); }
+  .ph img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; }
+  .ph img.no { display: none; }
+  .ph.tall { aspect-ratio: 4 / 5; }
+  .team { list-style: none; margin: calc(var(--u)*48) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(var(--u)*28); }
+  .team h5 { font: 700 calc(var(--u)*20)/1.25 var(--display); margin: calc(var(--u)*18) 0 calc(var(--u)*6); }
+  .team p { margin: 0; color: var(--k-muted); }
+  .klass { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u)*28); margin-top: calc(var(--u)*56); }
+  .klass figcaption, .trip figcaption { position: relative; z-index: 2; margin-top: calc(var(--u)*12); font-size: calc(var(--u)*15); color: var(--k-muted); }
+  .trip { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(var(--u)*24); margin-top: calc(var(--u)*56); }
+  .fig-n { margin: calc(var(--u)*28) 0 0; font: 500 calc(var(--u)*13)/1.4 var(--mono); color: var(--k-muted); }
   @media (max-width: 720px) {
     .phones { overflow-x: auto; justify-content: flex-start; padding-bottom: 48px; scroll-snap-type: x mandatory; }
     .phones .phone { width: 64%; scroll-snap-align: center; }
@@ -407,7 +423,7 @@
     </section>
     <section class="p cel cover-cap">
       <div class="in head" style="margin-bottom:0">
-        <div><p class="k-num">01 / 10 · первый экран</p><h3 class="k-h">Первый экран как свиток</h3></div>
+        <div><p class="k-num">01 / 11 · первый экран</p><h3 class="k-h">Первый экран как свиток</h3></div>
         <p class="k-t">Горы прорисовываются тушью, затем проявляется 中 и ставится печать: тема школы считывается ещё до чтения текста</p>
       </div>
     </section>
@@ -415,7 +431,7 @@
     <section class="p">
       <div class="in">
         <div class="head">
-          <div><p class="k-num">02 / 10 · стайл-гайд</p><h3 class="k-h">Палитра «Селадон» и шрифты</h3></div>
+          <div><p class="k-num">02 / 11 · стайл-гайд</p><h3 class="k-h">Палитра «Селадон» и шрифты</h3></div>
           <p class="k-t">Селадон отличает школу от конкурентов в красном, а коралл оставлен только для действий</p>
         </div>
         <div class="guide">
@@ -445,7 +461,7 @@
     <section class="p cel2">
       <div class="in">
         <div class="head">
-          <div><p class="k-num">03 / 10 · курсы · интерактив</p><h3 class="k-h">Номера-иероглифы</h3></div>
+          <div><p class="k-num">03 / 11 · курсы · интерактив</p><h3 class="k-h">Номера-иероглифы</h3></div>
           <p class="k-t">Посетитель узнаёт первые иероглифы, пока выбирает курс. Наведите на карточку</p>
         </div>
         <div class="screen">
@@ -470,7 +486,7 @@
     <section class="p">
       <div class="in">
         <div class="head">
-          <div><p class="k-num">04 / 10 · почему у нас</p><h3 class="k-h">Вертикальный свиток</h3></div>
+          <div><p class="k-num">04 / 11 · почему у нас</p><h3 class="k-h">Вертикальный свиток</h3></div>
           <p class="k-t">Свиток разворачивается в центре блока, и преимущества читаются как картина, а не как список</p>
         </div>
         <div class="screen">
@@ -503,11 +519,37 @@
       </div>
     </section>
 
+    <section class="p cel">
+      <div class="in">
+        <div class="head">
+          <div><p class="k-num">05 / 11 · преподаватели и классы · фото</p><h3 class="k-h">Лица школы</h3></div>
+          <p class="k-t">Родителю и взрослому ученику спокойнее записаться, когда он заранее видит, кто будет вести урок и как выглядит класс</p>
+        </div>
+        <div class="screen">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><b>bambuk-school / преподаватели</b></div>
+          <div class="site"><div class="f w-pad" data-reveal>
+            <p class="w-label">07 · Преподаватели</p>
+            <p class="w-h2">Ваши преподаватели</p>
+            <ul class="team">
+              <li class="rise" style="--d:0ms"><figure class="ph tall" data-hz="文" data-file="teacher-1.webp"><img src="kitai/teacher-1.webp" alt="Преподавательница китайского у доски с иероглифами" width="1600" height="1000" loading="lazy" decoding="async"></figure><h5>Ли Мэй</h5><p>Носитель языка из Пекина. Разговорный курс и подготовка к HSK</p></li>
+              <li class="rise" style="--d:120ms"><figure class="ph tall" data-hz="文" data-file="teacher-2.webp"><img src="kitai/teacher-2.webp" alt="Преподаватель китайского с кистью для каллиграфии" width="1600" height="1000" loading="lazy" decoding="async"></figure><h5>Ван Хао</h5><p>Носитель языка из Ханчжоу. Каллиграфия, культура и группы подростков</p></li>
+              <li class="rise" style="--d:240ms"><figure class="ph tall" data-hz="文" data-file="teacher-3.webp"><img src="kitai/teacher-3.webp" alt="Преподавательница с детской группой за столом" width="1600" height="1000" loading="lazy" decoding="async"></figure><h5>Анна</h5><p>Переводчик с китайского. Ведёт детские группы и курс с нуля для взрослых</p></li>
+            </ul>
+            <div class="klass">
+              <figure class="rise" style="margin:0"><figure class="ph" data-hz="学" data-file="class-1.webp"><img src="kitai/class-1.webp" alt="Детская группа пишет первые иероглифы в классе школы" width="1600" height="1000" loading="lazy" decoding="async"></figure><figcaption>Детская группа: первые иероглифы кистью</figcaption></figure>
+              <figure class="rise" style="margin:0;--d:120ms"><figure class="ph" data-hz="学" data-file="class-2.webp"><img src="kitai/class-2.webp" alt="Взрослые ученики на разговорном занятии за общим столом" width="1600" height="1000" loading="lazy" decoding="async"></figure><figcaption>Взрослые: разговорный клуб по вечерам</figcaption></figure>
+            </div>
+            <p class="fig-n">Концепт: имена, люди на фото и их опыт вымышлены</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
     <section class="p ink">
       <span class="bleed dim" aria-hidden="true" lang="zh">好</span>
       <div class="in">
         <div class="head">
-          <div><p class="k-num">05 / 10 · фирменный блок · анимация</p><h3 class="k-h">Иероглиф — это конструктор</h3></div>
+          <div><p class="k-num">06 / 11 · фирменный блок · анимация</p><h3 class="k-h">Иероглиф — это конструктор</h3></div>
           <p class="k-t">Метод школы проще показать, чем описать: 好 пишется по чертам и распадается на «женщину» и «ребёнка»</p>
         </div>
         <div class="screen">
@@ -558,7 +600,7 @@
     <section class="p cel">
       <div class="in">
         <div class="head">
-          <div><p class="k-num">06 / 10 · экзамены · интерактив</p><h3 class="k-h">Экзамены крупно</h3></div>
+          <div><p class="k-num">07 / 11 · экзамены · интерактив</p><h3 class="k-h">Экзамены крупно</h3></div>
           <p class="k-t">Названия экзаменов набраны как заголовки, и ученик сразу находит свой. Выберите экзамен</p>
         </div>
         <div class="screen">
@@ -581,8 +623,8 @@
     <section class="p">
       <div class="in">
         <div class="head">
-          <div><p class="k-num">07 / 10 · учёба в Китае · анимация</p><h3 class="k-h">Карта линией</h3></div>
-          <p class="k-t">Маршрут из Пекина прорисовывается по городам, и учёба в Китае становится конкретной поездкой</p>
+          <div><p class="k-num">08 / 11 · учёба в Китае · анимация</p><h3 class="k-h">Карта линией</h3></div>
+          <p class="k-t">Маршрут из Пекина прорисовывается по городам, а фото из поездки показывают обычный день ученика в Китае</p>
         </div>
         <div class="screen">
           <div class="bar"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><b>bambuk-school / учёба в Китае</b><button class="rep" type="button" data-replay="china" hidden>↻ ещё раз</button></div>
@@ -625,6 +667,11 @@
                 </ul>
               </div>
             </div>
+            <div class="trip">
+              <figure class="rise" style="margin:0;--d:1000ms"><figure class="ph" data-hz="京" data-file="china-1.webp"><img src="kitai/china-1.webp" alt="Ученики занимаются китайским во дворе университета в Пекине" width="1600" height="1000" loading="lazy" decoding="async"></figure><figcaption>Урок во дворе университета в Пекине</figcaption></figure>
+              <figure class="rise" style="margin:0;--d:1120ms"><figure class="ph" data-hz="中" data-file="china-2.webp"><img src="kitai/china-2.webp" alt="Группа учеников с преподавателем на Великой стене" width="1600" height="1000" loading="lazy" decoding="async"></figure><figcaption>Экскурсия на Великую стену с преподавателем</figcaption></figure>
+              <figure class="rise" style="margin:0;--d:1240ms"><figure class="ph" data-hz="海" data-file="china-3.webp"><img src="kitai/china-3.webp" alt="Ученица покупает чай на рынке в Шанхае и говорит с продавцом по-китайски" width="1600" height="1000" loading="lazy" decoding="async"></figure><figcaption>Язык в деле: покупки на рынке в Шанхае</figcaption></figure>
+            </div>
           </div></div>
         </div>
       </div>
@@ -633,7 +680,7 @@
     <section class="p cel2">
       <div class="in">
         <div class="head">
-          <div><p class="k-num">08 / 10 · подбор курса · интерактив</p><h3 class="k-h">Квиз из трёх вопросов</h3></div>
+          <div><p class="k-num">09 / 11 · подбор курса · интерактив</p><h3 class="k-h">Квиз из трёх вопросов</h3></div>
           <p class="k-t">Клиент получает курс и цену без звонка, а менеджер — готовую заявку. Попробуйте ответить</p>
         </div>
         <div class="screen">
@@ -685,7 +732,7 @@
     <section class="p cel">
       <div class="in">
         <div class="head">
-          <div><p class="k-num">09 / 10 · цитата и финал</p><h3 class="k-h">Пауза перед заявкой</h3></div>
+          <div><p class="k-num">10 / 11 · цитата и финал</p><h3 class="k-h">Пауза перед заявкой</h3></div>
           <p class="k-t">Цитата на подложке из прописей даёт паузу, и финальная кнопка читается спокойно, без давления</p>
         </div>
         <div class="screen">
@@ -713,7 +760,7 @@
     <section class="p">
       <div class="in">
         <div class="head">
-          <div><p class="k-num">10 / 10 · телефон</p><h3 class="k-h">Мобильная версия</h3></div>
+          <div><p class="k-num">11 / 11 · телефон</p><h3 class="k-h">Мобильная версия</h3></div>
           <p class="k-t">Мобильная версия собрана заново, а не сжата: горы уходят под текст, курсы становятся списком, квиз помещается в экран</p>
         </div>
         <div class="phones" role="region" aria-label="Мобильная версия, три экрана" tabindex="0">
@@ -829,6 +876,11 @@
   $$('[data-reveal]').forEach(function (el) { io.observe(el); });
   io.observe(hao);
 
+  // Фото людей: пока файла нет, видна заглушка
+  $$('.ph img').forEach(function (im) {
+    function no() { im.classList.add('no'); }
+    if (im.complete && !im.naturalWidth) no(); else im.addEventListener('error', no);
+  });
   // «Ещё раз»: перезапуск анимации экрана
   $$('[data-replay]').forEach(function (b) {
     b.hidden = false;
