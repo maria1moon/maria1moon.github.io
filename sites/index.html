@@ -95,12 +95,12 @@
   /* Сетка обложек */
   .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 3vw, 32px); padding-bottom: clamp(64px, 9vw, 112px); }
   @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
-  .card { display: grid; gap: 16px; text-decoration: none; }
+  .card { display: grid; gap: 16px; align-content: start; text-decoration: none; }
   .cover { background: var(--soft); border: 1px solid var(--line); border-radius: 16px; padding: clamp(24px, 4vw, 44px) clamp(24px, 5vw, 56px) clamp(20px, 3vw, 32px);
     transition: border-color .2s; }
   .card:hover .cover { border-color: var(--accent); }
   .laptop .scr { background: #1b1d1f; border-radius: 10px 10px 0 0; padding: 2.4% 2.4% 0; }
-  .laptop .scr img { border-radius: 2px 2px 0 0; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; width: 100%; }
+  .laptop .scr img { border-radius: 2px 2px 0 0; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; width: 100%; }
   .laptop .base { height: clamp(8px, 1.2vw, 12px); margin: 0 -6%; background: linear-gradient(#d9dde1, #aeb4ba); border-radius: 0 0 10px 10px; position: relative; }
   .laptop .base::after { content: ""; position: absolute; left: 50%; top: 0; width: 14%; height: 40%; transform: translateX(-50%); background: #9aa1a8; border-radius: 0 0 6px 6px; }
   @media (prefers-reduced-motion: no-preference) {
@@ -147,31 +147,9 @@
   </section>
 
   <div class="grid">
-    <a class="card" href="kitai.html">
-      <div class="cover"><div class="laptop">
-        <div class="scr"><img src="kitai/v-hero-poster.webp" width="1280" height="800" alt="Первый экран лендинга «Бамбук»: горы линией и иероглиф 中"></div>
-        <div class="base"></div>
-      </div></div>
-      <div class="meta">
-        <p class="label">Школа китайского языка · лендинг</p>
-        <h3>Бамбук</h3>
-        <p>Современный дизайн с отсылками к пейзажному свитку</p>
-      </div>
-    </a>
-    <a class="card" href="asmirnov.html">
-      <div class="cover"><div class="laptop">
-        <div class="scr"><img src="asmirnov/d-hero.webp" width="1280" height="800" alt="Первый экран визитки «Смирнов»: имя капсом и нейросеть на тёмном фоне"></div>
-        <div class="base"></div>
-      </div></div>
-      <div class="meta">
-        <p class="label">ИИ-инженер · сайт-визитка</p>
-        <h3>Смирнов</h3>
-        <p>Тёмный tech-стиль и RAG-демо по резюме</p>
-      </div>
-    </a>
     <a class="card" href="aurea.html">
       <div class="cover"><div class="laptop">
-        <div class="scr"><img src="aurea/d-hero.webp" width="1600" height="1000" loading="lazy" alt="Первый экран концепта «AUREA Estate»: резиденция на закате и тонкий заголовок «Загородные резиденции премиум-класса»"></div>
+        <div class="scr"><img src="aurea/cover.webp" width="1600" height="900" alt="Первый экран концепта «AUREA Estate»: резиденция на закате и тонкий заголовок «Загородные резиденции премиум-класса»"></div>
         <div class="base"></div>
       </div></div>
       <div class="meta">
@@ -180,20 +158,31 @@
         <p>Тонкая антиква и латунь, каталог с фильтрами, квиз-расчёт и карта локаций</p>
       </div>
     </a>
-    <a class="card" href="lavrova.html">
+    <a class="card" href="ton.html">
       <div class="cover"><div class="laptop">
-        <div class="scr"><img src="lavrova/d-hero.webp" width="1600" height="941" loading="lazy" alt="Первый экран концепта «Стоматология доктора Лавровой»: врач в шалфейном костюме и заголовок «Спокойное лечение зубов на Беговой»"></div>
+        <div class="scr"><img src="ton/cover.webp" width="1600" height="900" alt="Первый экран концепта «Тон»: заголовок «Образ под вашу внешность и характер», веер оттенков в руках колориста"></div>
         <div class="base"></div>
       </div></div>
       <div class="meta">
-        <p class="label">Частный стоматолог-терапевт · лендинг</p>
-        <h3>Стоматология доктора Лавровой</h3>
-        <p>Туман и шалфей, лупа над зубом, до и после под размытием, план лечения с ценой</p>
+        <p class="label">Студия красоты · лендинг</p>
+        <h3>Тон</h3>
+        <p>Пудра и графит, лента оттенков, мастера каруселью, спецпредложения и отзывы на карте</p>
+      </div>
+    </a>
+    <a class="card" href="kitai.html">
+      <div class="cover"><div class="laptop">
+        <div class="scr"><img src="kitai/cover.webp" width="1600" height="900" loading="lazy" alt="Первый экран лендинга «Бамбук»: горы линией и иероглиф 中"></div>
+        <div class="base"></div>
+      </div></div>
+      <div class="meta">
+        <p class="label">Школа китайского языка · лендинг</p>
+        <h3>Бамбук</h3>
+        <p>Современный дизайн с отсылками к пейзажному свитку</p>
       </div>
     </a>
     <a class="card" href="epd-lab.html">
       <div class="cover"><div class="laptop">
-        <div class="scr"><img src="epd-lab/d-hero.webp" width="1600" height="1000" loading="lazy" alt="Первый экран лендинга «ЭПД Лаб»: заголовок «ЭПД под ключ» и фото логиста и водителя у фуры"></div>
+        <div class="scr"><img src="epd-lab/cover.webp" width="1600" height="900" loading="lazy" alt="Первый экран лендинга «ЭПД Лаб»: заголовок «ЭПД под ключ» и фото логиста и водителя у фуры"></div>
         <div class="base"></div>
       </div></div>
       <div class="meta">
@@ -202,26 +191,37 @@
         <p>Отсчёт до срока, радар налоговых рисков и схема подключения партнёров</p>
       </div>
     </a>
+    <a class="card" href="lavrova.html">
+      <div class="cover"><div class="laptop">
+        <div class="scr"><img src="lavrova/cover.webp" width="1600" height="900" loading="lazy" alt="Первый экран концепта «Стоматология доктора Лавровой»: врач в шалфейном костюме и заголовок «Терапевт, к которому ходят семьями»"></div>
+        <div class="base"></div>
+      </div></div>
+      <div class="meta">
+        <p class="label">Частный стоматолог-терапевт · лендинг</p>
+        <h3>Стоматология доктора Лавровой</h3>
+        <p>Туман и шалфей, лупа над зубом, до и после под размытием, план лечения с ценой</p>
+      </div>
+    </a>
+    <a class="card" href="asmirnov.html">
+      <div class="cover"><div class="laptop">
+        <div class="scr"><img src="asmirnov/cover.webp" width="1600" height="900" loading="lazy" alt="Первый экран визитки «Смирнов»: имя капсом и нейросеть на тёмном фоне"></div>
+        <div class="base"></div>
+      </div></div>
+      <div class="meta">
+        <p class="label">ИИ-инженер · сайт-визитка</p>
+        <h3>Смирнов</h3>
+        <p>Тёмный tech-стиль и RAG-демо по резюме</p>
+      </div>
+    </a>
     <a class="card" href="yurist.html">
       <div class="cover"><div class="laptop">
-        <div class="scr"><img src="yurist/d-hero.webp" width="1600" height="1000" loading="lazy" alt="Первый экран лендинга «Ключ Лигал»: заголовок о юристах для криптобизнеса и ключ из блоков блокчейна"></div>
+        <div class="scr"><img src="yurist/cover.webp" width="1600" height="900" loading="lazy" alt="Первый экран лендинга «Ключ Лигал»: заголовок о юристах для криптобизнеса и ключ из блоков блокчейна"></div>
         <div class="base"></div>
       </div></div>
       <div class="meta">
         <p class="label">Юристы для криптобизнеса · лендинг</p>
         <h3>Ключ Лигал</h3>
         <p>Строгий синий и анимированный «Цифровой след»</p>
-      </div>
-    </a>
-    <a class="card" href="ton.html">
-      <div class="cover"><div class="laptop">
-        <div class="scr"><img src="ton/d-hero.webp" width="1600" height="891" loading="lazy" alt="Первый экран концепта «Тон»: заголовок «Образ под вашу внешность и характер», веер оттенков в руках колориста"></div>
-        <div class="base"></div>
-      </div></div>
-      <div class="meta">
-        <p class="label">Студия красоты · лендинг</p>
-        <h3>Тон</h3>
-        <p>Пудра и графит, лента оттенков, мастера каруселью, спецпредложения и отзывы на карте</p>
       </div>
     </a>
   </div>
