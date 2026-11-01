@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Сайты, которые я собрала с ИИ: концепты и обезличенные проекты в виде презентаций">
+<meta name="description" content="Сайты, которые я вела как маркетолог, и концепты, которые собрала с ИИ">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23635BFF'/%3E%3Cstop offset='.55' stop-color='%233D7BFF'/%3E%3Cstop offset='1' stop-color='%2322C7FF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M16 2l12 7v14l-12 7-12-7V9z' fill='url(%23g)'/%3E%3C/svg%3E">
 <style>
   /* Шрифты визитки — локально в ../fonts/ (OFL) */
@@ -113,6 +113,20 @@
   .card:hover h3 { color: var(--accent); }
   .meta p { margin: 0; color: var(--muted); }
 
+  /* Разделы страницы: реальные сайты (выше) и концепты */
+  .sec-head { display: grid; gap: 8px; margin: 0 0 clamp(20px, 3vw, 28px); }
+  .sec-head h2 { font: 700 var(--fs-h2)/1.15 var(--display); letter-spacing: -.02em; margin: 0; text-wrap: balance; }
+  .sec-head .note { font: 400 15px/1.55 var(--sans); color: var(--muted); max-width: 720px; margin: 4px 0 0; text-wrap: pretty; }
+  /* Карточка реального сайта: вся карточка ведёт на кейс, ссылка на живой сайт — поверх */
+  .card.real { position: relative; }
+  .card.real h3 a { text-decoration: none; }
+  .card.real h3 a::after { content: ""; position: absolute; inset: 0; border-radius: 16px; }
+  .site-link { position: relative; z-index: 1; justify-self: start; display: inline-flex; align-items: center; min-height: 44px;
+    font: 500 var(--fs-label)/1 var(--mono); color: var(--accent-text); text-decoration: underline;
+    text-decoration-color: rgba(99, 91, 255, .45); text-underline-offset: 4px; }
+  .site-link:hover { color: var(--accent); }
+  .cover-ph { aspect-ratio: 16 / 9; background: #fff; display: grid; place-items: center; font: 500 13px var(--mono); color: var(--muted); }
+
   footer { border-top: 1px solid var(--line); }
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 22px; font: 400 13px var(--mono); color: var(--muted); }
 </style>
@@ -128,7 +142,7 @@
 <main class="wrap">
   <div class="intro">
     <p class="label">// портфолио сайтов</p>
-    <h1><span class="lt">Концепты сайтов,</span> которые я&nbsp;собрала для&nbsp;вас</h1>
+    <h1><span class="lt">Портфолио сайтов:</span> реальные проекты и&nbsp;концепты</h1>
     <h2 class="lead">Разработаю сайт по&nbsp;вашему ТЗ, выбранному референсу или на&nbsp;базе моих готовых библиотек под&nbsp;разные ниши</h2>
   </div>
 
@@ -146,10 +160,97 @@
     <p class="plan-note">*Правки: 3&nbsp;итерации (макет, дизайн, вёрстка)</p>
   </section>
 
+  <section class="sec-head" aria-labelledby="real-title">
+    <p class="label">// реальные сайты</p>
+    <h2 id="real-title"><span class="lt">Сайты, которые я&nbsp;вела</span> как маркетолог</h2>
+    <p class="note">Вела упаковку сайтов для клиентов от&nbsp;брифинга до&nbsp;запуска: анализ конкурентов, продукта и&nbsp;аудитории, CJM, прототип, концепция, референсы и&nbsp;палитра, передача в&nbsp;дизайн и&nbsp;вёрстку. Каждый этап согласовывала с&nbsp;клиентом. Дизайн и&nbsp;вёрстку делали специалисты, теперь эти задачи закрываю сама</p>
+  </section>
+
+  <div class="grid">
+    <div class="card real">
+      <div class="cover"><div class="laptop">
+        <div class="scr"><img src="sitimed/cover.webp" width="1600" height="900" loading="lazy" alt="Первый экран сайта «СитиМед»: предложение «Оформить медкнижку — от 2 500 ₽» и медкнижка в руке"></div>
+        <div class="base"></div>
+      </div></div>
+      <div class="meta">
+        <p class="label">Сеть медицинских центров · многостраничный сайт · агентство Webolution</p>
+        <h3><a href="sitimed.html">СитиМед</a></h3>
+        <p>Офферы с&nbsp;ценой, страница под каждую справку и&nbsp;запись с&nbsp;любого экрана</p>
+        <a class="site-link" href="https://medcentr-sitimed.ru/" target="_blank" rel="noopener noreferrer">medcentr-sitimed.ru&nbsp;↗</a>
+      </div>
+    </div>
+    <div class="card real">
+      <div class="cover"><div class="laptop">
+        <div class="scr"><img src="welder/cover.webp" width="1600" height="900" loading="lazy" alt="Первый экран сайта The Welder Catherine: «Жарим кофе с огоньком», три входа и нарисованный фермер с кофейной веткой"></div>
+        <div class="base"></div>
+      </div></div>
+      <div class="meta">
+        <p class="label">Обжарщик кофе · интернет-магазин · агентство Ingate</p>
+        <h3><a href="welder.html">The Welder Catherine</a></h3>
+        <p>Свежая подача в&nbsp;характере бренда и&nbsp;покупка прямо с&nbsp;главной</p>
+        <a class="site-link" href="https://theweldercatherine.ru/" target="_blank" rel="noopener noreferrer">theweldercatherine.ru&nbsp;↗</a>
+      </div>
+    </div>
+    <div class="card real">
+      <div class="cover"><div class="laptop">
+        <div class="scr"><img src="web3eco/cover.webp" width="1600" height="900" loading="lazy" alt="Первый экран сайта Web3Eco: заголовок «Агробизнес на плантациях павловнии» и ряды молодых деревьев"></div>
+        <div class="base"></div>
+      </div></div>
+      <div class="meta">
+        <p class="label">Агробизнес · сайт для инвесторов и&nbsp;партнёров · в&nbsp;штате Web3Eco</p>
+        <h3><a href="web3eco.html">Web3Eco</a></h3>
+        <p>Цифры, видео плантаций и&nbsp;документы для инвесторов и&nbsp;покупателей древесины</p>
+        <a class="site-link" href="https://web3eco.io/" target="_blank" rel="noopener noreferrer">web3eco.io&nbsp;↗</a>
+      </div>
+    </div>
+    <div class="card real">
+      <div class="cover"><div class="laptop">
+        <div class="scr"><img src="ok-linza/cover.webp" width="1600" height="900" loading="lazy" alt="Первый экран сайта «Доктор Линз»: заголовок «Консультация офтальмолога бесплатно» и врач у щелевой лампы"></div>
+        <div class="base"></div>
+      </div></div>
+      <div class="meta">
+        <p class="label">Сеть клиник зрения · многостраничный сайт · агентство Webolution</p>
+        <h3><a href="ok-linza.html">Доктор Линз</a></h3>
+        <p>Запись в&nbsp;один шаг, выбор врача с&nbsp;главной и&nbsp;лендинг ночных линз</p>
+        <a class="site-link" href="https://ok-linza.ru/" target="_blank" rel="noopener noreferrer">ok-linza.ru&nbsp;↗</a>
+      </div>
+    </div>
+    <div class="card real">
+      <div class="cover"><div class="laptop">
+        <div class="scr"><img src="teplopribor/cover.webp" width="1600" height="900" loading="lazy" alt="Первый экран сайта «Теплоприбор»: «Производитель радиаторов отопления», знаки ГОСТ и «Сделано в России» и крупный радиатор на тёмном фоне"></div>
+        <div class="base"></div>
+      </div></div>
+      <div class="meta">
+        <p class="label">Производитель радиаторов · сайт завода с&nbsp;каталогом · агентство Webolution</p>
+        <h3><a href="teplopribor.html">Теплоприбор</a></h3>
+        <p>Продукт крупно, технологии на&nbsp;разрезе радиатора и&nbsp;заявка для дилеров</p>
+        <a class="site-link" href="https://radiatorteplopribor.ru/" target="_blank" rel="noopener noreferrer">radiatorteplopribor.ru&nbsp;↗</a>
+      </div>
+    </div>
+    <div class="card real">
+      <div class="cover"><div class="laptop">
+        <div class="scr"><img src="gds-mining/cover.webp" width="1600" height="900" loading="lazy" alt="Первый экран сайта GDS Mining: «Постройте свой бизнес на майнинге BTC» и ряды асиков"></div>
+        <div class="base"></div>
+      </div></div>
+      <div class="meta">
+        <p class="label">Майнинг биткоина · сайт услуги под&nbsp;ключ · в&nbsp;штате GDS Mining</p>
+        <h3><a href="gds-mining.html">GDS Mining</a></h3>
+        <p>Продукт, оффер и&nbsp;сайт с&nbsp;нуля: реестр майнеров, фото дата‑центра и&nbsp;СМИ для доверия</p>
+        <a class="site-link" href="https://gds-mining.com/" target="_blank" rel="noopener noreferrer">gds-mining.com&nbsp;↗</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="sec-head" aria-labelledby="concepts-title">
+    <p class="label">// концепты</p>
+    <h2 id="concepts-title"><span class="lt">Концепты, которые</span> я&nbsp;собрала сама</h2>
+    <p class="note">Здесь собраны концептуальные решения для&nbsp;разных ниш, демонстрирующие дизайн и&nbsp;вёрстку. В&nbsp;реализации проектов я&nbsp;делегирую дизайн и&nbsp;технические задачи ИИ&#8209;агентам, лично определяя стратегию, структуру и&nbsp;визуальное направление. Моя маркетинговая экспертиза задаёт логику каждого решения, а&nbsp;контроль на&nbsp;всех этапах обеспечивает качество финального продукта</p>
+  </section>
+
   <div class="grid">
     <a class="card" href="aurea.html">
       <div class="cover"><div class="laptop">
-        <div class="scr"><img src="aurea/cover.webp" width="1600" height="900" alt="Первый экран концепта «AUREA Estate»: резиденция на закате и тонкий заголовок «Загородные резиденции премиум-класса»"></div>
+        <div class="scr"><img src="aurea/cover.webp" width="1600" height="900" loading="lazy" alt="Первый экран концепта «AUREA Estate»: резиденция на закате и тонкий заголовок «Загородные резиденции премиум-класса»"></div>
         <div class="base"></div>
       </div></div>
       <div class="meta">
@@ -160,7 +261,7 @@
     </a>
     <a class="card" href="ton.html">
       <div class="cover"><div class="laptop">
-        <div class="scr"><img src="ton/cover.webp" width="1600" height="900" alt="Первый экран концепта «Тон»: заголовок «Образ под вашу внешность и характер», веер оттенков в руках колориста"></div>
+        <div class="scr"><img src="ton/cover.webp" width="1600" height="900" loading="lazy" alt="Первый экран концепта «Тон»: заголовок «Образ под вашу внешность и характер», веер оттенков в руках колориста"></div>
         <div class="base"></div>
       </div></div>
       <div class="meta">
@@ -228,7 +329,7 @@
 </main>
 
 <footer>
-  <div class="wrap"><span>@maria1moon</span><span>Проекты — концепты: названия, контакты и цены вымышленные</span></div>
+  <div class="wrap"><span>@maria1moon</span><span>В концептах названия, контакты и цены вымышленные</span></div>
 </footer>
 
 <script>
