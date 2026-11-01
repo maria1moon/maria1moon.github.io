@@ -66,10 +66,26 @@
   h1 { font: 700 clamp(36px, 6vw, 64px)/1.05 var(--display); letter-spacing: -.03em; margin: 0; text-wrap: balance; }
   .lead { font: 400 clamp(17px, 1.6vw, 20px)/1.5 var(--sans); color: var(--muted); max-width: 640px; margin: 4px 0 0; text-wrap: pretty; }
 
-  /* План работ: нумерованные шаги в 2 колонки, сноска — в свободной ячейке */
-  .plan { border: 1px solid var(--line); border-radius: 16px; background: var(--soft); padding: clamp(20px, 3vw, 32px);
-    margin-bottom: clamp(48px, 6vw, 72px); }
-  .plan-title { font: 600 18px/1.3 var(--display); letter-spacing: -.01em; margin: 0 0 16px; }
+  /* Первый экран: полигональная абстракция справа (стиль визитки: тонкие линии, грани до 8%, гаснет к тексту) */
+  .intro { position: relative; isolation: isolate; }
+  .hero-poly { position: absolute; z-index: -1; top: -40px; right: 0; width: min(62%, 640px); height: calc(100% + 40px); fill: none;
+    stroke: var(--accent); stroke-width: 1; stroke-opacity: .32; pointer-events: none;
+    -webkit-mask-image: radial-gradient(closest-side at 62% 45%, #000 35%, transparent 100%);
+    mask-image: radial-gradient(closest-side at 62% 45%, #000 35%, transparent 100%); }
+  .hero-poly circle { fill: var(--accent); fill-opacity: .8; stroke: none; }
+  .hero-poly .facets path { stroke: none; fill: url(#facet-grad); fill-opacity: var(--o, .04); }
+  @media (max-width: 720px) { .hero-poly { width: 100%; top: 0; height: 100%; stroke-opacity: .16; } }
+
+  /* План работ: раскрывающийся список, по умолчанию свёрнут; внутри шаги в 2 колонки */
+  .plan { border: 1px solid var(--line); border-radius: 16px; background: var(--soft); margin-bottom: clamp(48px, 6vw, 72px); }
+  .plan summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; cursor: pointer; list-style: none;
+    padding: 12px clamp(20px, 3vw, 32px); font: 600 18px/1.3 var(--display); letter-spacing: -.01em; border-radius: 16px; }
+  .plan summary::-webkit-details-marker { display: none; }
+  .plan summary::after { content: ""; flex: none; width: 8px; height: 8px; border-right: 1.5px solid var(--accent); border-bottom: 1.5px solid var(--accent);
+    transform: rotate(45deg) translateY(-2px); transition: transform .2s ease; }
+  .plan[open] summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+  .plan summary:hover { color: var(--accent); }
+  .plan-body { padding: 0 clamp(20px, 3vw, 32px) clamp(20px, 3vw, 28px); }
   .steps { list-style: none; margin: 0; padding: 0; counter-reset: step; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-flow: column; grid-template-rows: repeat(4, auto); column-gap: clamp(24px, 4vw, 48px); }
   .steps li { counter-increment: step; display: grid; grid-template-columns: 32px 1fr; gap: 8px; padding: 12px 0; border-top: 1px solid var(--line); }
@@ -77,20 +93,13 @@
   .plan-note { font: 400 var(--fs-label)/1.5 var(--mono); color: var(--muted); margin: 12px 0 0; }
   @media (min-width: 721px) {
     /* сноска встаёт в 8-ю ячейку, под шагом 07 */
-    .plan { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 4vw, 48px); }
-    .plan-title, .steps { grid-column: 1 / -1; }
+    .plan-body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 4vw, 48px); }
+    .steps { grid-column: 1 / -1; }
     .plan-note { grid-column: 2; margin-top: -40px; padding: 12px 0 0 40px; border-top: 1px solid var(--line); align-self: start; }
   }
-  .steps-more { display: none; margin-top: 4px; padding: 11px 0; border: 0; background: none; cursor: pointer;
-    font: 600 14px var(--display); color: var(--ink);
-    text-decoration: underline; text-decoration-color: rgba(99, 91, 255, .45); text-decoration-thickness: 1px; text-underline-offset: 5px; }
   @media (max-width: 720px) {
     .steps { grid-template-columns: 1fr; grid-auto-flow: row; grid-template-rows: none; }
-    /* На телефоне видны 2 шага, остальное — по ссылке «Все этапы» (без JS и в печати видно всё) */
-    .steps.folded li:nth-child(n+3) { display: none; }
-    .steps-more { display: inline-block; }
   }
-  @media print { .steps.folded li { display: grid !important; } .steps-more { display: none !important; } }
 
   /* Сетка обложек */
   .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 3vw, 32px); padding-bottom: clamp(64px, 9vw, 112px); }
@@ -117,6 +126,9 @@
   .sec-head { display: grid; gap: 8px; margin: 0 0 clamp(20px, 3vw, 28px); }
   .sec-head h2 { font: 700 var(--fs-h2)/1.15 var(--display); letter-spacing: -.02em; margin: 0; text-wrap: balance; }
   .sec-head .note { font: 400 15px/1.55 var(--sans); color: var(--muted); max-width: 720px; margin: 4px 0 0; text-wrap: pretty; }
+  .sec-head .note-list { font: 400 15px/1.55 var(--sans); color: var(--muted); max-width: 720px; margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+  .sec-head .note-list li::marker { color: var(--accent); }
+  .sec-head .note-list strong { font-weight: 600; color: var(--ink); }
   /* Карточка реального сайта: вся карточка ведёт на кейс, ссылка на живой сайт — поверх */
   .card.real { position: relative; }
   .card.real h3 a { text-decoration: none; }
@@ -141,14 +153,16 @@
 
 <main class="wrap">
   <div class="intro">
+    <svg class="hero-poly" viewBox="0 0 700 600" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"><defs><linearGradient id="facet-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="700" y2="0"><stop offset="0" stop-color="#635BFF"/><stop offset=".5" stop-color="#3D7BFF"/><stop offset="1" stop-color="#22C7FF"/></linearGradient></defs><g id="hero-poly-g"><g class="facets"><path d="M555 99L586 0L700 0" style="--o:0.068"/><path d="M0 0L0 110L103 0" style="--o:0.025"/><path d="M198 115L207 0L361 0" style="--o:0.058"/><path d="M83 121L103 0L207 0" style="--o:0.047"/><path d="M361 0L434 0L461 145" style="--o:0.072"/><path d="M434 0L461 145L586 0" style="--o:0.057"/><path d="M198 115L317 89L361 0" style="--o:0.044"/><path d="M555 99L700 0L700 130" style="--o:0.038"/><path d="M0 110L83 121L103 0" style="--o:0.015"/><path d="M317 89L361 0L461 145" style="--o:0.030"/><path d="M83 121L198 115L207 0" style="--o:0.016"/><path d="M461 145L555 99L586 0" style="--o:0.048"/><path d="M198 115L270 206L317 89" style="--o:0.023"/><path d="M83 121L198 115L270 206" style="--o:0.018"/><path d="M317 89L377 224L461 145" style="--o:0.030"/><path d="M555 99L569 264L700 130" style="--o:0.037"/><path d="M0 110L0 274L83 121" style="--o:0.033"/><path d="M461 145L555 99L569 264" style="--o:0.070"/><path d="M270 206L317 89L377 224" style="--o:0.057"/><path d="M83 121L123 232L270 206" style="--o:0.059"/><path d="M377 224L440 211L461 145" style="--o:0.041"/><path d="M569 264L700 130L700 216" style="--o:0.043"/><path d="M440 211L461 145L569 264" style="--o:0.034"/><path d="M0 274L83 121L123 232" style="--o:0.015"/><path d="M237 327L270 206L377 224" style="--o:0.023"/><path d="M317 338L377 224L440 211" style="--o:0.027"/><path d="M123 232L127 350L270 206" style="--o:0.015"/><path d="M440 211L480 354L569 264" style="--o:0.031"/><path d="M569 264L700 216L700 356" style="--o:0.065"/><path d="M0 274L123 232L127 350" style="--o:0.015"/><path d="M127 350L237 327L270 206" style="--o:0.039"/><path d="M237 327L317 338L377 224" style="--o:0.022"/><path d="M317 338L440 211L480 354" style="--o:0.075"/><path d="M480 354L569 264L569 367" style="--o:0.028"/><path d="M569 264L569 367L700 356" style="--o:0.039"/><path d="M0 274L0 366L127 350" style="--o:0.039"/><path d="M317 338L480 354L484 464" style="--o:0.029"/><path d="M127 350L139 495L237 327" style="--o:0.024"/><path d="M480 354L569 367L620 451" style="--o:0.024"/><path d="M237 327L317 338L352 509" style="--o:0.022"/><path d="M569 367L700 356L700 474" style="--o:0.023"/><path d="M0 366L127 350L139 495" style="--o:0.015"/><path d="M480 354L484 464L620 451" style="--o:0.022"/><path d="M569 367L620 451L700 474" style="--o:0.057"/><path d="M139 495L214 486L237 327" style="--o:0.015"/><path d="M317 338L352 509L484 464" style="--o:0.033"/><path d="M214 486L237 327L352 509" style="--o:0.030"/><path d="M0 366L0 465L139 495" style="--o:0.038"/><path d="M484 464L596 600L620 451" style="--o:0.038"/><path d="M596 600L620 451L700 474" style="--o:0.016"/><path d="M0 465L136 600L139 495" style="--o:0.060"/><path d="M352 509L432 600L484 464" style="--o:0.015"/><path d="M136 600L139 495L214 486" style="--o:0.041"/><path d="M214 486L349 600L352 509" style="--o:0.015"/><path d="M432 600L484 464L596 600" style="--o:0.036"/><path d="M0 465L0 600L136 600" style="--o:0.015"/><path d="M596 600L700 474L700 600" style="--o:0.028"/><path d="M136 600L207 600L214 486" style="--o:0.015"/><path d="M207 600L214 486L349 600" style="--o:0.015"/><path d="M349 600L352 509L432 600" style="--o:0.039"/></g><path d="M0 0L0 110M0 0L103 0M0 110L0 274M0 110L83 121M0 274L0 366M0 274L123 232M0 274L127 350M0 366L0 465M0 366L127 350M0 366L139 495M0 465L0 600M0 465L136 600M0 465L139 495M0 600L136 600M83 121L0 274M83 121L123 232M83 121L198 115M83 121L270 206M103 0L0 110M103 0L83 121M103 0L207 0M123 232L127 350M123 232L270 206M127 350L139 495M127 350L237 327M136 600L207 600M139 495L136 600M139 495L214 486M198 115L270 206M198 115L317 89M207 0L83 121M207 0L198 115M207 0L361 0M207 600L349 600M214 486L136 600M214 486L207 600M214 486L349 600M214 486L352 509M237 327L139 495M237 327L214 486M237 327L317 338M237 327L352 509M270 206L127 350M270 206L237 327M270 206L377 224M317 89L270 206M317 89L377 224M317 89L461 145M317 338L352 509M317 338L480 354M317 338L484 464M349 600L432 600M352 509L349 600M352 509L432 600M352 509L484 464M361 0L198 115M361 0L317 89M361 0L434 0M361 0L461 145M377 224L237 327M377 224L317 338M377 224L440 211M432 600L596 600M434 0L461 145M434 0L586 0M440 211L317 338M440 211L480 354M440 211L569 264M461 145L377 224M461 145L440 211M461 145L555 99M461 145L569 264M480 354L484 464M480 354L569 367M480 354L620 451M484 464L432 600M484 464L596 600M484 464L620 451M555 99L569 264M555 99L700 130M569 264L480 354M569 264L569 367M569 264L700 216M569 264L700 356M569 367L620 451M569 367L700 356M569 367L700 474M586 0L461 145M586 0L555 99M586 0L700 0M596 600L700 600M620 451L596 600M620 451L700 474M700 0L555 99M700 0L700 130M700 130L569 264M700 130L700 216M700 216L700 356M700 356L700 474M700 474L596 600M700 474L700 600"/><circle cx="0" cy="0" r="2.2" style="--d:0.40s"/><circle cx="361" cy="0" r="2.2" style="--d:0.92s"/><circle cx="700" cy="0" r="2.2" style="--d:1.40s"/><circle cx="198" cy="115" r="2.2" style="--d:0.68s"/><circle cx="555" cy="99" r="2.2" style="--d:1.19s"/><circle cx="123" cy="232" r="2.2" style="--d:0.58s"/><circle cx="440" cy="211" r="2.2" style="--d:1.03s"/><circle cx="0" cy="366" r="2.2" style="--d:0.40s"/><circle cx="317" cy="338" r="2.2" style="--d:0.85s"/><circle cx="700" cy="356" r="2.2" style="--d:1.40s"/><circle cx="214" cy="486" r="2.2" style="--d:0.71s"/><circle cx="620" cy="451" r="2.2" style="--d:1.29s"/><circle cx="136" cy="600" r="2.2" style="--d:0.59s"/><circle cx="432" cy="600" r="2.2" style="--d:1.02s"/></g></svg>
     <p class="label">// портфолио сайтов</p>
     <h1><span class="lt">Портфолио сайтов:</span> реальные проекты и&nbsp;концепты</h1>
     <h2 class="lead">Разработаю сайт по&nbsp;вашему ТЗ, выбранному референсу или на&nbsp;базе моих готовых библиотек под&nbsp;разные ниши</h2>
   </div>
 
-  <section class="plan" aria-labelledby="plan-title">
-    <p class="plan-title" id="plan-title">Что входит в&nbsp;план работ:</p>
-    <ol class="steps">
+  <details class="plan">
+    <summary>Что входит в&nbsp;план работ</summary>
+    <div class="plan-body">
+      <ol class="steps">
       <li>Анализ предложений конкурентов и&nbsp;целевой аудитории</li>
       <li>Проработка структуры страницы и&nbsp;точек захвата лидов</li>
       <li>Написание продающего текста и&nbsp;создание макета</li>
@@ -157,8 +171,9 @@
       <li>Вёрстка сайта</li>
       <li>Приёмка и&nbsp;передача готового проекта</li>
     </ol>
-    <p class="plan-note">*Правки: 3&nbsp;итерации (макет, дизайн, вёрстка)</p>
-  </section>
+      <p class="plan-note">*Правки: 3&nbsp;итерации (макет, дизайн, вёрстка)</p>
+    </div>
+  </details>
 
   <section class="sec-head" aria-labelledby="real-title">
     <p class="label">// реальные сайты</p>
@@ -244,7 +259,13 @@
   <section class="sec-head" aria-labelledby="concepts-title">
     <p class="label">// концепты</p>
     <h2 id="concepts-title"><span class="lt">Концепты, которые</span> я&nbsp;собрала сама</h2>
-    <p class="note">Здесь собраны концептуальные решения для&nbsp;разных ниш, демонстрирующие дизайн и&nbsp;вёрстку. В&nbsp;реализации проектов я&nbsp;делегирую дизайн и&nbsp;технические задачи ИИ&#8209;агентам, лично определяя стратегию, структуру и&nbsp;визуальное направление. Моя маркетинговая экспертиза задаёт логику каждого решения, а&nbsp;контроль на&nbsp;всех этапах обеспечивает качество финального продукта</p>
+    <p class="note">В&nbsp;портфолио собраны примеры дизайна и&nbsp;вёрстки для&nbsp;разных ниш. Работу над реальными проектами я&nbsp;строю так:</p>
+    <ul class="note-list">
+      <li><strong>Отвечаю за&nbsp;стратегию:</strong> лично продумываю структуру и&nbsp;визуал сайта</li>
+      <li><strong>Опираюсь на&nbsp;маркетинг:</strong> слежу, чтобы каждый блок решал задачи бизнеса</li>
+      <li><strong>Делегирую рутину ИИ:</strong> поручаю нейросетям техническую работу и&nbsp;черновой дизайн</li>
+      <li><strong>Контролирую качество:</strong> проверяю результаты работы ИИ на&nbsp;каждом этапе</li>
+    </ul>
   </section>
 
   <div class="grid">
@@ -336,12 +357,8 @@
 (function () {
   // Черновик сообщения в Telegram (CLAUDE.md: каждая ссылка — с ?text=)
   var draft = 'Здравствуйте, Мария! Пишу со страницы портфолио сайтов. Хочу сайт для своего проекта: ';
-  // План работ на телефоне: свёрнут до 2 шагов, ссылка раскрывает остальное
-  var steps = document.querySelector('.steps'), more = document.createElement('button');
-  more.type = 'button'; more.className = 'steps-more'; more.textContent = 'Все этапы';
-  more.addEventListener('click', function () { steps.classList.remove('folded'); more.remove(); });
-  steps.classList.add('folded');
-  steps.after(more);
+  // Печать: план работ раскрыт
+  window.addEventListener('beforeprint', function () { document.querySelectorAll('details.plan').forEach(function (d) { d.open = true; }); });
   document.querySelectorAll('[data-tg]').forEach(function (a) { a.href = 'https://t.me/maria1moon?text=' + encodeURIComponent(draft); });
 })();
 </script>
